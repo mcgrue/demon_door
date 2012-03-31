@@ -11,13 +11,15 @@ using Microsoft.Xna.Framework.Media;
 
 using Box2DX;
 
-namespace DemonDoor {
+namespace XNAVERGE {
+
     /// <summary>
     /// This is the main type for your game
     /// </summary>
-    public class Game1 : Microsoft.Xna.Framework.Game {
-        GraphicsDeviceManager graphics;
-        SpriteBatch spriteBatch;
+    public class Game1 : VERGEGame {
+
+        public McGrenderStack mcg;
+        Texture2D civvie;
 
         public Game1() {
             graphics = new GraphicsDeviceManager( this );
@@ -32,7 +34,14 @@ namespace DemonDoor {
         /// </summary>
         protected override void Initialize() {
             // TODO: Add your initialization logic here
-            
+
+            civvie = Content.Load<Texture2D>( "civilian_01" );
+
+            mcg = new McGrenderStack();
+            mcg.AddLayer( "menu" );
+            mcg.AddLayer( "textbox" );
+            this.setMcGrender( mcg );
+
             base.Initialize();
         }
 
@@ -42,7 +51,7 @@ namespace DemonDoor {
         /// </summary>
         protected override void LoadContent() {
             // Create a new SpriteBatch, which can be used to draw textures.
-            spriteBatch = new SpriteBatch( GraphicsDevice );
+            spritebatch = new SpriteBatch( GraphicsDevice );
 
             // TODO: use this.Content to load your game content here
         }
@@ -55,6 +64,8 @@ namespace DemonDoor {
             // TODO: Unload any non ContentManager content here
         }
 
+        int systime;
+
         /// <summary>
         /// Allows the game to run logic such as updating the world,
         /// checking for collisions, gathering input, and playing audio.
@@ -65,10 +76,12 @@ namespace DemonDoor {
             if( GamePad.GetState( PlayerIndex.One ).Buttons.Back == ButtonState.Pressed )
                 this.Exit();
 
+            systime = gameTime.TotalGameTime.Milliseconds;
+
             // TODO: Add your update logic here
 
             base.Update( gameTime );
-        }
+        } 
 
         /// <summary>
         /// This is called when the game should draw itself.
@@ -77,7 +90,11 @@ namespace DemonDoor {
         protected override void Draw( GameTime gameTime ) {
             GraphicsDevice.Clear( Color.LimeGreen );
 
-            // TODO: Add your drawing code here
+            Rectangle rect = new Rectangle( 10, 30, 112, 16 );
+
+            spritebatch.Begin();
+            spritebatch.Draw( civvie, rect, Color.White );
+            spritebatch.End();
 
             base.Draw( gameTime );
         }

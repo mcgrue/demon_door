@@ -119,6 +119,14 @@
     <Content Include="GameThumbnail.png" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\XNAVERGE\XNAVERGE.csproj">
+      <Project>{0D524863-D249-4CCC-8C99-349EF7AAA0FF}</Project>
+      <Name>XNAVERGE</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\XVCX\XVCX.csproj">
+      <Project>{CEE58E89-EFF1-47DF-BDBA-32F7D9B01BA3}</Project>
+      <Name>XVCX</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DemonDoorContent\DemonDoorContent.contentproj">
       <Name>DemonDoorContent</Name>
       <XnaReferenceType>Content</XnaReferenceType>

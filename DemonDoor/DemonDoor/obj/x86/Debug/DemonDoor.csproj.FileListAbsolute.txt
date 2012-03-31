@@ -1,0 +1,13 @@
+c:\users\ben\documents\visual studio 2010\Projects\DemonDoor\DemonDoor\DemonDoor\bin\x86\Debug\DemonDoor.exe
+c:\users\ben\documents\visual studio 2010\Projects\DemonDoor\DemonDoor\DemonDoor\bin\x86\Debug\DemonDoor.pdb
+c:\users\ben\documents\visual studio 2010\Projects\DemonDoor\DemonDoor\DemonDoor\obj\x86\Debug\ResolveAssemblyReference.cache
+c:\users\ben\documents\visual studio 2010\Projects\DemonDoor\DemonDoor\DemonDoor\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+c:\users\ben\documents\visual studio 2010\Projects\DemonDoor\DemonDoor\DemonDoor\obj\x86\Debug\DemonDoor.exe
+c:\users\ben\documents\visual studio 2010\Projects\DemonDoor\DemonDoor\DemonDoor\obj\x86\Debug\DemonDoor.pdb
+C:\grue\demon_door\DemonDoor\DemonDoor\bin\x86\Debug\DemonDoor.exe
+C:\grue\demon_door\DemonDoor\DemonDoor\bin\x86\Debug\DemonDoor.pdb
+C:\grue\demon_door\DemonDoor\DemonDoor\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\grue\demon_door\DemonDoor\DemonDoor\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\grue\demon_door\DemonDoor\DemonDoor\obj\x86\Debug\DemonDoor.exe
+C:\grue\demon_door\DemonDoor\DemonDoor\obj\x86\Debug\DemonDoor.pdb
+C:\grue\demon_door\DemonDoor\DemonDoor\bin\x86\Debug\Content\civilian_01.xnb
