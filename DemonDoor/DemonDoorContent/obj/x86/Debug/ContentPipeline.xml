@@ -7,10 +7,10 @@
       <TargetProfile>HiDef</TargetProfile>
       <BuildConfiguration>Debug</BuildConfiguration>
       <CompressContent>false</CompressContent>
-      <RootDirectory>c:\users\ben\documents\visual studio 2010\Projects\DemonDoor\DemonDoor\DemonDoorContent\</RootDirectory>
-      <LoggerRootDirectory>c:\users\ben\documents\visual studio 2010\Projects\DemonDoor\DemonDoor\DemonDoor\</LoggerRootDirectory>
-      <IntermediateDirectory>c:\users\ben\documents\visual studio 2010\Projects\DemonDoor\DemonDoor\DemonDoorContent\obj\x86\Debug\</IntermediateDirectory>
-      <OutputDirectory>c:\users\ben\documents\visual studio 2010\Projects\DemonDoor\DemonDoor\DemonDoor\bin\x86\Debug\Content\</OutputDirectory>
+      <RootDirectory>C:\grue\demon_door\DemonDoor\DemonDoorContent\</RootDirectory>
+      <LoggerRootDirectory>C:\grue\demon_door\DemonDoor\DemonDoor\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\grue\demon_door\DemonDoor\DemonDoorContent\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>C:\grue\demon_door\DemonDoor\DemonDoor\bin\x86\Debug\Content\</OutputDirectory>
     </Settings>
     <Assemblies>
       <Assembly>

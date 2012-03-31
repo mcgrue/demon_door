@@ -1,0 +1,9 @@
+C:\grue\XNAVERGE\XVCX\bin\x86\Debug\XVCX.dll
+C:\grue\XNAVERGE\XVCX\bin\x86\Debug\XVCX.pdb
+C:\grue\XNAVERGE\XVCX\bin\x86\Debug\SharpZlib.dll
+C:\grue\XNAVERGE\XVCX\bin\x86\Debug\XNAVERGE.dll
+C:\grue\XNAVERGE\XVCX\bin\x86\Debug\SharpZlib.pdb
+C:\grue\XNAVERGE\XVCX\bin\x86\Debug\XNAVERGE.pdb
+C:\grue\XNAVERGE\XVCX\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\grue\XNAVERGE\XVCX\obj\x86\Debug\XVCX.dll
+C:\grue\XNAVERGE\XVCX\obj\x86\Debug\XVCX.pdb

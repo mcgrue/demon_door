@@ -1,0 +1,14 @@
+C:\grue\XNAVERGE\XNAVERGE\bin\x86\Debug\XNAVERGE.dll
+C:\grue\XNAVERGE\XNAVERGE\bin\x86\Debug\XNAVERGE.pdb
+C:\grue\XNAVERGE\XNAVERGE\bin\x86\Debug\SharpZlib.dll
+C:\grue\XNAVERGE\XNAVERGE\bin\x86\Debug\SharpZlib.pdb
+C:\grue\XNAVERGE\XNAVERGE\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\grue\XNAVERGE\XNAVERGE\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\grue\XNAVERGE\XNAVERGE\obj\x86\Debug\XNAVERGE.dll
+C:\grue\XNAVERGE\XNAVERGE\obj\x86\Debug\XNAVERGE.pdb
+C:\grue\demon_door\XNAVERGE\bin\x86\Debug\XNAVERGE.dll
+C:\grue\demon_door\XNAVERGE\bin\x86\Debug\XNAVERGE.pdb
+C:\grue\demon_door\XNAVERGE\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\grue\demon_door\XNAVERGE\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\grue\demon_door\XNAVERGE\obj\x86\Debug\XNAVERGE.dll
+C:\grue\demon_door\XNAVERGE\obj\x86\Debug\XNAVERGE.pdb
