@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XNAVERGE", "XNAVERGE\XNAVER
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XVCX", "XVCX\XVCX.csproj", "{CEE58E89-EFF1-47DF-BDBA-32F7D9B01BA3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemonDoorData", "DemonDoorData\DemonDoorData.csproj", "{98B1E1D7-F81E-44DD-A773-0B128FEE044E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -29,6 +31,10 @@ Global
 		{CEE58E89-EFF1-47DF-BDBA-32F7D9B01BA3}.Debug|x86.Build.0 = Debug|x86
 		{CEE58E89-EFF1-47DF-BDBA-32F7D9B01BA3}.Release|x86.ActiveCfg = Debug|x86
 		{CEE58E89-EFF1-47DF-BDBA-32F7D9B01BA3}.Release|x86.Build.0 = Debug|x86
+		{98B1E1D7-F81E-44DD-A773-0B128FEE044E}.Debug|x86.ActiveCfg = Debug|x86
+		{98B1E1D7-F81E-44DD-A773-0B128FEE044E}.Debug|x86.Build.0 = Debug|x86
+		{98B1E1D7-F81E-44DD-A773-0B128FEE044E}.Release|x86.ActiveCfg = Release|x86
+		{98B1E1D7-F81E-44DD-A773-0B128FEE044E}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

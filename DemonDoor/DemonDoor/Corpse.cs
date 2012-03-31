@@ -82,7 +82,7 @@ namespace DemonDoor
             }
 
             // CB: oh god this line of code is terrible, figure out how to fix it
-            return (other.UserData is World);
+            return true;
         }
 
         public void Collided(ICollidable other)

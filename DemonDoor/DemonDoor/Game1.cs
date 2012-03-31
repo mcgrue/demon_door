@@ -72,6 +72,9 @@ namespace DemonDoor {
             civvie = Content.Load<Texture2D>( "civilian_01" );
             title = Content.Load<Texture2D>( "title" );
 
+            StageRec stage = Content.Load<StageRec>("level1");
+            Console.Out.WriteLine("welcome to {0}", stage.Title);
+
             SpriteBasis sb = new SpriteBasis( 16, 16, 7, 7 );
             
             sb.image = civvie;
