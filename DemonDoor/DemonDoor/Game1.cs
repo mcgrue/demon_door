@@ -109,15 +109,12 @@ namespace XNAVERGE {
             if( GamePad.GetState( PlayerIndex.One ).Buttons.Back == ButtonState.Pressed )
                 this.Exit();
 
-<<<<<<< HEAD
             _world.Step(1f / 60f, 6, 2);
             Vec2 ballPos = _box.GetPosition();
             float ballAngle = _box.GetAngle();
 
             Console.Out.WriteLine("({0}, {1}), {2}", ballPos.X, ballPos.Y, ballAngle);
-=======
             systime = gameTime.TotalGameTime.Milliseconds;
->>>>>>> 133b6c1639b6f67b960fc6819f4455555a991c13
 
             // TODO: Add your update logic here
 
