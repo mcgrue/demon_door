@@ -42,6 +42,8 @@ namespace DemonDoor {
             SpriteBasis sb = new SpriteBasis( 16, 16, 7, 7 );
             
             sb.image = civvie;
+
+            /*
             Sprite sprite = new Sprite(
                 sb, 
                 new Filmstrip(new Rectangle(0, 0, 16, 16), 
@@ -49,7 +51,10 @@ namespace DemonDoor {
                     TimeSpan.FromMilliseconds(100)
                 )
             );
+            */
             
+            Sprite sprite = new Sprite(sb, new Filmstrip(new Point(16, 16), new[] { 1, 2, 3, 4, 5 }, 100));
+
             mcg = new McGrenderStack();
             mcg.AddLayer( "background" );
             mcg.AddLayer( "corpses" );
@@ -69,8 +74,8 @@ namespace DemonDoor {
                 sprite.y = y;
                 sprite.Draw();
             };
-            for( int i = 0; i < 7000; i++ ) {
 
+            for( int i = 0; i < 10; i++ ) {
                 rendernode = l.AddNode(
                     new McgNode( drawCivvie, l,
                         rand.Next( 0, 600 ),
