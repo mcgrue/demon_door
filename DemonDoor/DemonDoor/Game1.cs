@@ -9,12 +9,9 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 
-using Box2DX;
-using Box2DX.Collision;
-using Box2DX.Common;
-using Box2DX.Dynamics;
+using XNAVERGE;
 
-namespace XNAVERGE {
+namespace DemonDoor {
 
     /// <summary>
     /// This is the main type for your game
@@ -25,7 +22,7 @@ namespace XNAVERGE {
         Texture2D civvie, title;
 
         private World _world;
-        private Body _ground, _box;
+        private Corpse _test;
 
         /// <summary>
         /// Allows the game to perform any initialization it needs to before starting to run.
@@ -34,43 +31,11 @@ namespace XNAVERGE {
         /// and initialize them as well.
         /// </summary>
         protected override void Initialize() {
-            // TODO: Add your initialization logic here
-
+            _world = new World(new Vector2 { X = 0, Y = -10 });
+            _test = new Corpse(_world, new Vector2 { X = 0, Y = 100 });
             McgNode rendernode;
 
-            Vec2 gravity = new Vec2(0.0f, -10.0f);
-
-            // set up the world
-            AABB worldAabb = new AABB();
-            worldAabb.LowerBound = new Vec2(-10000, -10000);
-            worldAabb.UpperBound = new Vec2(10000, 10000);
-
-            _world = new World(worldAabb, gravity, true);
-
-            // set up the ground
-            BodyDef groundDef = new BodyDef();
-            groundDef.Position.Set(0f, -10f);
-
-            _ground = _world.CreateBody(groundDef);
-
-            PolygonDef boxDef = new PolygonDef();
-            boxDef.SetAsBox(50f, 10f);
-
-            _ground.CreateShape(boxDef);
-            _ground.SetMass(new MassData { Mass = 0.0f });
-
-            // set up the ball
-            BodyDef ballDef = new BodyDef();
-            ballDef.Position.Set(0f, 100f);
-
-            _box = _world.CreateBody(ballDef);
-
-            CircleDef circleDef = new CircleDef();
-            circleDef.Radius = 2f;
-
-            _box.CreateShape(circleDef);
-            _box.SetMass(new MassData { Mass = 1.0f });
-            
+            // TODO: Add your initialization logic here
             civvie = Content.Load<Texture2D>( "civilian_01" );
             title = Content.Load<Texture2D>( "title" );
 
@@ -148,11 +113,9 @@ namespace XNAVERGE {
             if( GamePad.GetState( PlayerIndex.One ).Buttons.Back == ButtonState.Pressed )
                 this.Exit();
 
-            _world.Step(1f / 60f, 6, 2);
-            Vec2 ballPos = _box.GetPosition();
-            float ballAngle = _box.GetAngle();
+            _world.Simulate(gameTime);
 
-            Console.Out.WriteLine("({0}, {1}), {2}", ballPos.X, ballPos.Y, ballAngle);
+            Console.Out.WriteLine("({0}, {1}), {2}", _test.Position.X, _test.Position.Y, _test.Theta);
             systime = gameTime.TotalGameTime.Milliseconds;
 
             // TODO: Add your update logic here
