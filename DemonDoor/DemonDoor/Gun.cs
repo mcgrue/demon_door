@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using FarseerPhysics.Collision.Shapes;
 using FarseerPhysics.Dynamics;
 using FarseerPhysics.Dynamics.Contacts;
@@ -20,6 +21,7 @@ namespace DemonDoor
             _fsFixture.IsSensor = true;
 
             _fsFixture.OnCollision += PhysicsCollided;
+            _fsFixture.OnSeparation += PhysicsSeparated;
             _fsFixture.OnCollision += BehaviorCollided;
         }
 
@@ -38,15 +40,37 @@ namespace DemonDoor
                 other = f1;
             }
 
-            if (other.UserData is Corpse)
+            if (other.UserData is Corpse && !_alreadyShot.Contains(other))
             {
                 Corpse c = other.UserData as Corpse;
                 //Console.WriteLine("collided with corpse {0}, kickin' it", c);
 
                 other.Body.ApplyLinearImpulse(Impulse);
+                _alreadyShot.Add(other);
             }
 
             return false;
+        }
+
+        private void PhysicsSeparated(Fixture f1, Fixture f2)
+        {
+            Fixture self = null, other = null;
+
+            if (f1 == _fsFixture)
+            {
+                self = f1;
+                other = f2;
+            }
+            else if (f2 == _fsFixture)
+            {
+                self = f2;
+                other = f1;
+            }
+
+            if (_alreadyShot.Contains(other))
+            {
+                _alreadyShot.Remove(other);
+            }
         }
 
         private bool BehaviorCollided(Fixture f1, Fixture f2, Contact contact)
@@ -82,6 +106,8 @@ namespace DemonDoor
 
         private Fixture _fsFixture;
         private Body _fsBody;
+
+        private ISet<Fixture> _alreadyShot = new HashSet<Fixture>();
 
     }
 }

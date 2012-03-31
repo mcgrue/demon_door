@@ -4,6 +4,7 @@
 
 *.suo
 *.cache
+*.cachefile
 
 # mstest test results
 TestResults

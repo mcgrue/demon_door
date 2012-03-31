@@ -1,8 +1,10 @@
-﻿
+﻿using System;
 using FarseerPhysics.Collision.Shapes;
+using FarseerPhysics.Common;
 using FarseerPhysics.Dynamics;
 using FarseerPhysics.Dynamics.Contacts;
 using Microsoft.Xna.Framework;
+using FarseerPhysics.Collision;
 
 namespace DemonDoor
 {
@@ -24,22 +26,49 @@ namespace DemonDoor
             wallShape.SetAsBox(10f, 1000f);
 
             _fsFixture = _fsBody.CreateFixture(wallShape, this);
-            _fsFixture.OnCollision += PhysicsCollided;
+            //_fsFixture.OnCollision += PhysicsCollided;
             _fsFixture.OnCollision += BehaviorCollided;
+            _fsFixture.AfterCollision += PhysicsPostSolve;
         }
 
         public Wall(World w, Vector2[] vertices)
         {
+            Vertices vs = new Vertices(vertices);
 
+            Stickiness = 70;
+            StickinessRatchet = new Vector2 { X = 0, Y = -1 };
+            StickinessRatchetBackspin = 5.0f;
+
+            _fsBody = w.NewBody();
+            _fsBody.BodyType = BodyType.Static;
+
+            PolygonShape wallShape = new PolygonShape(vs, 0);
+
+            _fsFixture = _fsBody.CreateFixture(wallShape, this);
+            //_fsFixture.OnCollision += PhysicsCollided;
+            _fsFixture.OnCollision += BehaviorCollided;
+            _fsFixture.AfterCollision += PhysicsPostSolve;
         }
 
         public float Stickiness { get; set; }
         public Vector2? StickinessRatchet { get; set; }
         public float StickinessRatchetBackspin { get; set; }
 
-        private bool PhysicsCollided(Fixture f1, Fixture f2, Contact contact)
+        //private void PhysicsPostSolve(Fixture f1, Fixture f2, Contact contact)
+        //{
+            
+        //}
+        
+        private void PhysicsPostSolve(Fixture f1, Fixture f2, Contact contact)
         {
             Fixture self = null, other = null;
+
+            Vector2 normal;
+            FixedArray2<Vector2> points;
+
+            contact.GetWorldManifold(out normal, out points);
+            Console.Out.WriteLine("normal: {0}; point: {1}, {2}", 
+                normal, points[0], points[1]);
 
             if (f1 == _fsFixture)
             {
@@ -59,19 +88,24 @@ namespace DemonDoor
 
                 // sticky behavior: null out all velocity normal to the surface of the wall, 
                 // apply some shitty fake friction to the velocity parallel to the surface of the wall.
+                Vector2 normalComponent, parallelComponent;
+
+                normalComponent = normal * Vector2.Dot(normal, other.Body.LinearVelocity);
+                parallelComponent = other.Body.LinearVelocity - normalComponent;                
+
                 float velMultiplier = 1f - Stickiness * (1 / 100000f);
 
-                if (StickinessRatchet.HasValue && (Vector2.Dot(other.Body.LinearVelocity, StickinessRatchet.Value) < -StickinessRatchetBackspin))
+                if (other.Body.LinearVelocity.Y > 0)
                 {
-                    other.Body.LinearVelocity = new Vector2 { X = 0, Y = StickinessRatchetBackspin };
+                    other.Body.LinearVelocity = parallelComponent * Math.Min(parallelComponent.Length(), StickinessRatchetBackspin) / parallelComponent.Length();
                 }
                 else
                 {
-                    other.Body.LinearVelocity = new Vector2 { X = 0, Y = other.Body.LinearVelocity.Y * velMultiplier };
+                    other.Body.LinearVelocity = parallelComponent * velMultiplier;
                 }
             }
 
-            return false;
+            //return false;
         }
 
 
@@ -96,7 +130,7 @@ namespace DemonDoor
                 (other.UserData as ICollidable).Collided(this);
             }
 
-            return false;
+            return true;
         }
 
         public void Collided(ICollidable other)

@@ -19,6 +19,24 @@
       <Output>C:\grue\demon_door\DemonDoor\DemonDoor\bin\x86\Debug\Content\title.xnb</Output>
       <Time>2012-03-30T21:37:40.472-07:00</Time>
     </Item>
+    <Item>
+      <Source>door.png</Source>
+      <Name>door</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\grue\demon_door\DemonDoor\DemonDoor\bin\x86\Debug\Content\door.xnb</Output>
+      <Time>2012-03-31T13:21:55.915-07:00</Time>
+    </Item>
+    <Item>
+      <Source>stage.png</Source>
+      <Name>stage</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\grue\demon_door\DemonDoor\DemonDoor\bin\x86\Debug\Content\stage.xnb</Output>
+      <Time>2012-03-31T15:08:24.065-07:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>
