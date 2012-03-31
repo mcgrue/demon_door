@@ -69,8 +69,8 @@ namespace DemonDoor {
             McgNode rendernode;
             
             // TODO: Add your initialization logic here
-            civvie = Content.Load<Texture2D>( "civilian_01" );
-            title = Content.Load<Texture2D>( "title" );
+            civvie = Content.Load<Texture2D>( "art/civilian_01" );
+            title = Content.Load<Texture2D>( "art/title" );
 
             StageRec stage = Content.Load<StageRec>("level1");
             Console.Out.WriteLine("welcome to {0}", stage.Title);

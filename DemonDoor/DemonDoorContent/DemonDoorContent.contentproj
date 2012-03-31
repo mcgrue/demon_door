@@ -42,14 +42,27 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="civilian_01.png">
+    <Compile Include="art\civilian_01.png">
       <Name>civilian_01</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="title.png">
+    <Compile Include="art\door.png">
+      <Name>door</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="art\police_01.png">
+      <Name>police_01</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="art\stage.png">
+      <Name>stage</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="art\title.png">
       <Name>title</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
