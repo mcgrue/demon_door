@@ -1,10 +1,8 @@
 ﻿using System;
-using Microsoft.Xna.Framework;
-
 using FarseerPhysics.Collision.Shapes;
 using FarseerPhysics.Dynamics;
 using FarseerPhysics.Dynamics.Contacts;
-using FarseerPhysics.Factories;
+using Microsoft.Xna.Framework;
 using FsWorld = FarseerPhysics.Dynamics.World;
 
 namespace DemonDoor

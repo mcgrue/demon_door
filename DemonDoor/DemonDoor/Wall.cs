@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Microsoft.Xna.Framework;
-
+﻿
 using FarseerPhysics.Collision.Shapes;
 using FarseerPhysics.Dynamics;
 using FarseerPhysics.Dynamics.Contacts;
+using Microsoft.Xna.Framework;
 
 namespace DemonDoor
 {
@@ -33,10 +28,10 @@ namespace DemonDoor
             _fsFixture.OnCollision += BehaviorCollided;
         }
 
-        //public Wall(World w, Vector2[] geometry)
-        //{
+        public Wall(World w, Vector2[] vertices)
+        {
 
-        //}
+        }
 
         public float Stickiness { get; set; }
         public Vector2? StickinessRatchet { get; set; }
