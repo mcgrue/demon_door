@@ -40,9 +40,10 @@ namespace XNAVERGE {
             _Node( l, start_x, start_y, end_x, end_y, delay );
         }
 
-
-        public McgNode( IDrawableThing d, int start_x, int start_y ) {
-            
+        IDrawableThing _idt = null;
+        public McgNode( IDrawableThing d, McgLayer l, int start_x, int start_y ) {
+            _idt = d;
+            _Node( l, start_x, start_y, start_x, start_y, 0 );
         }
 
         private void _Node( McgLayer l, int start_x, int start_y ) { _Node(l, start_x, start_y); }
@@ -115,8 +116,9 @@ if( DEBUG ) Console.WriteLine( "STOPPING" );
         }
 
         public void Draw() {
-
-            if( image != null ) {
+            if( _idt != null ) {
+                _idt.GetDrawDelegate()( _idt.GetX(), _idt.GetY() );
+            } else if( image != null ) {
                 layer.stack.spritebatch.Draw( image, im_bounds, Color.White );
             } else if( OnDraw != null ) {
                 OnDraw( (int)this.cur_x, (int)this.cur_y );

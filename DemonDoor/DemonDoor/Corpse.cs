@@ -18,7 +18,7 @@ namespace DemonDoor
         Sprite myCorpse = null;
         Vector2 screen;
 
-        public Corpse(World w, Vector2 r0)
+        public Corpse(World w, Vector2 r0, Sprite sprite)
         {
             _fsBody = w.NewBody();
             _fsBody.BodyType = BodyType.Dynamic;
@@ -29,7 +29,8 @@ namespace DemonDoor
             Fixture f = _fsBody.CreateFixture(shape, this);
             f.Restitution = 0.5f;
 
-            this.screen =  Game1.Physics2Screen( new Vector2 { X = Position.X, Y = Position.Y } );
+            
+            myCorpse = sprite;
         }
 
         public int GetX() {
@@ -44,6 +45,8 @@ namespace DemonDoor
             if( _myDrawDelegate != null ) return _myDrawDelegate;
 
             _myDrawDelegate = ( int x, int y ) => {
+
+                this.screen = Game1.Physics2Screen( new Vector2 { X = Position.X, Y = Position.Y } );
 
                 // maybe update the screen here?
 

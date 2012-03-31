@@ -78,7 +78,7 @@ namespace DemonDoor {
             );
             */
             
-            Sprite sprite = new Sprite(sb, new Filmstrip(new Point(16, 16), new[] { 1, 2, 3, 4, 5 }, 100));
+            
 
             mcg = new McGrenderStack();
             mcg.AddLayer( "background" );
@@ -93,30 +93,19 @@ namespace DemonDoor {
                 new McgNode( title, rectTitle, l, 0, 0 )
             );
 
+
+            /// this all should be encapsulated eventually.  CORPSEMAKER.
             l = mcg.GetLayer( "corpses" );
-
-            _test = new Corpse( 
+            Sprite sprite = new Sprite( sb, new Filmstrip( new Point( 16, 16 ), new[] { 1, 2, 3, 4, 5 }, 100 ) );
+            Corpse myCorpse = new Corpse( 
                 _world, 
-                new Vector2 { X = 0, Y = 100 } 
+                new Vector2 { X = 0, Y = 100 },
+                sprite
             );
-/*
-            RenderDelegate drawCivvie = ( int x, int y ) => {
-                Vector2 screen = Physics2Screen(new Vector2 { X = _test.Position.X, Y = _test.Position.Y });
-                sprite.x = (int)screen.X - 8;
-                sprite.y = (int)screen.Y - 8;
-                sprite.Draw();
-            };
-*/
-
-            throw new Exception( "Now you need to draw the new way, whore." );
-            /*
             rendernode = l.AddNode(
-                new McgNode( drawCivvie, l,
-                    0,0
-                )
+                new McgNode( myCorpse, l, 50, 50 )
             );
-            */
-
+            
 
             base.Initialize();
         }
