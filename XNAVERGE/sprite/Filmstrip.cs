@@ -5,10 +5,9 @@ using System.Text;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 
-namespace XNAVERGE
-{
-    public class Filmstrip
-    {
+namespace XNAVERGE {
+
+    public class Filmstrip {
         Point frameSize;
         IList<int> frames;
         int frameDuration;
@@ -21,16 +20,16 @@ namespace XNAVERGE
         /// <param name="frameDimensions">Width and height of the aniation frames</param>
         /// <param name="frames">The ordered list of animation frames to show (0-based)</param>
         /// <param name="frameDurationMillis">Amount of time (in milliseconds) to show each frame</param>
-        public Filmstrip(Point frameDimensions, IList<int> frames, int frameDurationMillis)
-        {
+        public Filmstrip(Point frameDimensions, IList<int> frames, int frameDurationMillis) {
+
             this.frameSize = frameDimensions;
             this.frames = frames;
             this.frameDuration = frameDurationMillis;
             this.startTime = DateTime.Now;
         }
 
-        public Rectangle ProcessAnimation()
-        {
+        public Rectangle ProcessAnimation() {
+
             TimeSpan timeSinceAnimationStarted = DateTime.Now - startTime;
             int animationIndex = (int)(timeSinceAnimationStarted.TotalMilliseconds / frameDuration);
             

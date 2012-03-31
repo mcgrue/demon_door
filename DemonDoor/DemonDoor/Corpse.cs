@@ -11,13 +11,13 @@ namespace DemonDoor
 
     class Corpse : IDrawableThing, ICollidable
     {
-        Sprite myCorpse = null;
+        CivvieSprite myCorpse = null;
         Vector2 screen;
 
         private Body _fsBody;
         private Fixture _fsFixture;
 
-        public Corpse(World w, Vector2 r0, Sprite sprite)
+        public Corpse( World w, Vector2 r0, CivvieSprite sprite )
         {
             _fsBody = w.NewBody();
             _fsBody.BodyType = BodyType.Dynamic;
@@ -52,9 +52,9 @@ namespace DemonDoor
 
                 // maybe update the screen here?
 
-                myCorpse.x = (int)screen.X - 8;
-                myCorpse.y = (int)screen.Y - 8;
-                myCorpse.Draw();
+                myCorpse.Sprite.x = (int)screen.X - 8;
+                myCorpse.Sprite.y = (int)screen.Y - 8;
+                myCorpse.Sprite.Draw();
             };
 
             return _myDrawDelegate;

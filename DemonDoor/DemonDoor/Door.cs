@@ -7,36 +7,31 @@ using XNAVERGE;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 
-namespace DemonDoor
-{
-    class CivvieSprite
-    {
+namespace DemonDoor {
+
+    class DoorSprite {
+
         public Texture2D texture { get; set; }
         private Filmstrip currentAnimation;
 
         public Sprite Sprite { get; private set; }
 
-        public enum AnimationState
-        {
-            Idle, WalkingRight, WalkingLeft, Flying, Dead
+        public enum AnimationState {
+            Stopped, Slow, Fast
         }
 
-        public CivvieSprite(SpriteBasis sb)
-        {
+        public DoorSprite( SpriteBasis sb ) {
             animationAtlas = new Dictionary<AnimationState, Filmstrip>();
-            animationAtlas[AnimationState.Idle] = createFilmstrip(0);
-            animationAtlas[AnimationState.WalkingRight] = createFilmstrip(new[] { 1, 0, 2, 0 });
-            animationAtlas[AnimationState.WalkingLeft] = createFilmstrip(new[] { 3, 4 });
-            animationAtlas[AnimationState.Flying] = createFilmstrip(5);
-            animationAtlas[AnimationState.Dead] = createFilmstrip(6);
+            animationAtlas[AnimationState.Stopped] = createFilmstrip( new[] { 0 } );
+            animationAtlas[AnimationState.Slow] = createFilmstrip(new[] { 0, 1, 2 });
+            animationAtlas[AnimationState.Fast] = createFilmstrip(new[] { 3, 4 });
 
-            DrawCivvie = (int x, int y) =>
-            {
+            DrawDoor = (int x, int y) => {
                 Sprite.Update();
                 Sprite.Draw();
             };
 
-            this.currentAnimation = animationAtlas[AnimationState.Idle];
+            this.currentAnimation = animationAtlas[AnimationState.Slow];
             this.Sprite = new Sprite(sb, currentAnimation);
         }
 
@@ -62,10 +57,10 @@ namespace DemonDoor
         /// <returns></returns>
         private Filmstrip createFilmstrip(IList<int> frames)
         {
-            return new Filmstrip(new Point(16, 16), frames, 150);
+            return new Filmstrip(new Point(38, 24), frames, 150);
         }
 
-        public RenderDelegate DrawCivvie { get; set; }
+        public RenderDelegate DrawDoor { get; set; }
 
         private Dictionary<AnimationState, Filmstrip> animationAtlas;
     }

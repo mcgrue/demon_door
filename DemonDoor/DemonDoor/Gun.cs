@@ -5,12 +5,14 @@ using FarseerPhysics.Dynamics;
 using FarseerPhysics.Dynamics.Contacts;
 using Microsoft.Xna.Framework;
 
-namespace DemonDoor
-{
-    class Gun : ICollidable
-    {
-        public Gun(World w, Vector2 r, Vector2 size)
-        {
+using XNAVERGE;
+
+namespace DemonDoor {
+    class Gun : ICollidable, IDrawableThing {
+        
+        DoorSprite sprite;
+
+        public Gun(World w, Vector2 r, Vector2 size, DoorSprite s) {
             _fsBody = w.NewBody();
             _fsBody.Position = r;
 
@@ -23,25 +25,23 @@ namespace DemonDoor
             _fsFixture.OnCollision += PhysicsCollided;
             _fsFixture.OnSeparation += PhysicsSeparated;
             _fsFixture.OnCollision += BehaviorCollided;
+
+            sprite = s;
         }
 
-        private bool PhysicsCollided(Fixture f1, Fixture f2, Contact contact)
-        {
+        private bool PhysicsCollided(Fixture f1, Fixture f2, Contact contact) {
             Fixture self = null, other = null;
 
-            if (f1 == _fsFixture)
-            {
+            if (f1 == _fsFixture) {
                 self = f1;
                 other = f2;
             }
-            else if (f2 == _fsFixture)
-            {
+            else if (f2 == _fsFixture) {
                 self = f2;
                 other = f1;
             }
 
-            if (other.UserData is Corpse && !_alreadyShot.Contains(other))
-            {
+            if (other.UserData is Corpse && !_alreadyShot.Contains(other)) {
                 Corpse c = other.UserData as Corpse;
                 //Console.WriteLine("collided with corpse {0}, kickin' it", c);
 
@@ -52,44 +52,35 @@ namespace DemonDoor
             return false;
         }
 
-        private void PhysicsSeparated(Fixture f1, Fixture f2)
-        {
+        private void PhysicsSeparated(Fixture f1, Fixture f2) {
             Fixture self = null, other = null;
 
-            if (f1 == _fsFixture)
-            {
+            if (f1 == _fsFixture) {
                 self = f1;
                 other = f2;
             }
-            else if (f2 == _fsFixture)
-            {
+            else if (f2 == _fsFixture) {
                 self = f2;
                 other = f1;
             }
 
-            if (_alreadyShot.Contains(other))
-            {
+            if (_alreadyShot.Contains(other)) {
                 _alreadyShot.Remove(other);
             }
         }
 
-        private bool BehaviorCollided(Fixture f1, Fixture f2, Contact contact)
-        {
+        private bool BehaviorCollided(Fixture f1, Fixture f2, Contact contact) {
             Fixture self = null, other = null;
 
-            if (f1 == _fsFixture)
-            {
+            if (f1 == _fsFixture) {
                 self = f1;
                 other = f2;
-            }
-            else if (f2 == _fsFixture)
-            {
+            } else if (f2 == _fsFixture) {
                 self = f2;
                 other = f1;
             }
 
-            if (other.UserData is ICollidable)
-            {
+            if (other.UserData is ICollidable) {
                 this.Collided(other.UserData as ICollidable);
                 (other.UserData as ICollidable).Collided(this);
             }
@@ -100,6 +91,20 @@ namespace DemonDoor
         public void Collided(ICollidable other)
         {
 
+        }
+
+
+        public int GetX() { return sprite.Sprite.x; }
+        public int GetY() { return sprite.Sprite.y; }
+        RenderDelegate _myDrawDelegate;
+        public RenderDelegate GetDrawDelegate() {
+            if( _myDrawDelegate != null ) return _myDrawDelegate;
+
+            _myDrawDelegate = ( int x, int y ) => {
+                sprite.Sprite.Draw();
+            };
+
+            return _myDrawDelegate;
         }
 
         public Vector2 Impulse { get; set; }
