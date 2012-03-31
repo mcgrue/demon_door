@@ -2,5 +2,11 @@
 <XnaContent>
   <Asset Type="DemonDoor.StageRec">
     <Title>Level 1: The Developening</Title>
+    <Guns>
+      <Item>
+        <R0>0, 3</R0>
+        <Size>5, 3</Size>
+      </Item>
+    </Guns>
   </Asset>
 </XnaContent>
