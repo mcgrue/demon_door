@@ -9,14 +9,14 @@ namespace XNAVERGE
 {
     public class Filmstrip
     {
-        Rectangle frameSize;
+        Point frameSize;
         IList<int> frames;
         TimeSpan frameDuration;
         DateTime startTime;
         
-        public Filmstrip(Rectangle frameSize, IList<int> frames, TimeSpan frameDuration)
+        public Filmstrip(Point frameDimensions, IList<int> frames, TimeSpan frameDuration)
         {
-            this.frameSize = frameSize;
+            this.frameSize = frameDimensions;
             this.frames = frames;
             this.frameDuration = frameDuration;
             this.startTime = DateTime.Now;
@@ -28,8 +28,8 @@ namespace XNAVERGE
             int animationIndex = (int)(timeSinceAnimationStarted.TotalMilliseconds / frameDuration.TotalMilliseconds);
             animationIndex %= frames.Count; //loop animation
 
-            Rectangle result = frameSize;
-            result.X = frameSize.Width * animationIndex;
+            Rectangle result = new Rectangle(0, 0, frameSize.X, frameSize.Y);
+            result.X = frameSize.X * animationIndex;
 
             return result;
         }
