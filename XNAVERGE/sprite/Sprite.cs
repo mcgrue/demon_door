@@ -76,6 +76,7 @@ namespace XNAVERGE {
         // --------------------------------------------
         
         public SpriteAnimation cur_animation;
+        public Filmstrip cur_filmstrip;
         public int cur_step; // current step within the animation string
         protected float rate; // A multiplier applied to the animation speed. At 1.0, the animation moves at 1 tick per centisecond/game tick. TODO: actually implement this
         public int last_draw_tick; // the last tick at which the sprite was drawn
@@ -108,9 +109,10 @@ namespace XNAVERGE {
         // ---------
         //  METHODS
         // ---------
-
-        public Sprite(SpriteBasis spr_basis, String anim) : this(spr_basis, anim, 0, 0, false) { }
-        public Sprite(SpriteBasis spr_basis, String anim, int x_coord, int y_coord, bool visibility) {
+        [Obsolete]
+        public Sprite(SpriteBasis spr_basis, String anim) { }
+        public Sprite(SpriteBasis spr_basis, Filmstrip anim) : this(spr_basis, anim, 0, 0, false) { }
+        public Sprite(SpriteBasis spr_basis, Filmstrip anim, int x_coord, int y_coord, bool visibility) {
             basis = spr_basis;
             deleted = false;
 
@@ -231,8 +233,13 @@ namespace XNAVERGE {
             _animation_paused = false;
         }
 
+        public void set_animation(Filmstrip anim)
+        {
+            cur_filmstrip = anim;
+        }
+
         public virtual void Draw() {
-            VERGEGame.game.spritebatch.Draw(basis.image, destination, basis.frame_box[current_frame], Color.White, 0, Vector2.Zero, SpriteEffects.None, 1.0f);
+            VERGEGame.game.spritebatch.Draw(basis.image, destination, cur_filmstrip.ProcessAnimation(), Color.White, 0, Vector2.Zero, SpriteEffects.None, 1.0f);
         }
 
         public virtual void Update() {
