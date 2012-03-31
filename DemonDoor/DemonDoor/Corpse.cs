@@ -7,16 +7,21 @@ using Microsoft.Xna.Framework;
 
 using FarseerPhysics.Collision.Shapes;
 using FarseerPhysics.Dynamics;
+using FarseerPhysics.Dynamics.Contacts;
 using FsWorld = FarseerPhysics.Dynamics.World;
 
 using XNAVERGE;
 
 namespace DemonDoor
 {
-    class Corpse : IDrawableThing
+
+    class Corpse : IDrawableThing, ICollidable
     {
         Sprite myCorpse = null;
         Vector2 screen;
+
+        private Body _fsBody;
+        private Fixture _fsFixture;
 
         public Corpse(World w, Vector2 r0, Sprite sprite)
         {
@@ -29,8 +34,11 @@ namespace DemonDoor
             Fixture f = _fsBody.CreateFixture(shape, this);
             f.Restitution = 0.5f;
 
-            
             myCorpse = sprite;
+        
+            _fsFixture = _fsBody.CreateFixture(shape, this);
+            _fsFixture.Restitution = 0.5f;
+            _fsFixture.OnCollision += BehaviorCollided;
         }
 
         public int GetX() {
@@ -58,6 +66,36 @@ namespace DemonDoor
             return _myDrawDelegate;
         }
 
+        private bool BehaviorCollided(Fixture f1, Fixture f2, Contact contact)
+        {
+            Fixture self = null, other = null;
+
+            if (f1 == _fsFixture)
+            {
+                self = f1;
+                other = f2;
+            }
+            else if (f2 == _fsFixture)
+            {
+                self = f2;
+                other = f1;
+            }
+
+            if (other.UserData is ICollidable)
+            {
+                this.Collided(other.UserData as ICollidable);
+                (other.UserData as ICollidable).Collided(this);
+            }
+
+            // CB: oh god this line of code is terrible, figure out how to fix it
+            return (other.UserData is World);
+        }
+
+        public void Collided(ICollidable other)
+        {
+
+        }
+
         public Vector2 Position
         {
             get
@@ -73,7 +111,5 @@ namespace DemonDoor
                 return _fsBody.Rotation;
             }
         }
-
-        private Body _fsBody;
     }
 }

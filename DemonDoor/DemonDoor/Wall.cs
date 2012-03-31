@@ -11,11 +11,13 @@ using FarseerPhysics.Dynamics.Contacts;
 
 namespace DemonDoor
 {
-    class Wall
+    class Wall : ICollidable
     {
         public Wall(World w, float x, float sgn)
         {
-            Stickiness = 100;
+            Stickiness = 70;
+            StickinessRatchet = new Vector2 { X = 0, Y = -1 };
+            StickinessRatchetBackspin = 5.0f;
 
             Vector2 center = new Vector2 { X = x - (10.0f * sgn), Y = 500.0f };
 
@@ -26,13 +28,21 @@ namespace DemonDoor
             PolygonShape wallShape = new PolygonShape(0);
             wallShape.SetAsBox(10f, 1000f);
 
-            _fsFixture = _fsBody.CreateFixture(wallShape);
-            _fsFixture.OnCollision += Stick;
+            _fsFixture = _fsBody.CreateFixture(wallShape, this);
+            _fsFixture.OnCollision += PhysicsCollided;
+            _fsFixture.OnCollision += BehaviorCollided;
         }
 
-        public float Stickiness { get; set; }
+        //public Wall(World w, Vector2[] geometry)
+        //{
 
-        private bool Stick(Fixture f1, Fixture f2, Contact contact)
+        //}
+
+        public float Stickiness { get; set; }
+        public Vector2? StickinessRatchet { get; set; }
+        public float StickinessRatchetBackspin { get; set; }
+
+        private bool PhysicsCollided(Fixture f1, Fixture f2, Contact contact)
         {
             Fixture self = null, other = null;
 
@@ -56,13 +66,50 @@ namespace DemonDoor
                 // apply some shitty fake friction to the velocity parallel to the surface of the wall.
                 float velMultiplier = 1f - Stickiness * (1 / 100000f);
 
-                other.Body.LinearVelocity = new Vector2 { X = 0, Y = other.Body.LinearVelocity.Y * velMultiplier };
+                if (StickinessRatchet.HasValue && (Vector2.Dot(other.Body.LinearVelocity, StickinessRatchet.Value) < -StickinessRatchetBackspin))
+                {
+                    other.Body.LinearVelocity = new Vector2 { X = 0, Y = StickinessRatchetBackspin };
+                }
+                else
+                {
+                    other.Body.LinearVelocity = new Vector2 { X = 0, Y = other.Body.LinearVelocity.Y * velMultiplier };
+                }
             }
 
             return false;
         }
 
+
+        private bool BehaviorCollided(Fixture f1, Fixture f2, Contact contact)
+        {
+            Fixture self = null, other = null;
+
+            if (f1 == _fsFixture)
+            {
+                self = f1;
+                other = f2;
+            }
+            else if (f2 == _fsFixture)
+            {
+                self = f2;
+                other = f1;
+            }
+
+            if (other.UserData is ICollidable)
+            {
+                this.Collided(other.UserData as ICollidable);
+                (other.UserData as ICollidable).Collided(this);
+            }
+
+            return false;
+        }
+
+        public void Collided(ICollidable other)
+        {
+        }
+
         private Body _fsBody;
         private Fixture _fsFixture;
+
     }
 }
