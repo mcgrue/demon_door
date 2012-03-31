@@ -12,3 +12,10 @@ C:\grue\demon_door\XNAVERGE\obj\x86\Debug\ResolveAssemblyReference.cache
 C:\grue\demon_door\XNAVERGE\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
 C:\grue\demon_door\XNAVERGE\obj\x86\Debug\XNAVERGE.dll
 C:\grue\demon_door\XNAVERGE\obj\x86\Debug\XNAVERGE.pdb
+C:\Users\Colin Bayer\Documents\demon_door\XNAVERGE\bin\x86\Debug\XNAVERGE.dll
+C:\Users\Colin Bayer\Documents\demon_door\XNAVERGE\bin\x86\Debug\XNAVERGE.pdb
+C:\Users\Colin Bayer\Documents\demon_door\XNAVERGE\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\Colin Bayer\Documents\demon_door\XNAVERGE\obj\x86\Debug\XNAVERGE.dll
+C:\Users\Colin Bayer\Documents\demon_door\XNAVERGE\obj\x86\Debug\XNAVERGE.pdb
+C:\Users\Colin Bayer\Documents\demon_door\XNAVERGE\bin\x86\Debug\ICSharpCode.SharpZipLib.dll
+C:\Users\Colin Bayer\Documents\demon_door\XNAVERGE\obj\x86\Debug\XNAVERGE.csprojResolveAssemblyReference.cache
