@@ -1,6 +1,6 @@
 using System;
 
-namespace DemonDoor {
+namespace XNAVERGE {
 #if WINDOWS || XBOX
     static class Program
     {

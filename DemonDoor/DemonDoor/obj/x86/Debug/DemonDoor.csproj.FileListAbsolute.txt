@@ -11,3 +11,7 @@ C:\grue\demon_door\DemonDoor\DemonDoor\obj\x86\Debug\Microsoft.Xna.Framework.Run
 C:\grue\demon_door\DemonDoor\DemonDoor\obj\x86\Debug\DemonDoor.exe
 C:\grue\demon_door\DemonDoor\DemonDoor\obj\x86\Debug\DemonDoor.pdb
 C:\grue\demon_door\DemonDoor\DemonDoor\bin\x86\Debug\Content\civilian_01.xnb
+C:\grue\demon_door\DemonDoor\DemonDoor\bin\x86\Debug\Box2DX.dll
+C:\grue\demon_door\DemonDoor\DemonDoor\bin\x86\Debug\XNAVERGE.dll
+C:\grue\demon_door\DemonDoor\DemonDoor\bin\x86\Debug\XNAVERGE.pdb
+C:\grue\demon_door\DemonDoor\DemonDoor\bin\x86\Debug\Box2DX.pdb
