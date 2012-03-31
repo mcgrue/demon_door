@@ -10,6 +10,15 @@
       <Output>C:\grue\demon_door\DemonDoor\DemonDoor\bin\x86\Debug\Content\civilian_01.xnb</Output>
       <Time>2012-03-30T20:47:59.155-07:00</Time>
     </Item>
+    <Item>
+      <Source>title.png</Source>
+      <Name>title</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\grue\demon_door\DemonDoor\DemonDoor\bin\x86\Debug\Content\title.xnb</Output>
+      <Time>2012-03-30T21:37:40.472-07:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>

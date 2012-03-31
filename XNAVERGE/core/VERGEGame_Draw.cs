@@ -28,31 +28,33 @@ namespace XNAVERGE {
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime) {            
             base.Draw(gameTime); // not sure if this actually does anything            
-            if (map == null) return;
 
-            Rectangle blit_rect = new Rectangle(0, 0, screen.width, screen.height);
+            Rectangle blit_rect = new Rectangle( 0, 0, screen.width, screen.height );
 
-            map.tileset.update_animations();
-            draw_background();
-            camera.update();            
+            if( map != null ) {
 
-            if (gameTime.TotalGameTime.Seconds != old_s) {
-                Window.Title = fps.ToString();
-                fps = 0;
-                old_s = gameTime.TotalGameTime.Seconds;
+                map.tileset.update_animations();
+                draw_background();
+                camera.update();
+
+                if( gameTime.TotalGameTime.Seconds != old_s ) {
+                    Window.Title = fps.ToString();
+                    fps = 0;
+                    old_s = gameTime.TotalGameTime.Seconds;
+                }
+                fps++;
+
+                // Update entity frames
+                if( !entities_paused ) for( int i = 0; i < map.num_entities; i++ ) { map.entities[i].advance_frame(); } else for( int i = 0; i < map.num_entities; i++ ) { map.entities[i].last_draw_tick = tick; }
+
+                // Draw to native-size buffer at 1x size
+                GraphicsDevice.SetRenderTarget( screen.true_size_buffer );
+                map.renderstack.Draw();
             }
-            fps++;            
-
-            // Update entity frames
-            if (!entities_paused) for (int i = 0; i < map.num_entities; i++) { map.entities[i].advance_frame(); }
-            else for (int i = 0; i < map.num_entities; i++) { map.entities[i].last_draw_tick = tick; }
-
-            // Draw to native-size buffer at 1x size
-            GraphicsDevice.SetRenderTarget(screen.true_size_buffer);
-            map.renderstack.Draw();
 
             renderstack.setSystime( stopWatch.ElapsedMilliseconds );
-            
+
+            GraphicsDevice.SetRenderTarget( screen.true_size_buffer );
             renderstack.setSpritebatch( spritebatch );
             renderstack.Draw();
 
