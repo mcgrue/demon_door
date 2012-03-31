@@ -19,7 +19,7 @@ namespace DemonDoor {
     public class Game1 : VERGEGame {
 
         public McGrenderStack mcg;
-        Texture2D civvie, title;
+        Texture2D im_civvie, im_title, im_door, im_stage;
 
         private World _world;
         //private Corpse _test;
@@ -50,11 +50,6 @@ namespace DemonDoor {
         protected override void Initialize() {
             _world = new World(new Vector2 { X = 0, Y = -10 });
             
-            
-            
-            _gun = new Gun(_world, new Vector2 { X = 0, Y = 3 }, new Vector2 { X = 5, Y = 3 });
-            _gun.Impulse = new Vector2 { X = -10, Y = 10 };
-
             Wall _wall0 = new Wall(_world, -100, 1);
             Wall _wall1 = new Wall(_world, 100, -1);
 
@@ -69,71 +64,58 @@ namespace DemonDoor {
             McgNode rendernode;
             
             // TODO: Add your initialization logic here
-            civvie = Content.Load<Texture2D>( "art/civilian_01" );
-            title = Content.Load<Texture2D>( "art/title" );
+            im_civvie = Content.Load<Texture2D>( "art/civilian_01" );
+            im_title = Content.Load<Texture2D>( "art/title" );
+            im_door = Content.Load<Texture2D>( "art/door" );
+            im_stage = Content.Load<Texture2D>( "art/stage" );
 
-            SpriteBasis sb = new SpriteBasis( 16, 16, 7, 7 );
+            SpriteBasis civSpriteBasis = new SpriteBasis( 16, 16, 7, 7 );
+            civSpriteBasis.image = im_civvie;
             
-            sb.image = civvie;
-
-            /*
-            Sprite sprite = new Sprite(
-                sb, 
-                new Filmstrip(new Rectangle(0, 0, 16, 16), 
-                    new[] { 1, 2, 3, 4, 5 }, 
-                    TimeSpan.FromMilliseconds(100)
-                )
-            );
-            */
-            
-           var civvieSprite = new Civvie(sb);
-
             mcg = new McGrenderStack();
+            this.setMcGrender( mcg );
+
             mcg.AddLayer( "background" );
             mcg.AddLayer( "corpses" );
-
-            this.setMcGrender( mcg );
 
             McgLayer l = mcg.GetLayer( "background" );
             /// this is wrong.
             Rectangle rectTitle = new Rectangle( 0, 0, 320, 240 );
             rendernode = l.AddNode(
-                new McgNode( title, rectTitle, l, 0, 0 )
+                new McgNode( im_stage, rectTitle, l, 0, 0 )
             );
 
             /// this all should be encapsulated eventually.  CORPSEMAKER.
             l = mcg.GetLayer( "corpses" );
 
-            for( int i = 0; i < 50; i++ ) {
+            var doorSpriteBasis = new SpriteBasis( 38, 24, 5, 5 );
+            doorSpriteBasis.image = im_door;
+            var doorSprite = new DoorSprite( doorSpriteBasis );
+            _gun = new Gun( _world, new Vector2 { X = 0, Y = 3 }, new Vector2 { X = 5, Y = 3 }, doorSprite );
+            _gun.Impulse = new Vector2 { X = -10, Y = 10 };
 
-                Sprite sprite = new Sprite( sb, new Filmstrip( new Point( 16, 16 ), new[] { 1, 2, 3, 4, 5 }, 100 ) );
+            rendernode = l.AddNode(
+                new McgNode( _gun, l, 60, 200 )
+            );
+
+            for( int i = 0; i < 50; i++ ) {
+                var civvieSprite = new CivvieSprite( civSpriteBasis );
+
                 Corpse myCorpse = new Corpse(
                     _world,
                     new Vector2 { X = 0, Y = 100 },
-                    sprite
+                    civvieSprite
                 );
+
+                civvieSprite.SetAnimationState( CivvieSprite.AnimationState.WalkingLeft );
+
                 rendernode = l.AddNode(
                     new McgNode( myCorpse, l, rand.Next(0,310), rand.Next(0,50) )
                 );
             }
             
-            //Rectangle rect = new Rectangle( 0, 0, 122, 16 );
 
-            //rendernode = l.AddNode(
-            //    new McgNode( civvie, rect, l, 0, 0 )
-            //);
 
-            rendernode = l.AddNode(
-                new McgNode(civvieSprite.DrawCivvie, l, 100, 100)
-            );
-
-            civvieSprite.SetAnimationState(Civvie.AnimationState.WalkingLeft);
-
-            /*
-            rendernode = l.AddNode(
-                            new McgNode(sp
-                        );
-            */
 
             base.Initialize();
         }
