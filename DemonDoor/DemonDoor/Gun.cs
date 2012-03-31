@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework;
 
 using FarseerPhysics.Collision.Shapes;
 using FarseerPhysics.Dynamics;
+using FarseerPhysics.Dynamics.Contacts;
 using FsWorld = FarseerPhysics.Dynamics.World;
 
 namespace DemonDoor
@@ -15,23 +16,51 @@ namespace DemonDoor
     {
         public Gun(World w, Vector2 r, Vector2 size)
         {
-            
+            _fsBody = w.NewBody();
+            _fsBody.Position = r;
 
-            //BodyDef def = new BodyDef();
-            //def.Position.Set(r.X, r.Y);
+            PolygonShape shape = new PolygonShape(1.0f);
+            shape.SetAsBox(size.X, size.Y);
 
-            //_boxBody = w.AddBody(def);
+            _fsFixture = _fsBody.CreateFixture(shape);
+            _fsFixture.IsSensor = true;
 
-            //PolygonDef shape = new PolygonDef();
-            //shape.SetAsBox(size.X, size.Y);
-            //shape.IsSensor = true;
+            _fsFixture.OnCollision += Shoot;
+        }
 
-            //_boxBody.CreateShape(shape);
-            //_boxBody.SetMass(new MassData { Mass = 0.0f });
+        private bool Shoot(Fixture f1, Fixture f2, Contact contact)
+        {
+            Fixture self = null, other = null;
+
+            if (f1 == _fsFixture)
+            {
+                self = f1;
+                other = f2;
+            }
+            else if (f2 == _fsFixture)
+            {
+                self = f2;
+                other = f1;
+            }
+
+            if (other == null)
+            {
+                Console.WriteLine("other is null!");
+            }
+            if (other.UserData is Corpse)
+            {
+                Corpse c = other.UserData as Corpse;
+                Console.WriteLine("collided with corpse {0}, kickin' it", c);
+
+                other.Body.ApplyLinearImpulse(new Vector2 { X = -30f, Y = 30f });   
+            }
+
+            return false;
         }
 
         public Vector2 Impulse { get; set; }
 
-        private Body _boxBody;
+        private Fixture _fsFixture;
+        private Body _fsBody;
     }
 }

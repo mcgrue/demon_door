@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 
 using FarseerPhysics.Collision.Shapes;
 using FarseerPhysics.Dynamics;
+using FarseerPhysics.Factories;
 using FsWorld = FarseerPhysics.Dynamics.World;
 
 namespace DemonDoor
@@ -17,6 +18,7 @@ namespace DemonDoor
             // set up the ground.
             _ground = new Body(_fsWorld);
             _ground.BodyType = BodyType.Static;
+            _ground.Position = new Vector2 { X = 0.0f, Y = -10.0f };
 
             PolygonShape groundShape = new PolygonShape(0.0f);
             groundShape.SetAsBox(1000f, 10f);

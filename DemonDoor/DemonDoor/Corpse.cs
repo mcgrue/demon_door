@@ -18,11 +18,11 @@ namespace DemonDoor
             _fsBody = w.NewBody();
             _fsBody.BodyType = BodyType.Dynamic;
             _fsBody.Position = r0;
-            _fsBody.Restitution = 0.5f;
 
             CircleShape shape = new CircleShape(2f, 1.0f);
-
-            Fixture f = _fsBody.CreateFixture(shape);
+            
+            Fixture f = _fsBody.CreateFixture(shape, this);
+            f.Restitution = 0.5f;
         }
 
         public Vector2 Position

@@ -23,6 +23,7 @@ namespace DemonDoor {
 
         private World _world;
         private Corpse _test;
+        private Gun _gun;
 
         /// <summary>
         /// Allows the game to perform any initialization it needs to before starting to run.
@@ -33,6 +34,7 @@ namespace DemonDoor {
         protected override void Initialize() {
             _world = new World(new Vector2 { X = 0, Y = -10 });
             _test = new Corpse(_world, new Vector2 { X = 0, Y = 100 });
+            _gun = new Gun(_world, new Vector2 { X = 0, Y = 3 }, new Vector2 { X = 5, Y = 3 });
             McgNode rendernode;
 
             // TODO: Add your initialization logic here
