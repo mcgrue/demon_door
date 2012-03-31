@@ -52,7 +52,7 @@ namespace DemonDoor
                 Corpse c = other.UserData as Corpse;
                 Console.WriteLine("collided with corpse {0}, kickin' it", c);
 
-                other.Body.ApplyLinearImpulse(new Vector2 { X = -30f, Y = 30f });   
+                other.Body.ApplyLinearImpulse(Impulse);
             }
 
             return false;

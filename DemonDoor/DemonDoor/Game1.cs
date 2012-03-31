@@ -25,6 +25,19 @@ namespace DemonDoor {
         private Corpse _test;
         private Gun _gun;
 
+        private Vector2 Physics2Screen(Vector2 physics)
+        {
+            float x0 = -100, x1 = 100, y0 = 100, y1 = 0;
+            float xscale = 320 / (x1 - x0);
+            float yscale = 240 / (y1 - y0);
+
+            Vector2 screen = new Vector2 { X = (physics.X - x0) * xscale, Y = (physics.Y - y0) * yscale };
+
+            Console.Out.WriteLine("{0} => {1}", physics, screen);
+
+            return screen;
+        }
+
         /// <summary>
         /// Allows the game to perform any initialization it needs to before starting to run.
         /// This is where it can query for any required services and load any non-graphic
@@ -35,6 +48,8 @@ namespace DemonDoor {
             _world = new World(new Vector2 { X = 0, Y = -10 });
             _test = new Corpse(_world, new Vector2 { X = 0, Y = 100 });
             _gun = new Gun(_world, new Vector2 { X = 0, Y = 3 }, new Vector2 { X = 5, Y = 3 });
+            _gun.Impulse = new Vector2 { X = -10, Y = 10 };
+
             McgNode rendernode;
 
             // TODO: Add your initialization logic here
@@ -71,7 +86,7 @@ namespace DemonDoor {
             );
 
             l = mcg.GetLayer( "corpses" );
-            RenderDelegate drawCivvie = ( int x, int y ) => {
+            /*RenderDelegate drawCivvie = ( int x, int y ) => {
                 sprite.x = x;
                 sprite.y = y;
                 sprite.Draw();
@@ -91,7 +106,21 @@ namespace DemonDoor {
                 rendernode.OnStop = () => {
                     rendernode.Reverse();
                 };
-            }
+            }*/
+     
+            RenderDelegate drawCivvie = ( int x, int y ) => {
+                Vector2 screen = Physics2Screen(new Vector2 { X = _test.Position.X, Y = _test.Position.Y });
+                sprite.x = (int)screen.X;
+                sprite.y = (int)screen.Y;
+                sprite.Draw();
+            };
+     
+            rendernode = l.AddNode(
+                new McgNode( drawCivvie, l,
+                    0,0
+                )
+            );
+
 
             base.Initialize();
         }
@@ -129,7 +158,7 @@ namespace DemonDoor {
 
             _world.Simulate(gameTime);
 
-            Console.Out.WriteLine("@{3}: ({0}, {1}), {2}", _test.Position.X, _test.Position.Y, _test.Theta, gameTime.TotalGameTime);
+            //Console.Out.WriteLine("@{3}: ({0}, {1}), {2}", _test.Position.X, _test.Position.Y, _test.Theta, gameTime.TotalGameTime);
             systime = gameTime.TotalGameTime.Milliseconds;
 
             // TODO: Add your update logic here
