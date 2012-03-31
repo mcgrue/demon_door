@@ -7,11 +7,12 @@ using Microsoft.Xna.Framework;
 
 using FarseerPhysics.Collision.Shapes;
 using FarseerPhysics.Dynamics;
+using FarseerPhysics.Dynamics.Contacts;
 using FsWorld = FarseerPhysics.Dynamics.World;
 
 namespace DemonDoor
 {
-    class Corpse
+    class Corpse : ICollidable
     {
         public Corpse(World w, Vector2 r0)
         {
@@ -21,8 +22,38 @@ namespace DemonDoor
 
             CircleShape shape = new CircleShape(2f, 1.0f);
             
-            Fixture f = _fsBody.CreateFixture(shape, this);
-            f.Restitution = 0.5f;
+            _fsFixture = _fsBody.CreateFixture(shape, this);
+            _fsFixture.Restitution = 0.5f;
+            _fsFixture.OnCollision += BehaviorCollided;
+        }
+
+        private bool BehaviorCollided(Fixture f1, Fixture f2, Contact contact)
+        {
+            Fixture self = null, other = null;
+
+            if (f1 == _fsFixture)
+            {
+                self = f1;
+                other = f2;
+            }
+            else if (f2 == _fsFixture)
+            {
+                self = f2;
+                other = f1;
+            }
+
+            if (other.UserData is ICollidable)
+            {
+                this.Collided(other.UserData as ICollidable);
+                (other.UserData as ICollidable).Collided(this);
+            }
+
+            // CB: oh god this line of code is terrible, figure out how to fix it
+            return (other.UserData is World);
+        }
+
+        public void Collided(ICollidable other)
+        {
         }
 
         public Vector2 Position
@@ -42,5 +73,7 @@ namespace DemonDoor
         }
 
         private Body _fsBody;
+        private Fixture _fsFixture;
+
     }
 }

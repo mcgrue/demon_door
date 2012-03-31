@@ -3,12 +3,13 @@ using Microsoft.Xna.Framework;
 
 using FarseerPhysics.Collision.Shapes;
 using FarseerPhysics.Dynamics;
+using FarseerPhysics.Dynamics.Contacts;
 using FarseerPhysics.Factories;
 using FsWorld = FarseerPhysics.Dynamics.World;
 
 namespace DemonDoor
 {
-    class World
+    class World : ICollidable
     {
         public World(Vector2 gravity)
         {
@@ -23,7 +24,8 @@ namespace DemonDoor
             PolygonShape groundShape = new PolygonShape(0.0f);
             groundShape.SetAsBox(1000f, 10f);
 
-            Fixture f = _ground.CreateFixture(groundShape);
+            _fsFixture = _ground.CreateFixture(groundShape, this);
+            _fsFixture.OnCollision += this.BehaviorCollided;
         }
 
         public void Simulate(GameTime now)
@@ -40,8 +42,40 @@ namespace DemonDoor
             return new Body(_fsWorld);
         }
 
+
+        private bool BehaviorCollided(Fixture f1, Fixture f2, Contact contact)
+        {
+            Fixture self = null, other = null;
+
+            if (f1 == _fsFixture)
+            {
+                self = f1;
+                other = f2;
+            }
+            else if (f2 == _fsFixture)
+            {
+                self = f2;
+                other = f1;
+            }
+
+            if (other.UserData is ICollidable)
+            {
+                this.Collided(other.UserData as ICollidable);
+                (other.UserData as ICollidable).Collided(this);
+            }
+
+            return true;
+        }
+
+        public void Collided(ICollidable other)
+        {
+        }
+
         private FsWorld _fsWorld;
+        
         private Body _ground;
+        private Fixture _fsFixture;
+
         private TimeSpan _last = TimeSpan.Zero;
     }
 }

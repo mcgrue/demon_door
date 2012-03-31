@@ -115,6 +115,7 @@
   <ItemGroup>
     <Compile Include="Corpse.cs" />
     <Compile Include="Gun.cs" />
+    <Compile Include="ICollidable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Game1.cs" />
