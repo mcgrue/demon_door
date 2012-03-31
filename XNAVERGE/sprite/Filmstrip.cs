@@ -14,6 +14,13 @@ namespace XNAVERGE
         int frameDuration;
         DateTime startTime;
         
+        /// <summary>
+        /// Defines a filmstrip animation.
+        /// Uses an animation strip laid out in a single row.
+        /// </summary>
+        /// <param name="frameDimensions">Width and height of the aniation frames</param>
+        /// <param name="frames">The ordered list of animation frames to show (0-based)</param>
+        /// <param name="frameDurationMillis">Amount of time (in milliseconds) to show each frame</param>
         public Filmstrip(Point frameDimensions, IList<int> frames, int frameDurationMillis)
         {
             this.frameSize = frameDimensions;
@@ -26,10 +33,11 @@ namespace XNAVERGE
         {
             TimeSpan timeSinceAnimationStarted = DateTime.Now - startTime;
             int animationIndex = (int)(timeSinceAnimationStarted.TotalMilliseconds / frameDuration);
+            
             animationIndex %= frames.Count; //loop animation
 
             Rectangle result = new Rectangle(0, 0, frameSize.X, frameSize.Y);
-            result.X = frameSize.X * animationIndex;
+            result.X = frameSize.X * frames[animationIndex];
 
             return result;
         }
