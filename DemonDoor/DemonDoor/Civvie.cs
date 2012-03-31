@@ -12,7 +12,7 @@ namespace DemonDoor
     class Civvie
     {
         public Texture2D texture { get; set; }
-        public Filmstrip CurrentAnimation { get; private set; }
+        private Filmstrip currentAnimation;
 
         public Sprite Sprite { get; private set; }
 
@@ -36,14 +36,14 @@ namespace DemonDoor
                 Sprite.Draw();
             };
 
-            this.CurrentAnimation = animationAtlas[AnimationState.Idle];
-            this.Sprite = new Sprite(sb, CurrentAnimation);
+            this.currentAnimation = animationAtlas[AnimationState.Idle];
+            this.Sprite = new Sprite(sb, currentAnimation);
         }
 
         public void SetAnimationState(AnimationState state)
         {
-            this.CurrentAnimation = animationAtlas[state];
-            Sprite.set_animation(CurrentAnimation);
+            this.currentAnimation = animationAtlas[state];
+            Sprite.set_animation(currentAnimation);
         }
 
         /// <summary>
