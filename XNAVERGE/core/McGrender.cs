@@ -6,6 +6,8 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
+using XNAVERGE.sprite;
+
 namespace XNAVERGE {
 
     public class McgNode {
@@ -38,7 +40,12 @@ namespace XNAVERGE {
             _Node( l, start_x, start_y, end_x, end_y, delay );
         }
 
-        private void _Node(McgLayer l, int start_x, int start_y) { _Node(l, start_x, start_y); }
+
+        public McgNode( IDrawableThing d, int start_x, int start_y ) {
+            
+        }
+
+        private void _Node( McgLayer l, int start_x, int start_y ) { _Node(l, start_x, start_y); }
         private void _Node( McgLayer l, int start_x, int start_y, int? end_x, int? end_y, int? delay) {
             layer = l;
 

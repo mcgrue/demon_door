@@ -28,7 +28,7 @@ namespace DemonDoor {
         private const int Width = 320;
         private const int Height = 240;
 
-        private Vector2 Physics2Screen(Vector2 physics)
+        public static Vector2 Physics2Screen(Vector2 physics)
         {
             float x0 = -100, x1 = 100, y0 = 100, y1 = 0;
             float xscale = Width / (x1 - x0);
@@ -49,7 +49,9 @@ namespace DemonDoor {
         /// </summary>
         protected override void Initialize() {
             _world = new World(new Vector2 { X = 0, Y = -10 });
-            _test = new Corpse(_world, new Vector2 { X = 0, Y = 100 });
+            
+            
+            
             _gun = new Gun(_world, new Vector2 { X = 0, Y = 3 }, new Vector2 { X = 5, Y = 3 });
             _gun.Impulse = new Vector2 { X = -10, Y = 10 };
 
@@ -92,19 +94,28 @@ namespace DemonDoor {
             );
 
             l = mcg.GetLayer( "corpses" );
-     
+
+            _test = new Corpse( 
+                _world, 
+                new Vector2 { X = 0, Y = 100 } 
+            );
+/*
             RenderDelegate drawCivvie = ( int x, int y ) => {
                 Vector2 screen = Physics2Screen(new Vector2 { X = _test.Position.X, Y = _test.Position.Y });
                 sprite.x = (int)screen.X - 8;
                 sprite.y = (int)screen.Y - 8;
                 sprite.Draw();
             };
-     
+*/
+
+            throw new Exception( "Now you need to draw the new way, whore." );
+            /*
             rendernode = l.AddNode(
                 new McgNode( drawCivvie, l,
                     0,0
                 )
             );
+            */
 
 
             base.Initialize();
