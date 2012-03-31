@@ -36,7 +36,7 @@ namespace DemonDoor {
 
             Vector2 screen = new Vector2 { X = (physics.X - x0) * xscale, Y = (physics.Y - y0) * yscale };
 
-            Console.Out.WriteLine("{0} => {1}", physics, screen);
+            //Console.Out.WriteLine("{0} => {1}", physics, screen);
 
             return screen;
         }
@@ -92,27 +92,6 @@ namespace DemonDoor {
             );
 
             l = mcg.GetLayer( "corpses" );
-            /*RenderDelegate drawCivvie = ( int x, int y ) => {
-                sprite.x = x;
-                sprite.y = y;
-                sprite.Draw();
-            };
-
-            for( int i = 0; i < 400; i++ ) {
-                rendernode = l.AddNode(
-                    new McgNode( drawCivvie, l,
-                        rand.Next( 0, 320 ),
-                        rand.Next( 0, 240 ),
-                        rand.Next( 0, 320 ),
-                        rand.Next( 0, 240 ),
-                        rand.Next( 1000, 3000 ) 
-                    )
-                );
-
-                rendernode.OnStop = () => {
-                    rendernode.Reverse();
-                };
-            }*/
      
             RenderDelegate drawCivvie = ( int x, int y ) => {
                 Vector2 screen = Physics2Screen(new Vector2 { X = _test.Position.X, Y = _test.Position.Y });
