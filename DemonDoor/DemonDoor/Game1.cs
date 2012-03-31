@@ -63,7 +63,7 @@ namespace DemonDoor {
 
             McgLayer l = mcg.GetLayer( "background" );
             /// this is wrong.
-            Rectangle rectTitle = new Rectangle( 0, 0, 640, 480 );
+            Rectangle rectTitle = new Rectangle( 0, 0, 320, 240 );
             rendernode = l.AddNode(
                 new McgNode( title, rectTitle, l, 0, 0 )
             );
@@ -75,18 +75,18 @@ namespace DemonDoor {
                 sprite.Draw();
             };
 
-            for( int i = 0; i < 10; i++ ) {
+            for( int i = 0; i < 400; i++ ) {
                 rendernode = l.AddNode(
                     new McgNode( drawCivvie, l,
-                        rand.Next( 0, 600 ),
-                        rand.Next( 0, 600 ),
-                        rand.Next( 0, 600 ),
-                        rand.Next( 0, 600 ),
+                        rand.Next( 0, 320 ),
+                        rand.Next( 0, 240 ),
+                        rand.Next( 0, 320 ),
+                        rand.Next( 0, 240 ),
                         rand.Next( 1000, 3000 ) 
                     )
                 );
 
-                rendernode.OnStop += () => {
+                rendernode.OnStop = () => {
                     rendernode.Reverse();
                 };
             }

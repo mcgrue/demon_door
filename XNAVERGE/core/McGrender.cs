@@ -17,8 +17,8 @@ namespace XNAVERGE {
         float? tick_x, tick_y;
         int? delay, final_time;
         Boolean isMoving;
-        public event BasicDelegate OnStop = null;
-        public event RenderDelegate OnDraw = null;
+        public BasicDelegate OnStop = null;
+        public RenderDelegate OnDraw = null;
 
         public bool DEBUG = false;
 
@@ -100,7 +100,7 @@ if( DEBUG ) Console.WriteLine( "STOPPING" );
 
                         if( OnStop != null ) {
                             OnStop();
-                            OnStop = null;
+                            //OnStop = null;
                         }
                     }
                 }
