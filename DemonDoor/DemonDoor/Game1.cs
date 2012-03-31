@@ -59,7 +59,7 @@ namespace DemonDoor {
             Wall _wall1 = new Wall(_world, 100, -1);
 
             McgNode rendernode;
-
+            
             // TODO: Add your initialization logic here
             civvie = Content.Load<Texture2D>( "civilian_01" );
             title = Content.Load<Texture2D>( "title" );
@@ -78,7 +78,7 @@ namespace DemonDoor {
             );
             */
             
-            
+           var civvieSprite = new Civvie(sb);
 
             mcg = new McGrenderStack();
             mcg.AddLayer( "background" );
@@ -92,7 +92,6 @@ namespace DemonDoor {
             rendernode = l.AddNode(
                 new McgNode( title, rectTitle, l, 0, 0 )
             );
-
 
             /// this all should be encapsulated eventually.  CORPSEMAKER.
             l = mcg.GetLayer( "corpses" );
@@ -110,6 +109,23 @@ namespace DemonDoor {
                 );
             }
             
+            //Rectangle rect = new Rectangle( 0, 0, 122, 16 );
+
+            //rendernode = l.AddNode(
+            //    new McgNode( civvie, rect, l, 0, 0 )
+            //);
+
+            rendernode = l.AddNode(
+                new McgNode(civvieSprite.DrawCivvie, l, 100, 100)
+            );
+
+            civvieSprite.SetAnimationState(Civvie.AnimationState.WalkingLeft);
+
+            /*
+            rendernode = l.AddNode(
+                            new McgNode(sp
+                        );
+            */
 
             base.Initialize();
         }
