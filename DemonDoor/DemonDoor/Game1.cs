@@ -28,7 +28,7 @@ namespace DemonDoor {
         private const int Width = 320;
         private const int Height = 240;
 
-        private Vector2 Physics2Screen(Vector2 physics)
+        public static Vector2 Physics2Screen(Vector2 physics)
         {
             float x0 = -100, x1 = 100, y0 = 100, y1 = 0;
             float xscale = Width / (x1 - x0);
@@ -49,7 +49,9 @@ namespace DemonDoor {
         /// </summary>
         protected override void Initialize() {
             _world = new World(new Vector2 { X = 0, Y = -10 });
-            _test = new Corpse(_world, new Vector2 { X = 0, Y = 100 });
+            
+            
+            
             _gun = new Gun(_world, new Vector2 { X = 0, Y = 3 }, new Vector2 { X = 5, Y = 3 });
             _gun.Impulse = new Vector2 { X = -10, Y = 10 };
 
@@ -76,7 +78,7 @@ namespace DemonDoor {
             );
             */
             
-            Sprite sprite = new Sprite(sb, new Filmstrip(new Point(16, 16), new[] { 1, 2, 3, 4, 5 }, 100));
+            
 
             mcg = new McGrenderStack();
             mcg.AddLayer( "background" );
@@ -91,21 +93,23 @@ namespace DemonDoor {
                 new McgNode( title, rectTitle, l, 0, 0 )
             );
 
-            l = mcg.GetLayer( "corpses" );
-     
-            RenderDelegate drawCivvie = ( int x, int y ) => {
-                Vector2 screen = Physics2Screen(new Vector2 { X = _test.Position.X, Y = _test.Position.Y });
-                sprite.x = (int)screen.X - 8;
-                sprite.y = (int)screen.Y - 8;
-                sprite.Draw();
-            };
-     
-            rendernode = l.AddNode(
-                new McgNode( drawCivvie, l,
-                    0,0
-                )
-            );
 
+            /// this all should be encapsulated eventually.  CORPSEMAKER.
+            l = mcg.GetLayer( "corpses" );
+
+            for( int i = 0; i < 50; i++ ) {
+
+                Sprite sprite = new Sprite( sb, new Filmstrip( new Point( 16, 16 ), new[] { 1, 2, 3, 4, 5 }, 100 ) );
+                Corpse myCorpse = new Corpse(
+                    _world,
+                    new Vector2 { X = 0, Y = 100 },
+                    sprite
+                );
+                rendernode = l.AddNode(
+                    new McgNode( myCorpse, l, rand.Next(0,310), rand.Next(0,50) )
+                );
+            }
+            
 
             base.Initialize();
         }
