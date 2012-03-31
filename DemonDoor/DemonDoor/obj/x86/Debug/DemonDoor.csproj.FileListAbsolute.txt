@@ -10,3 +10,10 @@ C:\grue\demon_door\DemonDoor\DemonDoor\obj\x86\Debug\ResolveAssemblyReference.ca
 C:\grue\demon_door\DemonDoor\DemonDoor\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
 C:\grue\demon_door\DemonDoor\DemonDoor\obj\x86\Debug\DemonDoor.exe
 C:\grue\demon_door\DemonDoor\DemonDoor\obj\x86\Debug\DemonDoor.pdb
+C:\Users\Colin Bayer\Documents\demon_door\DemonDoor\DemonDoor\bin\x86\Debug\DemonDoor.exe
+C:\Users\Colin Bayer\Documents\demon_door\DemonDoor\DemonDoor\bin\x86\Debug\DemonDoor.pdb
+C:\Users\Colin Bayer\Documents\demon_door\DemonDoor\DemonDoor\bin\x86\Debug\Box2DX.pdb
+C:\Users\Colin Bayer\Documents\demon_door\DemonDoor\DemonDoor\obj\x86\Debug\DemonDoor.csprojResolveAssemblyReference.cache
+C:\Users\Colin Bayer\Documents\demon_door\DemonDoor\DemonDoor\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\Colin Bayer\Documents\demon_door\DemonDoor\DemonDoor\obj\x86\Debug\DemonDoor.exe
+C:\Users\Colin Bayer\Documents\demon_door\DemonDoor\DemonDoor\obj\x86\Debug\DemonDoor.pdb

@@ -9,6 +9,8 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 
+using Box2DX;
+
 namespace DemonDoor {
     /// <summary>
     /// This is the main type for your game
@@ -30,7 +32,7 @@ namespace DemonDoor {
         /// </summary>
         protected override void Initialize() {
             // TODO: Add your initialization logic here
-
+            
             base.Initialize();
         }
 
