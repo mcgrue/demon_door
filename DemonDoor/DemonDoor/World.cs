@@ -34,6 +34,9 @@ namespace DemonDoor
 
             _ground.CreateShape(groundBox);
             _ground.SetMass(new MassData { Mass = 0.0f });
+
+            _listener = new _Listener();
+            _boxWorld.SetContactListener(_listener);
         }
 
         public void Simulate(GameTime now)
@@ -47,6 +50,41 @@ namespace DemonDoor
         {
             return _boxWorld.CreateBody(bodyDef);
         }
+
+        private class _Listener : ContactListener
+        {
+            public override void Add(ContactPoint point)
+            {
+                //base.Add(point);
+                //Console.Out.WriteLine("Add");
+                base.Add(point);
+            }
+
+            public override void Persist(ContactPoint point)
+            {
+
+                //Console.Out.WriteLine("Persist");
+
+                base.Persist(point);
+            }
+
+            public override void Remove(ContactPoint point)
+            {
+
+                //Console.Out.WriteLine("Remove");
+
+                base.Remove(point);
+            }
+
+            public override void Result(ContactResult point)
+            {
+
+                //Console.Out.WriteLine("Result");
+                base.Result(point);
+            }
+        }
+
+        private _Listener _listener;
 
         private BoxWorld _boxWorld;
         private Body _ground;

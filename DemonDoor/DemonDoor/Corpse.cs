@@ -22,6 +22,7 @@ namespace DemonDoor
 
             CircleDef shape = new CircleDef();
             shape.Radius = 2f;
+            shape.Restitution = 0.5f;
 
             _boxBody.CreateShape(shape);
             _boxBody.SetMass(new MassData { Mass = 1.0f });
@@ -31,9 +32,7 @@ namespace DemonDoor
         {
             get
             {
-                Vec2 r = _boxBody.GetPosition();
-
-                return new Vector2 { X = r.X, Y = r.Y };
+                return Utility.B2XVec2(_boxBody.GetPosition());
             }
         }
 
