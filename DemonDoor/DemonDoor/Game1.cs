@@ -131,7 +131,7 @@ namespace XNAVERGE {
             Rectangle rect = new Rectangle( 10, 30, 112, 16 );
 
             spritebatch.Begin();
-            spritebatch.Draw( civvie, rect, Color.White );
+            spritebatch.Draw( civvie, rect, Microsoft.Xna.Framework.Color.White );
             spritebatch.End();
 
             base.Draw( gameTime );
