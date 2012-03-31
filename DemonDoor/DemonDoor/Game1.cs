@@ -19,7 +19,7 @@ namespace XNAVERGE {
     public class Game1 : VERGEGame {
 
         public McGrenderStack mcg;
-        Texture2D civvie;
+        Texture2D civvie, title;
 
         /// <summary>
         /// Allows the game to perform any initialization it needs to before starting to run.
@@ -29,13 +29,52 @@ namespace XNAVERGE {
         /// </summary>
         protected override void Initialize() {
             // TODO: Add your initialization logic here
+            McgNode rendernode;
 
             civvie = Content.Load<Texture2D>( "civilian_01" );
+            title = Content.Load<Texture2D>( "title" );
+
+            SpriteBasis sb = new SpriteBasis( 16, 16, 7, 7 );
+            
+            sb.image = civvie;
+            SpriteAnimation sa = new SpriteAnimation( "default", 7, "F0W15F1W15F2W15F3W15F3W15F4W15F5W15F6W15" );
+            sb.animations["default"] = sa;
+            Sprite sprite = new Sprite( sb, "default" );
+            
 
             mcg = new McGrenderStack();
             mcg.AddLayer( "menu" );
             mcg.AddLayer( "textbox" );
             this.setMcGrender( mcg );
+
+            McgLayer l = mcg.GetLayer( "menu" );
+
+            /// this is wrong.
+            Rectangle rectTitle = new Rectangle( 0, 0, 640, 480 );
+            rendernode = l.AddNode(
+                new McgNode( title, rectTitle, l, 0, 0 )
+            );
+
+            Rectangle rect = new Rectangle( 0, 0, 122, 16 );
+
+            rendernode = l.AddNode(
+                new McgNode( civvie, rect, l, 0, 0 )
+            );
+
+            RenderDelegate drawCivvie = ( int x, int y ) => {
+                sprite.Update();
+                sprite.Draw();
+            };
+
+            rendernode = l.AddNode(
+                new McgNode( drawCivvie, l, 100, 100 )
+            );
+
+            /*
+            rendernode = l.AddNode(
+                            new McgNode(sp
+                        );
+            */
 
             base.Initialize();
         }
@@ -84,12 +123,6 @@ namespace XNAVERGE {
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw( GameTime gameTime ) {
             GraphicsDevice.Clear( Color.LimeGreen );
-
-            Rectangle rect = new Rectangle( 10, 30, 112, 16 );
-
-            spritebatch.Begin();
-            spritebatch.Draw( civvie, rect, Color.White );
-            spritebatch.End();
 
             base.Draw( gameTime );
         }
