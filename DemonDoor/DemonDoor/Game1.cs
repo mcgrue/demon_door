@@ -42,42 +42,49 @@ namespace DemonDoor {
             SpriteBasis sb = new SpriteBasis( 16, 16, 7, 7 );
             
             sb.image = civvie;
-            Sprite sprite = new Sprite(sb, new Filmstrip(new Rectangle(0, 0, 16, 16), new[] { 1, 2, 3, 4, 5 }, TimeSpan.FromMilliseconds(100)));
+            Sprite sprite = new Sprite(
+                sb, 
+                new Filmstrip(new Rectangle(0, 0, 16, 16), 
+                    new[] { 1, 2, 3, 4, 5 }, 
+                    TimeSpan.FromMilliseconds(100)
+                )
+            );
             
-
             mcg = new McGrenderStack();
-            mcg.AddLayer( "menu" );
-            mcg.AddLayer( "textbox" );
+            mcg.AddLayer( "background" );
+            mcg.AddLayer( "corpses" );
+
             this.setMcGrender( mcg );
 
-            McgLayer l = mcg.GetLayer( "menu" );
-
+            McgLayer l = mcg.GetLayer( "background" );
             /// this is wrong.
             Rectangle rectTitle = new Rectangle( 0, 0, 640, 480 );
             rendernode = l.AddNode(
                 new McgNode( title, rectTitle, l, 0, 0 )
             );
 
-            Rectangle rect = new Rectangle( 0, 0, 122, 16 );
-
-            rendernode = l.AddNode(
-                new McgNode( civvie, rect, l, 0, 0 )
-            );
-
+            l = mcg.GetLayer( "corpses" );
             RenderDelegate drawCivvie = ( int x, int y ) => {
-                sprite.Update();
+                sprite.x = x;
+                sprite.y = y;
                 sprite.Draw();
             };
+            for( int i = 0; i < 7000; i++ ) {
 
-            rendernode = l.AddNode(
-                new McgNode( drawCivvie, l, 100, 100 )
-            );
+                rendernode = l.AddNode(
+                    new McgNode( drawCivvie, l,
+                        rand.Next( 0, 600 ),
+                        rand.Next( 0, 600 ),
+                        rand.Next( 0, 600 ),
+                        rand.Next( 0, 600 ),
+                        rand.Next( 1000, 3000 ) 
+                    )
+                );
 
-            /*
-            rendernode = l.AddNode(
-                            new McgNode(sp
-                        );
-            */
+                rendernode.OnStop += () => {
+                    rendernode.Reverse();
+                };
+            }
 
             base.Initialize();
         }
@@ -129,13 +136,6 @@ namespace DemonDoor {
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw( GameTime gameTime ) {
             GraphicsDevice.Clear( Microsoft.Xna.Framework.Color.LimeGreen );
-
-
-            Rectangle rect = new Rectangle( 10, 30, 112, 16 );
-
-            spritebatch.Begin();
-            spritebatch.Draw( civvie, rect, Microsoft.Xna.Framework.Color.White );
-            spritebatch.End();
 
             base.Draw( gameTime );
         }

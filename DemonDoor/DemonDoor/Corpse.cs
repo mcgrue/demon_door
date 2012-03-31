@@ -25,6 +25,7 @@ namespace DemonDoor
 
             _boxBody.CreateShape(shape);
             _boxBody.SetMass(new MassData { Mass = 1.0f });
+            _boxBody.SetMassFromShapes();
         }
 
         public Vector2 Position
