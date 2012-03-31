@@ -96,15 +96,19 @@ namespace DemonDoor {
 
             /// this all should be encapsulated eventually.  CORPSEMAKER.
             l = mcg.GetLayer( "corpses" );
-            Sprite sprite = new Sprite( sb, new Filmstrip( new Point( 16, 16 ), new[] { 1, 2, 3, 4, 5 }, 100 ) );
-            Corpse myCorpse = new Corpse( 
-                _world, 
-                new Vector2 { X = 0, Y = 100 },
-                sprite
-            );
-            rendernode = l.AddNode(
-                new McgNode( myCorpse, l, 50, 50 )
-            );
+
+            for( int i = 0; i < 50; i++ ) {
+
+                Sprite sprite = new Sprite( sb, new Filmstrip( new Point( 16, 16 ), new[] { 1, 2, 3, 4, 5 }, 100 ) );
+                Corpse myCorpse = new Corpse(
+                    _world,
+                    new Vector2 { X = 0, Y = 100 },
+                    sprite
+                );
+                rendernode = l.AddNode(
+                    new McgNode( myCorpse, l, rand.Next(0,310), rand.Next(0,50) )
+                );
+            }
             
 
             base.Initialize();
