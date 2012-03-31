@@ -41,7 +41,7 @@ namespace DemonDoor
             if (other.UserData is Corpse)
             {
                 Corpse c = other.UserData as Corpse;
-                Console.WriteLine("collided with corpse {0}, kickin' it", c);
+                //Console.WriteLine("collided with corpse {0}, kickin' it", c);
 
                 other.Body.ApplyLinearImpulse(Impulse);
             }

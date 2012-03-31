@@ -22,7 +22,7 @@ namespace DemonDoor {
         Texture2D civvie, title;
 
         private World _world;
-        private Corpse _test;
+        //private Corpse _test;
         private Gun _gun;
 
         private const int Width = 320;
@@ -135,15 +135,41 @@ namespace DemonDoor {
 
         int systime;
 
+        private float GunImpulse { get; set; }
+        private bool _gunLatch = false;
+
         /// <summary>
         /// Allows the game to run logic such as updating the world,
         /// checking for collisions, gathering input, and playing audio.
         /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
-        protected override void Update( GameTime gameTime ) {
+        protected override void Update(GameTime gameTime)
+        {
             // Allows the game to exit
-            if( GamePad.GetState( PlayerIndex.One ).Buttons.Back == ButtonState.Pressed )
+            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
+
+            {
+                // update gun impulse.
+                bool revGun = Keyboard.GetState(PlayerIndex.One).IsKeyDown(Keys.E);
+
+                if (revGun && !_gunLatch)
+                    GunImpulse += 40;
+
+                GunImpulse -= 1;
+
+                GunImpulse = Math.Max(0, GunImpulse);
+                GunImpulse = Math.Min(50, GunImpulse);
+
+                //Console.Out.WriteLine("gun impulse is {0}", GunImpulse);
+
+                _gunLatch = revGun;
+
+                Vector2 dir = new Vector2 { X = -1, Y = 1 };
+                dir.Normalize();
+
+                _gun.Impulse = dir * GunImpulse;
+            }
 
             _world.Simulate(gameTime);
 
@@ -152,7 +178,7 @@ namespace DemonDoor {
 
             // TODO: Add your update logic here
 
-            base.Update( gameTime );
+            base.Update(gameTime);
         } 
 
         /// <summary>
