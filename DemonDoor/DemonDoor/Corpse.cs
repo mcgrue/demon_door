@@ -9,7 +9,7 @@ using XNAVERGE;
 namespace DemonDoor
 {
 
-    class Corpse : IDrawableThing, ICollidable
+    class CivvieController : IDrawableThing, ICollidable
     {
         CivvieSprite myCorpse = null;
         Vector2 screen;
@@ -17,7 +17,7 @@ namespace DemonDoor
         private Body _fsBody;
         private Fixture _fsFixture;
 
-        public Corpse( World w, Vector2 r0, CivvieSprite sprite )
+        public CivvieController( World w, Vector2 r0, CivvieSprite sprite )
         {
             _fsBody = w.NewBody();
             _fsBody.BodyType = BodyType.Dynamic;
