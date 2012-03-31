@@ -25,11 +25,14 @@ namespace DemonDoor {
         private Corpse _test;
         private Gun _gun;
 
+        private const int Width = 320;
+        private const int Height = 240;
+
         private Vector2 Physics2Screen(Vector2 physics)
         {
             float x0 = -100, x1 = 100, y0 = 100, y1 = 0;
-            float xscale = 320 / (x1 - x0);
-            float yscale = 240 / (y1 - y0);
+            float xscale = Width / (x1 - x0);
+            float yscale = Height / (y1 - y0);
 
             Vector2 screen = new Vector2 { X = (physics.X - x0) * xscale, Y = (physics.Y - y0) * yscale };
 
@@ -49,6 +52,9 @@ namespace DemonDoor {
             _test = new Corpse(_world, new Vector2 { X = 0, Y = 100 });
             _gun = new Gun(_world, new Vector2 { X = 0, Y = 3 }, new Vector2 { X = 5, Y = 3 });
             _gun.Impulse = new Vector2 { X = -10, Y = 10 };
+
+            Wall _wall0 = new Wall(_world, -100, 1);
+            Wall _wall1 = new Wall(_world, 100, -1);
 
             McgNode rendernode;
 
@@ -110,8 +116,8 @@ namespace DemonDoor {
      
             RenderDelegate drawCivvie = ( int x, int y ) => {
                 Vector2 screen = Physics2Screen(new Vector2 { X = _test.Position.X, Y = _test.Position.Y });
-                sprite.x = (int)screen.X;
-                sprite.y = (int)screen.Y;
+                sprite.x = (int)screen.X - 8;
+                sprite.y = (int)screen.Y - 8;
                 sprite.Draw();
             };
      
