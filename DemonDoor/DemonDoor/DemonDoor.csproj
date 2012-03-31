@@ -115,8 +115,8 @@
   <ItemGroup>
     <Compile Include="Civvie.cs" />
     <Compile Include="Coords.cs" />
+    <Compile Include="CivvieController.cs" />
     <Compile Include="Door.cs" />
-    <Compile Include="Corpse.cs" />
     <Compile Include="Gun.cs" />
     <Compile Include="ICollidable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
