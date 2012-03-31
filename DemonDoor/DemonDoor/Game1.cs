@@ -127,7 +127,7 @@ namespace DemonDoor {
 
             _world.Simulate(gameTime);
 
-            Console.Out.WriteLine("({0}, {1}), {2}", _test.Position.X, _test.Position.Y, _test.Theta);
+            Console.Out.WriteLine("@{3}: ({0}, {1}), {2}", _test.Position.X, _test.Position.Y, _test.Theta, gameTime.TotalGameTime);
             systime = gameTime.TotalGameTime.Milliseconds;
 
             // TODO: Add your update logic here

@@ -5,9 +5,9 @@ using System.Text;
 
 using Microsoft.Xna.Framework;
 
-using Box2DX.Collision;
-using Box2DX.Common;
-using Box2DX.Dynamics;
+using FarseerPhysics.Collision.Shapes;
+using FarseerPhysics.Dynamics;
+using FsWorld = FarseerPhysics.Dynamics.World;
 
 namespace DemonDoor
 {
@@ -15,16 +15,19 @@ namespace DemonDoor
     {
         public Gun(World w, Vector2 r, Vector2 size)
         {
-            BodyDef def = new BodyDef();
-            def.Position.Set(r.X, r.Y);
+            
 
-            _boxBody = w.AddBody(def);
+            //BodyDef def = new BodyDef();
+            //def.Position.Set(r.X, r.Y);
 
-            PolygonDef shape = new PolygonDef();
-            shape.SetAsBox(size.X, size.Y);
+            //_boxBody = w.AddBody(def);
 
-            _boxBody.CreateShape(shape);
-            _boxBody.SetMass(new MassData { Mass = 0.0f });
+            //PolygonDef shape = new PolygonDef();
+            //shape.SetAsBox(size.X, size.Y);
+            //shape.IsSensor = true;
+
+            //_boxBody.CreateShape(shape);
+            //_boxBody.SetMass(new MassData { Mass = 0.0f });
         }
 
         public Vector2 Impulse { get; set; }

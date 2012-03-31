@@ -5,9 +5,9 @@ using System.Text;
 
 using Microsoft.Xna.Framework;
 
-using Box2DX.Collision;
-using Box2DX.Common;
-using Box2DX.Dynamics;
+using FarseerPhysics.Collision.Shapes;
+using FarseerPhysics.Dynamics;
+using FsWorld = FarseerPhysics.Dynamics.World;
 
 namespace DemonDoor
 {
@@ -15,25 +15,21 @@ namespace DemonDoor
     {
         public Corpse(World w, Vector2 r0)
         {
-            BodyDef def = new BodyDef();
-            def.Position.Set(r0.X, r0.Y);
+            _fsBody = w.NewBody();
+            _fsBody.BodyType = BodyType.Dynamic;
+            _fsBody.Position = r0;
+            _fsBody.Restitution = 0.5f;
 
-            _boxBody = w.AddBody(def);
+            CircleShape shape = new CircleShape(2f, 1.0f);
 
-            CircleDef shape = new CircleDef();
-            shape.Radius = 2f;
-            shape.Restitution = 0.5f;
-
-            _boxBody.CreateShape(shape);
-            _boxBody.SetMass(new MassData { Mass = 1.0f });
-            _boxBody.SetMassFromShapes();
+            Fixture f = _fsBody.CreateFixture(shape);
         }
 
         public Vector2 Position
         {
             get
             {
-                return Utility.B2XVec2(_boxBody.GetPosition());
+                return _fsBody.Position;
             }
         }
 
@@ -41,10 +37,10 @@ namespace DemonDoor
         {
             get
             {
-                return _boxBody.GetAngle();
+                return _fsBody.Rotation;
             }
         }
 
-        private Body _boxBody;
+        private Body _fsBody;
     }
 }
