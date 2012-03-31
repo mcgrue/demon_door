@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemonDoor", "DemonDoor\DemonDoor\DemonDoor.csproj", "{49284E41-5D20-449A-BBC0-42542B8D0FED}"
+EndProject
+Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "DemonDoorContent", "DemonDoor\DemonDoorContent\DemonDoorContent.contentproj", "{C29DC9AB-966B-4317-9C96-988222BBF686}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XNAVERGE", "..\..\..\..\..\..\grue\XNAVERGE\XNAVERGE\XNAVERGE.csproj", "{0D524863-D249-4CCC-8C99-349EF7AAA0FF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XVCX", "..\..\..\..\..\..\grue\XNAVERGE\XVCX\XVCX.csproj", "{CEE58E89-EFF1-47DF-BDBA-32F7D9B01BA3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{49284E41-5D20-449A-BBC0-42542B8D0FED}.Debug|x86.ActiveCfg = Debug|x86
+		{49284E41-5D20-449A-BBC0-42542B8D0FED}.Debug|x86.Build.0 = Debug|x86
+		{49284E41-5D20-449A-BBC0-42542B8D0FED}.Release|x86.ActiveCfg = Release|x86
+		{49284E41-5D20-449A-BBC0-42542B8D0FED}.Release|x86.Build.0 = Release|x86
+		{C29DC9AB-966B-4317-9C96-988222BBF686}.Debug|x86.ActiveCfg = Debug|x86
+		{C29DC9AB-966B-4317-9C96-988222BBF686}.Release|x86.ActiveCfg = Release|x86
+		{0D524863-D249-4CCC-8C99-349EF7AAA0FF}.Debug|x86.ActiveCfg = Debug|x86
+		{0D524863-D249-4CCC-8C99-349EF7AAA0FF}.Debug|x86.Build.0 = Debug|x86
+		{0D524863-D249-4CCC-8C99-349EF7AAA0FF}.Release|x86.ActiveCfg = Release|x86
+		{0D524863-D249-4CCC-8C99-349EF7AAA0FF}.Release|x86.Build.0 = Release|x86
+		{CEE58E89-EFF1-47DF-BDBA-32F7D9B01BA3}.Debug|x86.ActiveCfg = Debug|x86
+		{CEE58E89-EFF1-47DF-BDBA-32F7D9B01BA3}.Debug|x86.Build.0 = Debug|x86
+		{CEE58E89-EFF1-47DF-BDBA-32F7D9B01BA3}.Release|x86.ActiveCfg = Debug|x86
+		{CEE58E89-EFF1-47DF-BDBA-32F7D9B01BA3}.Release|x86.Build.0 = Debug|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
