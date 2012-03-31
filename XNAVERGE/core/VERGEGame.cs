@@ -29,6 +29,7 @@ namespace XNAVERGE {
                 followers = new FollowerChain(value);
             }
         }
+
         private Entity _player;
         public virtual FollowerChain followers {
             get { return _followers; }
@@ -37,6 +38,7 @@ namespace XNAVERGE {
                 _followers = value;
             }
         }
+
         private FollowerChain _followers;
 
         public bool player_tile_obstruction; // UNIMPLEMENTED: true if player uses tile-based, rather than pixel-based, obstruction 

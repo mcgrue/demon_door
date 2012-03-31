@@ -14,18 +14,15 @@ using Box2DX.Collision;
 using Box2DX.Common;
 using Box2DX.Dynamics;
 
-namespace DemonDoor {
+namespace XNAVERGE {
+
     /// <summary>
     /// This is the main type for your game
     /// </summary>
-    public class Game1 : Microsoft.Xna.Framework.Game {
-        GraphicsDeviceManager graphics;
-        SpriteBatch spriteBatch;
+    public class Game1 : VERGEGame {
 
-        public Game1() {
-            graphics = new GraphicsDeviceManager( this );
-            Content.RootDirectory = "Content";
-        }
+        public McGrenderStack mcg;
+        Texture2D civvie;
 
         private World _world;
         private Body _ground, _box;
@@ -71,6 +68,13 @@ namespace DemonDoor {
             _box.CreateShape(circleDef);
             _box.SetMass(new MassData { Mass = 1.0f });
             
+            civvie = Content.Load<Texture2D>( "civilian_01" );
+
+            mcg = new McGrenderStack();
+            mcg.AddLayer( "menu" );
+            mcg.AddLayer( "textbox" );
+            this.setMcGrender( mcg );
+
             base.Initialize();
         }
 
@@ -80,7 +84,7 @@ namespace DemonDoor {
         /// </summary>
         protected override void LoadContent() {
             // Create a new SpriteBatch, which can be used to draw textures.
-            spriteBatch = new SpriteBatch( GraphicsDevice );
+            spritebatch = new SpriteBatch( GraphicsDevice );
 
             // TODO: use this.Content to load your game content here
         }
@@ -93,6 +97,8 @@ namespace DemonDoor {
             // TODO: Unload any non ContentManager content here
         }
 
+        int systime;
+
         /// <summary>
         /// Allows the game to run logic such as updating the world,
         /// checking for collisions, gathering input, and playing audio.
@@ -103,16 +109,20 @@ namespace DemonDoor {
             if( GamePad.GetState( PlayerIndex.One ).Buttons.Back == ButtonState.Pressed )
                 this.Exit();
 
+<<<<<<< HEAD
             _world.Step(1f / 60f, 6, 2);
             Vec2 ballPos = _box.GetPosition();
             float ballAngle = _box.GetAngle();
 
             Console.Out.WriteLine("({0}, {1}), {2}", ballPos.X, ballPos.Y, ballAngle);
+=======
+            systime = gameTime.TotalGameTime.Milliseconds;
+>>>>>>> 133b6c1639b6f67b960fc6819f4455555a991c13
 
             // TODO: Add your update logic here
 
             base.Update( gameTime );
-        }
+        } 
 
         /// <summary>
         /// This is called when the game should draw itself.
@@ -121,7 +131,11 @@ namespace DemonDoor {
         protected override void Draw( GameTime gameTime ) {
             GraphicsDevice.Clear( Microsoft.Xna.Framework.Color.LimeGreen );
 
-            // TODO: Add your drawing code here
+            Rectangle rect = new Rectangle( 10, 30, 112, 16 );
+
+            spritebatch.Begin();
+            spritebatch.Draw( civvie, rect, Color.White );
+            spritebatch.End();
 
             base.Draw( gameTime );
         }
