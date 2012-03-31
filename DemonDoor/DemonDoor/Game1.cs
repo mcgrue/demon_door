@@ -58,6 +58,14 @@ namespace DemonDoor {
             Wall _wall0 = new Wall(_world, -100, 1);
             Wall _wall1 = new Wall(_world, 100, -1);
 
+            Vector2[] verts = new [] {
+                new Vector2 { X = -100, Y = 0 },
+                new Vector2 { X = -70, Y = 0 },
+                new Vector2 { X = -100, Y = 30 }
+            };
+
+            Wall _wallTri = new Wall(_world, verts);
+
             McgNode rendernode;
             
             // TODO: Add your initialization logic here
@@ -151,8 +159,38 @@ namespace DemonDoor {
 
         int systime;
 
+        private const float MaxGunImpulse = 2000;
+        private const float MinGunImpulse = 0;
+        private const float GunImpulseKick = 1000;
+        private const float GunImpulseDecayTime = 4;
+
         private float GunImpulse { get; set; }
+        private TimeSpan _gunLastGameTime = TimeSpan.Zero;
         private bool _gunLatch = false;
+        
+        private void UpdateGunImpulse(GameTime gameTime)
+        {
+            // check gun key, kick if newly pressed
+            {
+                bool revGun = Keyboard.GetState(PlayerIndex.One).IsKeyDown(Keys.E);
+
+                if (revGun && !_gunLatch)
+                    GunImpulse += GunImpulseKick;
+            }
+
+            // apply a bit of decay
+            {
+                float decayPerSecond = MaxGunImpulse / GunImpulseDecayTime;
+                GunImpulse -= (float)(gameTime.TotalGameTime - _gunLastGameTime).TotalSeconds * decayPerSecond;
+                _gunLastGameTime = gameTime.TotalGameTime;
+            }
+
+            // and limit to range
+            GunImpulse = Math.Max(MinGunImpulse, GunImpulse);
+            GunImpulse = Math.Min(MaxGunImpulse, GunImpulse);
+
+            //Console.Out.WriteLine("gun impulse is {0}", GunImpulse);
+        }
 
         /// <summary>
         /// Allows the game to run logic such as updating the world,
@@ -167,19 +205,7 @@ namespace DemonDoor {
 
             {
                 // update gun impulse.
-                bool revGun = Keyboard.GetState(PlayerIndex.One).IsKeyDown(Keys.E);
-
-                if (revGun && !_gunLatch)
-                    GunImpulse += 40;
-
-                GunImpulse -= 1;
-
-                GunImpulse = Math.Max(0, GunImpulse);
-                GunImpulse = Math.Min(50, GunImpulse);
-
-                //Console.Out.WriteLine("gun impulse is {0}", GunImpulse);
-
-                _gunLatch = revGun;
+                UpdateGunImpulse(gameTime);
 
                 Vector2 dir = new Vector2 { X = -1, Y = 1 };
                 dir.Normalize();
