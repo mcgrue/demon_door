@@ -42,7 +42,7 @@ namespace DemonDoor {
             SpriteBasis sb = new SpriteBasis( 16, 16, 7, 7 );
             
             sb.image = civvie;
-            Sprite sprite = new Sprite(sb, new Filmstrip(new Point(16, 16), new[] { 1, 2, 3, 4, 5 }, TimeSpan.FromMilliseconds(100)));
+            Sprite sprite = new Sprite(sb, new Filmstrip(new Point(16, 16), new[] { 1, 2, 3, 4, 5 }, 100));
 
             mcg = new McGrenderStack();
             mcg.AddLayer( "menu" );
