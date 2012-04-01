@@ -62,6 +62,27 @@ namespace DemonDoor
         public int GetX() { return sprite.Sprite.x; }
         public int GetY() { return sprite.Sprite.y; }
 
+        public void UpdateDemonState( GameTime gameTime ) {
+
+            //Console.WriteLine( "DEMON State: " + sprite.CurrentState.ToString() );
+
+            if( Game1.game.action.cancel.pressed && sprite.CurrentState == DemonSprite.AnimationState.Idle ) {
+                sprite.SetAnimationState( DemonSprite.AnimationState.Disappearing, 0 );
+            }
+
+            if( !Game1.game.action.cancel.down && sprite.CurrentState == DemonSprite.AnimationState.Hidden ) {
+                sprite.SetAnimationState( DemonSprite.AnimationState.Reappearing, 0 );
+            }
+
+            if( Game1.game.action.confirm.pressed && sprite.CurrentState == DemonSprite.AnimationState.Idle ) {
+                sprite.SetAnimationState( DemonSprite.AnimationState.Pressing );
+            }
+
+            if( Game1.game.action.confirm.released && sprite.CurrentState == DemonSprite.AnimationState.Pressing ) {
+                sprite.SetAnimationState( DemonSprite.AnimationState.Idle );
+            }
+        }
+
         RenderDelegate _myDrawDelegate;
         public RenderDelegate GetDrawDelegate() {
             if( _myDrawDelegate != null ) {

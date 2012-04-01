@@ -8,14 +8,14 @@ using Microsoft.Xna.Framework;
 namespace XNAVERGE {
 
     /// What happens when you don't think hard about the bigger picture and you need something when tired?  This.
-    public delegate Rectangle FilmstripEndDelegate( Filmstrip f );
+    public delegate Rectangle FilmstripEndDelegate( Filmstrip fs );
 
     public class Filmstrip {
 
         Point frameSize;
         IList<int> frames;
         DateTime startTime;
-        int frameDuration;
+        public int FrameDuration;
         //int frameOffset;
 
         public FilmstripEndDelegate OnEnd = null;
@@ -31,7 +31,7 @@ namespace XNAVERGE {
 
             this.frameSize = frameDimensions;
             this.frames = fr;
-            this.frameDuration = frameDurationMillis;
+            this.FrameDuration = frameDurationMillis;
             this.startTime = DateTime.Now;
             if (randomizeStartFrame) { RandomizeCurrentFrame(); }
         }
@@ -49,12 +49,16 @@ namespace XNAVERGE {
             return result;
         }
 
-        public Rectangle ProcessAnimation() {
+        public void ResetAnimation() {
+            this.startTime = DateTime.Now;
+        }
+
+        public Rectangle ProcessAnimation( object mySprite = null ) {
 
             TimeSpan timeSinceAnimationStarted = DateTime.Now - startTime;
-            int animationIndex = (int)(timeSinceAnimationStarted.TotalMilliseconds / frameDuration);
+            int animationIndex = (int)(timeSinceAnimationStarted.TotalMilliseconds / FrameDuration);
 
-            if( OnEnd != null && timeSinceAnimationStarted.TotalMilliseconds > frameDuration * frames.Count ) {
+            if( OnEnd != null && timeSinceAnimationStarted.TotalMilliseconds > FrameDuration * frames.Count ) {
                 return OnEnd( this );
             } else {
                 return FinishProcessAnimation( animationIndex );
