@@ -119,9 +119,11 @@
     <Compile Include="Door.cs" />
     <Compile Include="Gun.cs" />
     <Compile Include="ICollidable.cs" />
+    <Compile Include="Level1Screen.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Game1.cs" />
+    <Compile Include="Screen.cs" />
     <Compile Include="Utility.cs" />
     <Compile Include="Wall.cs" />
     <Compile Include="World.cs" />
