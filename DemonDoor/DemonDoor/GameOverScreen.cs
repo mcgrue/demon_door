@@ -48,7 +48,7 @@ namespace DemonDoor
 
         internal override void Update(Microsoft.Xna.Framework.GameTime gameTime)
         {
-            if (Game1.game.action.confirm.pressed || Keyboard.GetState(PlayerIndex.One).IsKeyDown(Keys.Space) )
+            if (GamePad.GetState(PlayerIndex.One).IsButtonDown(Buttons.B))
             {
                 Game1 game1 = Game1.game as Game1;
 
@@ -67,14 +67,13 @@ namespace DemonDoor
         internal override void Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch batch, Microsoft.Xna.Framework.GameTime gameTime)
         {
             Game1 game1 = (Game1)Game1.game;
-            Vector2 size;
 
             Color color = Color.White;
             DrawDeathMessage(batch, "You were slain by a flying corpse,", 20, color);
             DrawDeathMessage(batch, "borne aloft on the wings of your", 60, color);
             DrawDeathMessage(batch, "revolving door.", 100, color);
 
-            //DrawCentered(batch, "What a shame.", 280, color);
+            DrawDeathMessage(batch, "Press B to try again.", 180, color);
 
             //DrawCentered(batch, "- game over -", 360, Color.Red);
         }
