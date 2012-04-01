@@ -145,7 +145,7 @@ namespace DemonDoor
         {
             // check gun key, kick if newly pressed
             {
-                bool revGun = Keyboard.GetState( PlayerIndex.One ).IsKeyDown( Keys.E ) || Game1.game.action.confirm.pressed;
+                bool revGun = Game1.game.action.confirm.pressed;
                 
                 if (revGun && !_gunLatch)
                     GunImpulse += GunImpulseKick;
