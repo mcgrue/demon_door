@@ -12,8 +12,8 @@ namespace DemonDoor
     class GameOverScreen : Screen
     {
         public McGrenderStack mcg;
-        internal override void Load()
-        {
+        internal override void Load() {
+
             Game1 game1 = (Game1)Game1.game;
             //Vector2[] verts = new [] {
             //    new Vector2 { X = -100, Y = 0 },

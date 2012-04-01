@@ -41,15 +41,13 @@ namespace DemonDoor {
         {
             Screen s = null;
 
-            switch (level)
-            {
+            switch (level) {
                 case "title": s = new TitleScreen(); break;
                 case "level1": s = new Level1Screen(); break;
                 case "gameover": s = new GameOverScreen(); break;
             }
 
-            foreach (Cue q in _activeCues)
-            {
+            foreach (Cue q in _activeCues) {
                 q.Stop(AudioStopOptions.AsAuthored);
             }
 
