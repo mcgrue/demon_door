@@ -21,9 +21,9 @@ namespace DemonDoor
 
         private enum BehaviorState
         {
-            Flying, Walking
+            Flying, Walking, Dead
         }
-        private BehaviorState behaviorState;
+        private BehaviorState behaviorState = BehaviorState.Flying;
 
         public CivvieController( World w, Vector2 r0, CivvieSprite sprite )
         {
@@ -100,9 +100,15 @@ namespace DemonDoor
         {
             if (other == _world)
             {
-                if (Math.Abs(_fsBody.LinearVelocity.Y) < 1)
+                Console.WriteLine("Velocity " + _fsBody.LinearVelocity.Y);
+                if (Math.Abs(_fsBody.LinearVelocity.Y) < 1 && behaviorState == BehaviorState.Flying)
                 {
                     this.behaviorState = BehaviorState.Walking;
+                }
+                else if (_fsBody.LinearVelocity.Y < -20 && behaviorState == BehaviorState.Flying)
+                {
+                    this.behaviorState = BehaviorState.Dead;
+                    myCorpse.SetAnimationState(CivvieSprite.AnimationState.Dead);
                 }
             }
         }
@@ -125,7 +131,7 @@ namespace DemonDoor
 
         public void ProcessBehavior(GameTime time)
         {
-            if (Math.Abs(_fsBody.LinearVelocity.Y) > 1) { 
+            if (Math.Abs(_fsBody.LinearVelocity.Y) > 1 &&  behaviorState != BehaviorState.Dead) { 
                 behaviorState = BehaviorState.Flying;
                 myCorpse.SetAnimationState(CivvieSprite.AnimationState.Flying);
             }
