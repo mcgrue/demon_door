@@ -15,7 +15,7 @@ namespace DemonDoor
         private World _world;
 
         private DoorController _gun;
-        private EvilWindow _evilwindow;
+        private DemonController _evilDemon;
 
         internal override void Load()
         {
@@ -76,30 +76,33 @@ namespace DemonDoor
             var doorSpriteBasis = new SpriteBasis(38, 24, 5, 5);
             doorSpriteBasis.image = game1.im_door;
             var doorSprite = new DoorSprite(doorSpriteBasis);
-            _gun = new DoorController(_world,
-                            Coords.Screen2Physics(new Vector2 { X = 32, Y = 206 }),
-                            Coords.Screen2Physics(new Vector2 { X = 19, Y = 12 }, true),
-                            doorSprite);
+            _gun = new DoorController(
+                _world,
+                Coords.Screen2Physics(new Vector2 { X = 32, Y = 206 }),
+                Coords.Screen2Physics(new Vector2 { X = 19, Y = 12 }, true),
+                doorSprite
+            );
             _gun.Impulse = new Vector2 { X = -10, Y = 10 };
 
             rendernode = l.AddNode(
                 new McgNode(_gun, l, 60, 200)
             );
 
-            var evilWindowBasis = new SpriteBasis(20, 17, 1, 1);
-            evilWindowBasis.image = game1.im_evilwindow;
-            var windowSprite = new WindowSprite(evilWindowBasis);
-            _evilwindow = new EvilWindow(_world,
-                                         Coords.Screen2Physics(new Vector2 { X = 319, Y = 22 }),
-                                         Coords.Screen2Physics(new Vector2 { X = 20, Y = 17 }, true),
-                                         windowSprite);
+            var demonSpriteBasis = new SpriteBasis(9, 19, 7, 7);
+            demonSpriteBasis.image = game1.im_demon;
+            var demonSprite = new DemonSprite( demonSpriteBasis );
+            _evilDemon = new DemonController( _world,
+                Coords.Screen2Physics(new Vector2 { X = 295, Y = 29 }),
+                Coords.Screen2Physics(new Vector2 { X = 9, Y = 19 }, true),
+                demonSprite
+            );
 
             rendernode = l.AddNode(
-                new McgNode(_evilwindow, l, 60, 200)
-                );
+                new McgNode(_evilDemon, l, -1, -1)
+            );
 
-            for (int i = 0; i < 20; i++)
-            {
+            for (int i = 0; i < 20; i++) {
+
                 var civvieSprite = new CivvieSprite(civSpriteBasis);
 
                 Sprite sprite = new Sprite(civSpriteBasis, new Filmstrip(new Point(16, 16), new[] { 1, 2, 3, 4, 5 }, 100));

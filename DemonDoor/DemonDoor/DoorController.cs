@@ -125,8 +125,7 @@ namespace DemonDoor
         {
             if (_myDrawDelegate != null) return _myDrawDelegate;
 
-            _myDrawDelegate = (int x, int y) =>
-            {
+            _myDrawDelegate = (int x, int y) => {
 
                 Vector2 screen = Coords.Physics2Screen(new Vector2 { X = Position.X, Y = Position.Y });
 
@@ -147,8 +146,6 @@ namespace DemonDoor
 
         private ISet<Fixture> _alreadyShot = new HashSet<Fixture>();
 
-
-
         private const float MaxGunImpulse = 1000;
         private const float MinGunImpulse = 0;
         private const float GunImpulseKick = 80;
@@ -163,8 +160,6 @@ namespace DemonDoor
             // check gun key, kick if newly pressed
             {
                 bool revGun = Keyboard.GetState( PlayerIndex.One ).IsKeyDown( Keys.E ) || Game1.game.action.confirm.pressed;
-                
-                
                 
                 if (revGun && !_gunLatch)
                     GunImpulse += GunImpulseKick;
