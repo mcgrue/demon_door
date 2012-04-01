@@ -24,6 +24,8 @@ namespace DemonDoor {
         public Texture2D[] im_clouds;
         public SpriteFont ft_hud24;
 
+        public static Game1 game;
+
         private Screen _level;
 
         internal void LoadLevel(string level)
@@ -48,6 +50,8 @@ namespace DemonDoor {
         /// and initialize them as well.
         /// </summary>
         protected override void Initialize() {
+            game = this;
+
             // TODO: Add your initialization logic here
             im_civvie = Content.Load<Texture2D>( "art/civilian_01" );
             im_title = Content.Load<Texture2D>( "art/title" );

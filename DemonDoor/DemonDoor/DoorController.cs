@@ -162,8 +162,10 @@ namespace DemonDoor
         {
             // check gun key, kick if newly pressed
             {
-                bool revGun = Keyboard.GetState(PlayerIndex.One).IsKeyDown(Keys.E);
-
+                bool revGun = Keyboard.GetState( PlayerIndex.One ).IsKeyDown( Keys.E ) || Game1.game.action.confirm.pressed;
+                
+                
+                
                 if (revGun && !_gunLatch)
                     GunImpulse += GunImpulseKick;
 
@@ -191,7 +193,6 @@ namespace DemonDoor
             } else {
                 sprite.SetAnimationState(DoorSprite.AnimationState.Stopped);
             }
-                
         }
 
         public string DoorSpeedDescription

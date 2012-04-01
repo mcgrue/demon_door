@@ -68,13 +68,13 @@ namespace DemonDoor
         public int GetY() { return sprite.Sprite.y; }
         RenderDelegate _myDrawDelegate;
         public RenderDelegate GetDrawDelegate() {
-            if( _myDrawDelegate != null ) return _myDrawDelegate;
+            if( _myDrawDelegate != null ) {
+                return _myDrawDelegate;
+            }
 
             _myDrawDelegate = ( int x, int y ) => {
 
                 Vector2 screen = Coords.Physics2Screen(new Vector2 { X = Position.X, Y = Position.Y });
-
-                // maybe update the screen here?
 
                 sprite.Sprite.x = (int)screen.X - 19;
                 sprite.Sprite.y = (int)screen.Y - 12;
