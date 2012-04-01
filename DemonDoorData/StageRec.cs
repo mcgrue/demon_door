@@ -7,6 +7,10 @@ using Microsoft.Xna.Framework;
 
 namespace DemonDoor
 {
+    static class VectorParser
+    {
+    }
+
     public class CorpseRec
     {
 
@@ -14,10 +18,11 @@ namespace DemonDoor
 
     public class GunRec
     {
-        public Vector2 R0 { get; }
-        public string R0 { set; }
-        public Vector2 Size { get; }
-        public string Size { set; }
+        public string R0 { set { _r0 = Vector2.Zero; } }
+        private Vector2 _r0;
+
+        public string Size { set { _size = Vector2.Zero; } }
+        private Vector2 _size;
     }
 
     public class StageRec

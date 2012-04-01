@@ -114,6 +114,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Civvie.cs" />
+    <Compile Include="Coords.cs" />
     <Compile Include="Door.cs" />
     <Compile Include="Corpse.cs" />
     <Compile Include="Gun.cs" />
