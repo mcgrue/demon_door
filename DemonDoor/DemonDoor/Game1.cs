@@ -20,6 +20,7 @@ namespace DemonDoor {
 
         public McGrenderStack mcg;
         Texture2D im_civvie, im_title, im_door, im_stage;
+        SpriteFont ft_hud24;
 
         private World _world;
         //private Corpse _test;
@@ -53,6 +54,8 @@ namespace DemonDoor {
             im_title = Content.Load<Texture2D>( "art/title" );
             im_door = Content.Load<Texture2D>( "art/door" );
             im_stage = Content.Load<Texture2D>( "art/stage" );
+
+            ft_hud24 = Content.Load<SpriteFont>("HUD24");
 
             SpriteBasis civSpriteBasis = new SpriteBasis( 16, 16, 7, 7 );
             civSpriteBasis.image = im_civvie;
@@ -102,8 +105,7 @@ namespace DemonDoor {
                 );
             }
             
-
-
+            
 
             base.Initialize();
         }
@@ -191,16 +193,66 @@ namespace DemonDoor {
             // TODO: Add your update logic here
 
             base.Update(gameTime);
-        } 
+        }
+
+        private string DoorSpeedDescription
+        {
+            get
+            {
+                if (GunImpulse < 0.1 * MaxGunImpulse)
+                {
+                    return "mild";
+                }
+                else if (GunImpulse < 0.2 * MaxGunImpulse)
+                {
+                    return "moderate";
+                }
+                else if (GunImpulse < 0.3 * MaxGunImpulse)
+                {
+                    return "a little much";
+                }
+                else if (GunImpulse < 0.4 * MaxGunImpulse)
+                {
+                    return "way too much";
+                }
+                else if (GunImpulse < 0.5 * MaxGunImpulse)
+                {
+                    return "worrisome";
+                }
+                else if (GunImpulse < 0.6 * MaxGunImpulse)
+                {
+                    return "crazy";
+                }
+                else if (GunImpulse < 0.7 * MaxGunImpulse)
+                {
+                    return "warranty-voiding";
+                }
+                else if (GunImpulse < 0.8 * MaxGunImpulse)
+                {
+                    return "¡picante!";
+                }
+                else
+                {
+                    return "¡muy picante!";
+                }
+            }
+        }
 
         /// <summary>
         /// This is called when the game should draw itself.
         /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw( GameTime gameTime ) {
-            GraphicsDevice.Clear( Microsoft.Xna.Framework.Color.LimeGreen );
+            GraphicsDevice.Clear( Color.LimeGreen );
 
             base.Draw( gameTime );
+
+            string doorSpeedDesc = string.Format("door speed: {0}", DoorSpeedDescription);
+            Vector2 size = ft_hud24.MeasureString(doorSpeedDesc);
+
+            spritebatch.Begin();
+            spritebatch.DrawString(ft_hud24, doorSpeedDesc, new Vector2 { X = (640 - size.X) / 2, Y = 10 }, Color.White);
+            spritebatch.End();
         }
     }
 }
