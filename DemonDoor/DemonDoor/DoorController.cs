@@ -180,8 +180,10 @@ namespace DemonDoor
             GunImpulse = Math.Min(MaxGunImpulse, GunImpulse);
 
             // set animation speed
-            if(GunImpulse / MaxGunImpulse > 0.5) {
+            if(GunImpulse / MaxGunImpulse > 0.7) {
                 sprite.SetAnimationState(DoorSprite.AnimationState.Fast);
+            } else if (GunImpulse / MaxGunImpulse > 0.5) {
+                sprite.SetAnimationState(DoorSprite.AnimationState.Medium);
             } else if (GunImpulse / MaxGunImpulse > 0.1) {
                 sprite.SetAnimationState(DoorSprite.AnimationState.Slow);
             } else {

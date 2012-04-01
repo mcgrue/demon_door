@@ -16,14 +16,17 @@ namespace DemonDoor {
 
         public Sprite Sprite { get; private set; }
 
-        public enum AnimationState {
-            Stopped, Slow, Fast
+        public enum AnimationState
+        {
+            Stopped, Slow, Fast,
+            Medium
         }
 
         public DoorSprite( SpriteBasis sb ) {
             animationAtlas = new Dictionary<AnimationState, Filmstrip>();
             animationAtlas[AnimationState.Stopped] = createFilmstrip( new[] { 0 } );
             animationAtlas[AnimationState.Slow] = createFilmstrip(new[] { 0, 1, 2 });
+            animationAtlas[AnimationState.Medium] = createFilmstrip(new[] { 0, 1, 2 }, 75);
             animationAtlas[AnimationState.Fast] = createFilmstrip(new[] { 3, 4 });
 
             DrawDoor = (int x, int y) => {
@@ -57,9 +60,9 @@ namespace DemonDoor {
         /// </summary>
         /// <param name="frames"></param>
         /// <returns></returns>
-        private Filmstrip createFilmstrip(IList<int> frames)
+        private Filmstrip createFilmstrip(IList<int> frames, int framerate = 150)
         {
-            return new Filmstrip(new Point(38, 24), frames, 150);
+            return new Filmstrip(new Point(38, 24), frames, framerate);
         }
 
         public RenderDelegate DrawDoor { get; set; }
