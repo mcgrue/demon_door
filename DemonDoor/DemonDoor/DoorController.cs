@@ -47,8 +47,7 @@ namespace DemonDoor
                 other = f1;
             }
 
-            if (other.UserData is CivvieController && !_alreadyShot.Contains(other)) {
-                CivvieController c = other.UserData as CivvieController;
+            if ((other.UserData is CivvieController || other.UserData is CopController) && !_alreadyShot.Contains(other)) {
                 //Console.WriteLine("collided with corpse {0}, kickin' it", c);
 
                 if (Impulse.Length() > 0)
