@@ -146,9 +146,14 @@ namespace DemonDoor
             // check gun key, kick if newly pressed
             {
                 bool revGun = Game1.game.action.confirm.pressed;
-                
+
                 if (revGun && !_gunLatch)
+                {
                     GunImpulse += GunImpulseKick;
+
+                    // kick off a new sound
+                    Game1.game.PlayCue("revolving_door");
+                }
 
                 _gunLatch = revGun;
             }
@@ -174,6 +179,7 @@ namespace DemonDoor
             } else {
                 sprite.SetAnimationState(DoorSprite.AnimationState.Stopped);
             }
+
         }
 
         public string DoorSpeedDescription
