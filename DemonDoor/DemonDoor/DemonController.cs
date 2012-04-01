@@ -75,8 +75,8 @@ namespace DemonDoor
                     new Vector2 { X = Position.X, Y = Position.Y }
                 );
 
-                sprite.Sprite.x = (int)screen.X - 19;
-                sprite.Sprite.y = (int)screen.Y - 12;
+                sprite.Sprite.x = (int)screen.X - 10;
+                sprite.Sprite.y = (int)screen.Y - 9;
                 sprite.Sprite.Draw();
             };
 

@@ -42,12 +42,11 @@ namespace DemonDoor
             return new Body(_fsWorld);
         }
 
-        internal void AddJoint(Joint j)
+        internal void DeleteBody(Body b)
         {
-            _fsWorld.AddJoint(j);
+            _fsWorld.RemoveBody(b);
         }
-
-
+        
         private bool BehaviorCollided(Fixture f1, Fixture f2, Contact contact)
         {
             Fixture self = null, other = null;

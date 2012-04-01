@@ -16,6 +16,7 @@ namespace DemonDoor
         Vector2 screen;
 
         private Body _fsBody;
+        private Shape _fsShape;
         private Fixture _fsFixture;
         private World _world;
 
@@ -32,14 +33,35 @@ namespace DemonDoor
             _fsBody = w.NewBody();
             _fsBody.BodyType = BodyType.Dynamic;
             _fsBody.Position = r0;
-
-            //CircleShape shape = new CircleShape(1f, 1.0f);
-            PolygonShape shape = new PolygonShape(1.0f);
-            shape.SetAsBox(1.0f, 1.0f);
             
             myCorpse = sprite;
-        
-            _fsFixture = _fsBody.CreateFixture(shape, this);
+
+            MakeLivingFixture();
+        }
+
+        private void MakeLivingFixture()
+        {
+            if (_fsFixture != null)
+            {
+                _fsBody.DestroyFixture(_fsFixture);
+            }
+
+            _fsShape = new CircleShape(1f, 1.0f);
+            _fsFixture = _fsBody.CreateFixture(_fsShape, this);
+            _fsFixture.Restitution = 0.2f;
+            _fsFixture.OnCollision += BehaviorCollided;
+        }
+
+        private void MakeDeadFixture()
+        {
+            if (_fsFixture != null)
+            {
+                _fsBody.DestroyFixture(_fsFixture);
+            }
+
+            PolygonShape shape = new PolygonShape(1.0f);
+            shape.SetAsBox(1.0f, 1.0f);
+            _fsFixture = _fsBody.CreateFixture(_fsShape, this);
             _fsFixture.Restitution = 0.2f;
             _fsFixture.OnCollision += BehaviorCollided;
         }

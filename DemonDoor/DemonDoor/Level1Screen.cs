@@ -101,8 +101,8 @@ namespace DemonDoor
             demonSpriteBasis.image = game1.im_demon;
             var demonSprite = new DemonSprite( demonSpriteBasis );
             _evilDemon = new DemonController( _world,
-                Coords.Screen2Physics(new Vector2 { X = 295, Y = 29 }),
-                Coords.Screen2Physics(new Vector2 { X = 9, Y = 19 }, true),
+                Coords.Screen2Physics(new Vector2 { X = 286, Y = 26 }),
+                Coords.Screen2Physics(new Vector2 { X = 5, Y = 10 }, true),
                 demonSprite
             );
 
@@ -111,7 +111,8 @@ namespace DemonDoor
             );
 
             //spawn guys
-            var civvieSpawner = new CivvieSpawner(_world, l, new Point(80, 1), TimeSpan.FromSeconds(1), civSpriteBasis, 1000);
+            Vector2 spawnerR = Coords.Screen2Physics(new Vector2 { X = 270, Y = 218 });
+            var civvieSpawner = new CivvieSpawner(_world, l, spawnerR, TimeSpan.FromSeconds(1), civSpriteBasis, 1000);
             l.AddNode(new McgNode(civvieSpawner, l, 80, 20));
         }
 

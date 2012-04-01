@@ -13,11 +13,11 @@ namespace DemonDoor
         private TimeSpan spawnTimeAccumulator;
         private McgLayer layer;
         private World world;
-        private Point location;
+        private Vector2 location;
         private SpriteBasis civvieSpriteBasis;
         private int spawnRateFuzzMillis;
 
-        public CivvieSpawner(World world, McgLayer layer, Point location, TimeSpan spawnRate, SpriteBasis civvieSpriteBasis, int spawnRateFuzzMillis = 0)
+        public CivvieSpawner(World world, McgLayer layer, Vector2 location, TimeSpan spawnRate, SpriteBasis civvieSpriteBasis, int spawnRateFuzzMillis = 0)
         {
             this.layer = layer;
             this.world = world;
@@ -29,12 +29,12 @@ namespace DemonDoor
         
         public int GetX()
         {
-            return location.X;
+            return (int)location.X;
         }
 
         public int GetY()
         {
-            return location.Y;
+            return (int)location.Y;
         }
 
         public RenderDelegate GetDrawDelegate()
@@ -47,7 +47,8 @@ namespace DemonDoor
             spawnTimeAccumulator += time.ElapsedGameTime;
             if (spawnTimeAccumulator > spawnRate)
             {
-                layer.AddNode(new McgNode(new CivvieController(world, new Vector2(location.X, location.Y), new CivvieSprite(civvieSpriteBasis)), layer, location.X, location.Y));
+                layer.AddNode(new McgNode(new CivvieController(world, new Vector2(location.X, location.Y), new CivvieSprite(civvieSpriteBasis)), layer, 
+                    (int)location.X, (int)location.Y));
                 spawnTimeAccumulator = TimeSpan.FromMilliseconds(VERGEGame.rand.Next(-spawnRateFuzzMillis, 0));
             }
         }

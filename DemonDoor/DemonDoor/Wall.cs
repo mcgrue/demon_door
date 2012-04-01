@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using FarseerPhysics.Collision.Shapes;
 using FarseerPhysics.Common;
 using FarseerPhysics.Dynamics;
@@ -29,6 +30,7 @@ namespace DemonDoor
             _fsFixture = _fsBody.CreateFixture(wallShape, this);
             _fsFixture.OnCollision += BehaviorCollided;
             _fsFixture.AfterCollision += PhysicsPostSolve;
+            _fsFixture.IsSensor = true;
         }
 
         public Wall(World w, Vector2[] vertices)
@@ -54,20 +56,12 @@ namespace DemonDoor
         
         private void PhysicsPostSolve(Fixture f1, Fixture f2, Contact contact)
         {
-            //PrismaticJoint p = new PrismaticJoint(f1.Body, f2.Body,
-            //                                      contact.Manifold.Points[0].LocalPoint,
-            //                                      contact.Manifold.Points[1].LocalPoint,
-            //                                      new Vector2 { X = 0, Y = 1 });
-            //_world.AddJoint(p);
-
             Fixture self = null, other = null;
 
-            Vector2 normal = contact.Manifold.LocalNormal;
+            Vector2 normal;
             FixedArray2<Vector2> points;
 
-            //contact.GetWorldManifold(out normal, out points);
-            //Console.Out.WriteLine("normal: {0}; point: {1}, {2}", 
-            //    normal, points[0], points[1]);
+            contact.GetWorldManifold(out normal, out points);
 
             if (contact.FixtureA == _fsFixture)
             {
@@ -88,15 +82,22 @@ namespace DemonDoor
             parallelComponent = other.Body.LinearVelocity - normalComponent;
 
             float velMultiplier = 1f - Stickiness * (1 / 100000f);
+            Vector2 newVelocity;
 
-            if (other.Body.LinearVelocity.Y > 0)
+            if (other.Body.LinearVelocity.Length() < 1e-10 || parallelComponent.Length() < 1e-10)
             {
-                other.Body.LinearVelocity = parallelComponent * Math.Min(parallelComponent.Length(), UpwardSpeedLimit) / parallelComponent.Length();
+                newVelocity = Vector2.Zero;
+            }
+            else if (other.Body.LinearVelocity.Y > 0)
+            {
+                newVelocity = parallelComponent * Math.Min(parallelComponent.Length(), UpwardSpeedLimit) / parallelComponent.Length();
             }
             else
             {
-                other.Body.LinearVelocity = parallelComponent * velMultiplier;
+                newVelocity = parallelComponent * velMultiplier;
             }
+
+            other.Body.LinearVelocity = newVelocity;
         }
 
 
