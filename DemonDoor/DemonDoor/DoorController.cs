@@ -144,6 +144,27 @@ namespace DemonDoor
         private TimeSpan _gunLastGameTime = TimeSpan.Zero;
         private bool _gunLatch = false;
 
+        public enum DoorSpeed
+        {
+            Stopped,
+            Stopping,
+            Slow,
+            Medium,
+            Fast
+        }
+
+        public DoorSpeed Speed
+        {
+            get
+            {
+                if (GunImpulse / MaxGunImpulse > 0.8) return DoorSpeed.Fast;
+                else if (GunImpulse / MaxGunImpulse > 0.5) return DoorSpeed.Medium;
+                else if (GunImpulse > GunImpulseKick) return DoorSpeed.Slow;
+                else if (GunImpulse / MaxGunImpulse > 0) return DoorSpeed.Stopping;
+                else return DoorSpeed.Stopped;
+            }
+        }
+
         public void UpdateGunImpulse(GameTime gameTime)
         {
             // check gun key, kick if newly pressed
@@ -155,7 +176,7 @@ namespace DemonDoor
                     GunImpulse += GunImpulseKick;
 
                     // kick off a new sound
-                    Game1.game.PlayCue("revolving_door");
+                    //Game1.game.PlayCue("revolving_door");
                 }
 
                 _gunLatch = revGun;
