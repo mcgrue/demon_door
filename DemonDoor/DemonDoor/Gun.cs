@@ -93,6 +93,13 @@ namespace DemonDoor {
 
         }
 
+        public Vector2 Position
+        {
+            get
+            {
+                return _fsBody.Position;
+            }
+        }
 
         public int GetX() { return sprite.Sprite.x; }
         public int GetY() { return sprite.Sprite.y; }
@@ -101,6 +108,13 @@ namespace DemonDoor {
             if( _myDrawDelegate != null ) return _myDrawDelegate;
 
             _myDrawDelegate = ( int x, int y ) => {
+
+                Vector2 screen = Coords.Physics2Screen(new Vector2 { X = Position.X, Y = Position.Y });
+
+                // maybe update the screen here?
+
+                sprite.Sprite.x = (int)screen.X - 19;
+                sprite.Sprite.y = (int)screen.Y - 12;
                 sprite.Sprite.Draw();
             };
 

@@ -9,7 +9,7 @@ namespace DemonDoor
 {
     class World : ICollidable
     {
-        public World(Vector2 gravity)
+        public World(Vector2 gravity, float floorY)
         {
             // set up the world.
             _fsWorld = new FsWorld(gravity);
@@ -17,7 +17,7 @@ namespace DemonDoor
             // set up the ground.
             _ground = new Body(_fsWorld);
             _ground.BodyType = BodyType.Static;
-            _ground.Position = new Vector2 { X = 0.0f, Y = -10.0f };
+            _ground.Position = new Vector2 { X = 0.0f, Y = floorY - 10.0f };
 
             PolygonShape groundShape = new PolygonShape(0.0f);
             groundShape.SetAsBox(1000f, 10f);

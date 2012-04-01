@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<XnaContent>
+  <Asset Type="DemonDoor.StageRec">
+    <Title>Level 1: The Developening</Title>
+    <Guns>
+    </Guns>
+  </Asset>
+</XnaContent>

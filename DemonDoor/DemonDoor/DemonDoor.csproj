@@ -114,6 +114,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Civvie.cs" />
+    <Compile Include="Coords.cs" />
     <Compile Include="Door.cs" />
     <Compile Include="Corpse.cs" />
     <Compile Include="Gun.cs" />
@@ -130,6 +131,10 @@
     <Content Include="GameThumbnail.png" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\DemonDoorData\DemonDoorData.csproj">
+      <Project>{98B1E1D7-F81E-44DD-A773-0B128FEE044E}</Project>
+      <Name>DemonDoorData</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\XNAVERGE\XNAVERGE.csproj">
       <Project>{0D524863-D249-4CCC-8C99-349EF7AAA0FF}</Project>
       <Name>XNAVERGE</Name>

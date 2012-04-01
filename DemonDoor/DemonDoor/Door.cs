@@ -41,6 +41,8 @@ namespace DemonDoor {
             Sprite.set_animation(currentAnimation);
         }
 
+
+
         /// <summary>
         /// Creates a filmstrip with a single animation frame
         /// </summary>

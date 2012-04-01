@@ -23,7 +23,7 @@ namespace DemonDoor
             _fsBody.BodyType = BodyType.Dynamic;
             _fsBody.Position = r0;
 
-            CircleShape shape = new CircleShape(2f, 1.0f);
+            CircleShape shape = new CircleShape(1f, 1.0f);
             
             Fixture f = _fsBody.CreateFixture(shape, this);
             f.Restitution = 0.5f;
@@ -48,7 +48,7 @@ namespace DemonDoor
 
             _myDrawDelegate = ( int x, int y ) => {
 
-                this.screen = Game1.Physics2Screen( new Vector2 { X = Position.X, Y = Position.Y } );
+                this.screen = Coords.Physics2Screen( new Vector2 { X = Position.X, Y = Position.Y } );
 
                 // maybe update the screen here?
 
@@ -82,7 +82,7 @@ namespace DemonDoor
             }
 
             // CB: oh god this line of code is terrible, figure out how to fix it
-            return (other.UserData is World);
+            return true;
         }
 
         public void Collided(ICollidable other)

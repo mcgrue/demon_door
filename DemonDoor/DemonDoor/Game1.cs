@@ -25,22 +25,6 @@ namespace DemonDoor {
         //private Corpse _test;
         private Gun _gun;
 
-        private const int Width = 320;
-        private const int Height = 240;
-
-        public static Vector2 Physics2Screen(Vector2 physics)
-        {
-            float x0 = -100, x1 = 100, y0 = 100, y1 = 0;
-            float xscale = Width / (x1 - x0);
-            float yscale = Height / (y1 - y0);
-
-            Vector2 screen = new Vector2 { X = (physics.X - x0) * xscale, Y = (physics.Y - y0) * yscale };
-
-            //Console.Out.WriteLine("{0} => {1}", physics, screen);
-
-            return screen;
-        }
-
         /// <summary>
         /// Allows the game to perform any initialization it needs to before starting to run.
         /// This is where it can query for any required services and load any non-graphic
@@ -48,18 +32,19 @@ namespace DemonDoor {
         /// and initialize them as well.
         /// </summary>
         protected override void Initialize() {
-            _world = new World(new Vector2 { X = 0, Y = -10 });
+            Vector2 floor = Coords.Screen2Physics(new Vector2 { X = 0, Y = 220 });
+            _world = new World(new Vector2 { X = 0, Y = -10 }, floor.Y);
             
             Wall _wall0 = new Wall(_world, -100, 1);
             Wall _wall1 = new Wall(_world, 100, -1);
 
-            Vector2[] verts = new [] {
-                new Vector2 { X = -100, Y = 0 },
-                new Vector2 { X = -70, Y = 0 },
-                new Vector2 { X = -100, Y = 30 }
-            };
+            //Vector2[] verts = new [] {
+            //    new Vector2 { X = -100, Y = 0 },
+            //    new Vector2 { X = -70, Y = 0 },
+            //    new Vector2 { X = -100, Y = 30 }
+            //};
 
-            Wall _wallTri = new Wall(_world, verts);
+            //Wall _wallTri = new Wall(_world, verts);
 
             McgNode rendernode;
             
@@ -91,7 +76,10 @@ namespace DemonDoor {
             var doorSpriteBasis = new SpriteBasis( 38, 24, 5, 5 );
             doorSpriteBasis.image = im_door;
             var doorSprite = new DoorSprite( doorSpriteBasis );
-            _gun = new Gun( _world, new Vector2 { X = 0, Y = 3 }, new Vector2 { X = 5, Y = 3 }, doorSprite );
+            _gun = new Gun( _world, 
+                            Coords.Screen2Physics(new Vector2 { X = 32, Y = 206 }), 
+                            Coords.Screen2Physics(new Vector2 { X = 38, Y = 24 }, true), 
+                            doorSprite );
             _gun.Impulse = new Vector2 { X = -10, Y = 10 };
 
             rendernode = l.AddNode(
