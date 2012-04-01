@@ -23,7 +23,7 @@ namespace XNAVERGE {
         public RenderDelegate OnDraw = null;
         public UpdateDelegate OnUpdate = null; 
 
-        public bool DEBUG = true;
+        public bool DEBUG = false;
 
         Texture2D image = null;
         Rectangle im_bounds;
