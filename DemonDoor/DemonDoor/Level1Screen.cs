@@ -141,7 +141,7 @@ namespace DemonDoor
             }
 
             _world.Simulate(gameTime);
-            mcg.setGameTime(gameTime);
+            mcg.Update(gameTime);
 
             //Console.Out.WriteLine("@{3}: ({0}, {1}), {2}", _test.Position.X, _test.Position.Y, _test.Theta, gameTime.TotalGameTime);
         }
