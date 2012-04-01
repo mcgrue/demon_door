@@ -40,7 +40,7 @@ namespace DemonDoor {
             return createFilmstrip(new[] { frame });
         }
 
-        private Filmstrip createFilmstrip(IList<int> frames,  bool randomizedStartFrame = false) {
+        private Filmstrip createFilmstrip(IList<int> frames,  bool randomizedStartFrame = false ) {
             return new Filmstrip(new Point(9, 19), frames, 150, randomizedStartFrame);
         }
 
