@@ -148,6 +148,7 @@ namespace DemonDoor
             {
                 // update gun impulse.
                 _gun.UpdateGunImpulse(gameTime);
+                _evilDemon.UpdateDemonState( gameTime );
 
                 Vector2 dir = _aimPoint;
                 dir.Normalize();

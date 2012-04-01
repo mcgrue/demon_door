@@ -12,7 +12,6 @@ namespace DemonDoor
 {
     class DoorController : ICollidable, IDrawableThing
     {
-
         DoorSprite sprite;
 
         public DoorController(World w, Vector2 r, Vector2 size, DoorSprite s)
@@ -53,6 +52,7 @@ namespace DemonDoor
                 //Console.WriteLine("collided with corpse {0}, kickin' it", c);
 
                 other.Body.ApplyLinearImpulse(Impulse);
+                Game1.game.PlayCue("door_hit");
                 _alreadyShot.Add(other);
             }
 
@@ -146,9 +146,14 @@ namespace DemonDoor
             // check gun key, kick if newly pressed
             {
                 bool revGun = Game1.game.action.confirm.pressed;
-                
+
                 if (revGun && !_gunLatch)
+                {
                     GunImpulse += GunImpulseKick;
+
+                    // kick off a new sound
+                    Game1.game.PlayCue("revolving_door");
+                }
 
                 _gunLatch = revGun;
             }
@@ -174,6 +179,7 @@ namespace DemonDoor
             } else {
                 sprite.SetAnimationState(DoorSprite.AnimationState.Stopped);
             }
+
         }
 
         public string DoorSpeedDescription

@@ -20,7 +20,7 @@ namespace DemonDoor {
 
         public McGrenderStack mcg;
 
-        public Texture2D im_civvie, im_title, im_door, im_stage, im_skybox, im_demon;
+        public Texture2D im_civvie, im_title, im_door, im_stage, im_skybox, im_demon, im_gameover;
         public Texture2D[] im_clouds;
         public SpriteFont ft_hud24;
 
@@ -34,6 +34,8 @@ namespace DemonDoor {
 
         private Cue _bgm;
 
+        private IList<Cue> _activeCues;
+
         internal void LoadLevel(string level)
         {
             Screen s = null;
@@ -45,18 +47,20 @@ namespace DemonDoor {
                 case "gameover": s = new GameOverScreen(); break;
             }
 
+            foreach (Cue q in _activeCues)
+            {
+                q.Stop(AudioStopOptions.AsAuthored);
+            }
+
+            _activeCues.Clear();
+
             _level = s;
             _level.Load();
 
-            if (_bgm != null)
+            if (_musicEnabled)
             {
-                _bgm.Stop(AudioStopOptions.AsAuthored);
-            }
-            if (_level.BgBgBg != null)
-            {
-                Cue cue = _sb.GetCue(_level.BgBgBg);
-                cue.Play();
-                _bgm = cue;
+                KillMusic();
+                StartMusic();
             }
         }
 
@@ -68,6 +72,7 @@ namespace DemonDoor {
         /// </summary>
         protected override void Initialize() {
             game = this;
+            _activeCues = new List<Cue>();
 
             // TODO: Add your initialization logic here
             im_civvie = Content.Load<Texture2D>( "art/civilian_01" );
@@ -76,6 +81,7 @@ namespace DemonDoor {
             im_stage = Content.Load<Texture2D>( "art/stage" );
             im_skybox = Content.Load<Texture2D>( "art/skybox" );
             im_demon = Content.Load<Texture2D>( "art/demon" );
+            im_gameover = Content.Load<Texture2D>("art/gameover");
 
             _engine = new AudioEngine("Content/music.xgs");
             _sb = new SoundBank(_engine, "Content/Sound Bank.xsb");
@@ -115,6 +121,8 @@ namespace DemonDoor {
 
         int systime;
 
+        ButtonState _yLast = ButtonState.Released;
+
         /// <summary>
         /// Allows the game to run logic such as updating the world,
         /// checking for collisions, gathering input, and playing audio.
@@ -126,12 +134,57 @@ namespace DemonDoor {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
 
+            ButtonState yNow = GamePad.GetState(PlayerIndex.One).Buttons.Y;
+
+            if (yNow == ButtonState.Pressed && _yLast == ButtonState.Released)
+            {
+                ToggleMusic();
+            }
+
+            _yLast = yNow;
+
             systime = gameTime.TotalGameTime.Milliseconds;
 
             // TODO: Add your update logic here
 
+            _activeCues = _activeCues.Where(q => !(q.IsStopped)).ToList();
+
             _level.Update(gameTime);
             base.Update(gameTime);
+        }
+
+        bool _musicEnabled = true;
+
+        private void ToggleMusic()
+        {
+            if (_musicEnabled)
+            {
+                KillMusic();
+                _musicEnabled = false;
+            }
+            else
+            {
+                StartMusic();
+                _musicEnabled = true;
+            }
+        }
+
+        private void KillMusic()
+        {
+            if (_bgm != null)
+            {
+                _bgm.Stop(AudioStopOptions.AsAuthored);
+            }
+        }
+
+        private void StartMusic()
+        {
+            if (_level.BgBgBg != null)
+            {
+                Cue cue = _sb.GetCue(_level.BgBgBg);
+                cue.Play();
+                _bgm = cue;
+            }
         }
 
         /// <summary>
@@ -148,6 +201,13 @@ namespace DemonDoor {
             spritebatch.Begin();
             _level.Draw(spritebatch, gameTime);
             spritebatch.End();
+        }
+
+        internal void PlayCue(string name)
+        {
+            Cue q = _sb.GetCue(name);
+            q.Play();
+            _activeCues.Add(q);
         }
     }
 }
