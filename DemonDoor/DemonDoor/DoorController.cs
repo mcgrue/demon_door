@@ -10,12 +10,12 @@ using Microsoft.Xna.Framework.Input;
 
 namespace DemonDoor
 {
-    class Gun : ICollidable, IDrawableThing
+    class DoorController : ICollidable, IDrawableThing
     {
 
         DoorSprite sprite;
 
-        public Gun(World w, Vector2 r, Vector2 size, DoorSprite s)
+        public DoorController(World w, Vector2 r, Vector2 size, DoorSprite s)
         {
             _fsBody = w.NewBody();
             _fsBody.Position = r;

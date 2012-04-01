@@ -13,7 +13,7 @@ namespace DemonDoor
     {
         public McGrenderStack mcg;
         private World _world;
-        private Gun _gun;
+        private DoorController _gun;
 
 
         internal override void Load()
@@ -75,7 +75,7 @@ namespace DemonDoor
             var doorSpriteBasis = new SpriteBasis(38, 24, 5, 5);
             doorSpriteBasis.image = game1.im_door;
             var doorSprite = new DoorSprite(doorSpriteBasis);
-            _gun = new Gun(_world,
+            _gun = new DoorController(_world,
                             Coords.Screen2Physics(new Vector2 { X = 32, Y = 206 }),
                             Coords.Screen2Physics(new Vector2 { X = 19, Y = 12 }, true),
                             doorSprite);
