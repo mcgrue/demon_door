@@ -139,11 +139,10 @@ namespace DemonDoor {
         /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw( GameTime gameTime ) {
-            GraphicsDevice.Clear( Color.LimeGreen );
+
+            GraphicsDevice.Clear(Color.Black);
 
             base.Draw( gameTime );
-
-            
 
             // do level-specific drawing afterward so we can draw hud
             spritebatch.Begin();

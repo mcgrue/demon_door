@@ -12,6 +12,7 @@ namespace DemonDoor
     class TitleScreen : Screen
     {
         public McGrenderStack mcg;
+        private bool _allowExit;
 
         internal override string BgBgBg
         {
@@ -23,6 +24,7 @@ namespace DemonDoor
 
         internal override void Load()
         {
+            _allowExit = false;
             Game1 game1 = (Game1)Game1.game;
             //Vector2[] verts = new [] {
             //    new Vector2 { X = -100, Y = 0 },
@@ -49,11 +51,16 @@ namespace DemonDoor
 
         internal override void Update(Microsoft.Xna.Framework.GameTime gameTime)
         {
-            if (Game1.game.action.confirm.pressed)
+            if (_allowExit && Game1.game.action.confirm.pressed)
             {
                 Game1 game1 = Game1.game as Game1;
 
                 game1.LoadLevel("level1");
+            }
+
+            if (Game1.game.action.confirm.released)
+            {
+                _allowExit = true;
             }
         }
 
