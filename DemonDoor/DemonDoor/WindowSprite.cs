@@ -26,6 +26,8 @@ namespace DemonDoor {
         public Sprite Sprite { get; private set; }
 
         public WindowSprite( SpriteBasis sb ) {
+            //this.Sprite = new Sprite( sb, null, 0,0,false ); // let's just get a tmp sprite for calculation.  Trust me on this.
+            
             animationAtlas = new Dictionary<AnimationState, Filmstrip>();
             animationAtlas[AnimationState.NormalIdle] = createFilmstrip( 0 );
             animationAtlas[AnimationState.Breaking] = createFilmstrip( new[] { 1, 2, 3 } );
@@ -76,7 +78,8 @@ namespace DemonDoor {
         }
 
         private Filmstrip createFilmstrip(IList<int> frames,  bool randomizedStartFrame = false ) {
-            return new Filmstrip(new Point(9, 19), frames, 150, randomizedStartFrame);
+            return new Filmstrip( new Point( 14, 14 ), frames, 150, randomizedStartFrame );
+            //return new Filmstrip( new Point( Sprite.w, Sprite.h ), frames, 150, randomizedStartFrame );
         }     
     }
 }
