@@ -130,6 +130,11 @@ namespace DemonDoor
                     this.behaviorState = BehaviorState.Dead;
                     myCorpse.SetAnimationState(CivvieSprite.AnimationState.Dead);
                 }
+
+                if (this.behaviorState == BehaviorState.Dead)
+                {
+                    _world.StopPhysicsing(_fsBody);
+                }
             }
 
             if (other is CivvieController)
