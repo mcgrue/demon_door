@@ -23,7 +23,21 @@ namespace DemonDoor {
         public Texture2D im_civvie, im_title, im_door, im_stage;
         public SpriteFont ft_hud24;
 
-        private Level1Screen _level;
+        private Screen _level;
+
+        internal void LoadLevel(string level)
+        {
+            Screen s = null;
+
+            switch (level)
+            {
+                case "title": s = new TitleScreen(); break;
+                case "level1": s = new Level1Screen(); break;
+            }
+
+            _level = s;
+            _level.Load();
+        }
 
         /// <summary>
         /// Allows the game to perform any initialization it needs to before starting to run.
@@ -40,8 +54,7 @@ namespace DemonDoor {
 
             ft_hud24 = Content.Load<SpriteFont>("HUD24");
 
-            _level = new Level1Screen();
-            _level.Load();
+            LoadLevel("level1");
 
             base.Initialize();
         }
