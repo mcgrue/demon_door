@@ -39,6 +39,7 @@ namespace DemonDoor
             {
                 b.BodyType = BodyType.Static;
                 b.CollidesWith = Category.None;
+                b.IsSensor = true;
             }
 
             _last = now.TotalGameTime;
