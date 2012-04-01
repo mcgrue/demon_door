@@ -31,7 +31,7 @@ namespace DemonDoor
             Vector2 floor = Coords.Screen2Physics(new Vector2 { X = 0, Y = 220 });
             _world = new World(new Vector2 { X = 0, Y = -10 }, floor.Y);
 
-            Vector2 _666pos = Coords.Screen2Physics(new Vector2 { X = 300, Y = 218 });
+            Vector2 _666pos = Coords.Screen2Physics(new Vector2 { X = 280, Y = 218 });
             Vector2 _666size = Coords.Screen2Physics(new Vector2 { X = 100, Y = 210 }, true);
 
             Wall _wall0 = new Wall(_world, -100, 1);
