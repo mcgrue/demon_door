@@ -106,9 +106,9 @@ namespace DemonDoor
             
         }
 
-        private const float MaxGunImpulse = 2000;
+        private const float MaxGunImpulse = 1000;
         private const float MinGunImpulse = 0;
-        private const float GunImpulseKick = 1000;
+        private const float GunImpulseKick = 80;
         private const float GunImpulseDecayTime = 4;
 
         private float GunImpulse { get; set; }
@@ -123,6 +123,8 @@ namespace DemonDoor
 
                 if (revGun && !_gunLatch)
                     GunImpulse += GunImpulseKick;
+
+                _gunLatch = revGun;
             }
 
             // apply a bit of decay
@@ -213,7 +215,7 @@ namespace DemonDoor
             string doorSpeedDesc = string.Format("door speed: {0}", DoorSpeedDescription);
             Vector2 size = game1.ft_hud24.MeasureString(doorSpeedDesc);
 
-            batch.DrawString(game1.ft_hud24, doorSpeedDesc, new Vector2 { X = (640 - size.X) / 2, Y = 10 }, Color.White);
+            batch.DrawString(game1.ft_hud24, doorSpeedDesc, new Vector2 { X = (640 - size.X) / 2, Y = 480 - 5 - size.Y }, Color.White);
         }
     }
 }
