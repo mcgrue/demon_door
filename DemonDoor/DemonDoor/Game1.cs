@@ -20,9 +20,11 @@ namespace DemonDoor {
 
         public McGrenderStack mcg;
 
-        public Texture2D im_civvie, im_title, im_door, im_stage, im_skybox, im_evilwindow;
+        public Texture2D im_civvie, im_title, im_door, im_stage, im_skybox, im_demon;
         public Texture2D[] im_clouds;
         public SpriteFont ft_hud24;
+
+        public static Game1 game;
 
         private Screen _level;
 
@@ -48,13 +50,15 @@ namespace DemonDoor {
         /// and initialize them as well.
         /// </summary>
         protected override void Initialize() {
+            game = this;
+
             // TODO: Add your initialization logic here
             im_civvie = Content.Load<Texture2D>( "art/civilian_01" );
             im_title = Content.Load<Texture2D>( "art/title" );
             im_door = Content.Load<Texture2D>( "art/door" );
             im_stage = Content.Load<Texture2D>( "art/stage" );
             im_skybox = Content.Load<Texture2D>( "art/skybox" );
-            im_evilwindow = Content.Load<Texture2D>("art/evil_window");
+            im_demon = Content.Load<Texture2D>( "art/demon" );
 
             List<Texture2D> tmpLst = new List<Texture2D>();
             for( int i = 1; i < 10; i++ ) {
