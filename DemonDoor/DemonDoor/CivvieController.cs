@@ -126,6 +126,7 @@ namespace DemonDoor
 
         public void ProcessBehavior(GameTime time)
         {
+            if (Math.Abs(_fsBody.LinearVelocity.Y) > 1) { behaviorState = BehaviorState.Flying; }
             if (behaviorState == BehaviorState.Walking)
             {
                 _fsBody.LinearVelocity = new Vector2(-20, _fsBody.LinearVelocity.Y);
