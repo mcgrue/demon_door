@@ -13,8 +13,9 @@ namespace DemonDoor
     {
         public McGrenderStack mcg;
         private World _world;
-        private DoorController _gun;
 
+        private DoorController _gun;
+        private EvilWindow _evilwindow;
 
         internal override void Load()
         {
@@ -84,6 +85,18 @@ namespace DemonDoor
             rendernode = l.AddNode(
                 new McgNode(_gun, l, 60, 200)
             );
+
+            var evilWindowBasis = new SpriteBasis(20, 17, 1, 1);
+            evilWindowBasis.image = game1.im_evilwindow;
+            var windowSprite = new WindowSprite(evilWindowBasis);
+            _evilwindow = new EvilWindow(_world,
+                                         Coords.Screen2Physics(new Vector2 { X = 319, Y = 22 }),
+                                         Coords.Screen2Physics(new Vector2 { X = 20, Y = 17 }, true),
+                                         windowSprite);
+
+            rendernode = l.AddNode(
+                new McgNode(_evilwindow, l, 60, 200)
+                );
 
             for (int i = 0; i < 20; i++)
             {

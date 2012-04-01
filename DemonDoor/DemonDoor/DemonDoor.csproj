@@ -118,6 +118,7 @@
     <Compile Include="CivvieController.cs" />
     <Compile Include="Door.cs" />
     <Compile Include="EvilWindow.cs" />
+    <Compile Include="GameOverScreen.cs" />
     <Compile Include="DoorController.cs" />
     <Compile Include="ICollidable.cs" />
     <Compile Include="Level1Screen.cs" />
@@ -128,6 +129,7 @@
     <Compile Include="TitleScreen.cs" />
     <Compile Include="Utility.cs" />
     <Compile Include="Wall.cs" />
+    <Compile Include="WindowSprite.cs" />
     <Compile Include="World.cs" />
   </ItemGroup>
   <ItemGroup>

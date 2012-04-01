@@ -24,6 +24,7 @@ namespace DemonDoor
 
             _fsFixture = _ground.CreateFixture(groundShape, this);
             _fsFixture.OnCollision += this.BehaviorCollided;
+            _fsFixture.Friction = 1.0f;
         }
 
         public void Simulate(GameTime now)

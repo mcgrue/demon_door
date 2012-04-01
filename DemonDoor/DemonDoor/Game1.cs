@@ -20,7 +20,7 @@ namespace DemonDoor {
 
         public McGrenderStack mcg;
 
-        public Texture2D im_civvie, im_title, im_door, im_stage, im_skybox;
+        public Texture2D im_civvie, im_title, im_door, im_stage, im_skybox, im_evilwindow;
         public Texture2D[] im_clouds;
         public SpriteFont ft_hud24;
 
@@ -34,6 +34,7 @@ namespace DemonDoor {
             {
                 case "title": s = new TitleScreen(); break;
                 case "level1": s = new Level1Screen(); break;
+                case "gameover": s = new GameOverScreen(); break;
             }
 
             _level = s;
@@ -53,6 +54,7 @@ namespace DemonDoor {
             im_door = Content.Load<Texture2D>( "art/door" );
             im_stage = Content.Load<Texture2D>( "art/stage" );
             im_skybox = Content.Load<Texture2D>( "art/skybox" );
+            im_evilwindow = Content.Load<Texture2D>("art/evil_window");
 
             List<Texture2D> tmpLst = new List<Texture2D>();
             for( int i = 1; i < 10; i++ ) {
