@@ -7,13 +7,11 @@ using XNAVERGE;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace DemonDoor
-{
-    class GameOverScreen : Screen
-    {
+namespace DemonDoor {
+    class GameOverScreen : Screen {
         public McGrenderStack mcg;
-        internal override void Load()
-        {
+
+        internal override void Load() {
             Game1 game1 = (Game1)Game1.game;
             //Vector2[] verts = new [] {
             //    new Vector2 { X = -100, Y = 0 },
@@ -48,14 +46,19 @@ namespace DemonDoor
 
         internal override void Update(Microsoft.Xna.Framework.GameTime gameTime)
         {
-            if (Game1.game.action.confirm.pressed || Keyboard.GetState(PlayerIndex.One).IsKeyDown(Keys.Space) )
+<<<<<<< Updated upstream
+            if (Game1.game.action.confirm.pressed)
             {
+=======
+            if (Keyboard.GetState(PlayerIndex.One).IsKeyDown(Keys.Space)) {
+>>>>>>> Stashed changes
                 Game1 game1 = Game1.game as Game1;
 
                 game1.LoadLevel("title");
             }
         }
 
+<<<<<<< Updated upstream
         private void DrawCentered(SpriteBatch batch, string text, int y, Color color)
         {
             Game1 game1 = (Game1)Game1.game;
@@ -66,6 +69,9 @@ namespace DemonDoor
 
         internal override void Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch batch, Microsoft.Xna.Framework.GameTime gameTime)
         {
+=======
+        internal override void Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch batch, Microsoft.Xna.Framework.GameTime gameTime) {
+>>>>>>> Stashed changes
             Game1 game1 = (Game1)Game1.game;
             Vector2 size;
 
@@ -78,6 +84,5 @@ namespace DemonDoor
 
             DrawCentered(batch, "- game over -", 360, Color.Red);
         }
-
     }
 }
