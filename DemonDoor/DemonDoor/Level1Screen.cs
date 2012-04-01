@@ -102,8 +102,7 @@ namespace DemonDoor
             );
 
             //spawn guys
-            var civvieSprite = new CivvieSprite(civSpriteBasis);
-            var civvieSpawner = new CivvieSpawner(_world, l, new Point(80, 1), TimeSpan.FromSeconds(1), civvieSprite, 1000);
+            var civvieSpawner = new CivvieSpawner(_world, l, new Point(80, 1), TimeSpan.FromSeconds(1), civSpriteBasis, 1000);
             l.AddNode(new McgNode(civvieSpawner, l, 80, 20));
         }
 
