@@ -25,8 +25,8 @@ namespace DemonDoor {
         public DoorSprite( SpriteBasis sb ) {
             animationAtlas = new Dictionary<AnimationState, Filmstrip>();
             animationAtlas[AnimationState.Stopped] = createFilmstrip( new[] { 0 } );
-            animationAtlas[AnimationState.Slow] = createFilmstrip(new[] { 0, 1, 2 });
-            animationAtlas[AnimationState.Medium] = createFilmstrip(new[] { 0, 1, 2 }, 75);
+            animationAtlas[AnimationState.Slow] = createFilmstrip(new[] { 0, 1, 2, 1 });
+            animationAtlas[AnimationState.Medium] = createFilmstrip(new[] { 0, 1, 2, 1 }, 75);
             animationAtlas[AnimationState.Fast] = createFilmstrip(new[] { 3, 4 });
 
             DrawDoor = (int x, int y) => {
