@@ -121,6 +121,8 @@ namespace DemonDoor
             l.AddNode(new McgNode(civvieSpawner, l, 80, 20));
         }
 
+        Vector2 _aimPoint = Vector2.UnitX;
+
         /// <summary>
         /// Allows the game to run logic such as updating the world,
         /// checking for collisions, gathering input, and playing audio.
@@ -128,11 +130,22 @@ namespace DemonDoor
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         internal override void Update(GameTime gameTime)
         {
+            Vector2 leftAnalog = GamePad.GetState(PlayerIndex.One).ThumbSticks.Left;
+
+            if (leftAnalog.Length() < 1e-10)
+            {
+                _aimPoint = new Vector2 { X = 1, Y = 1 };
+            }
+            else
+            {
+                _aimPoint = leftAnalog;
+            }
+
             {
                 // update gun impulse.
                 _gun.UpdateGunImpulse(gameTime);
 
-                Vector2 dir = new Vector2 { X = 1, Y = 1 };
+                Vector2 dir = _aimPoint;
                 dir.Normalize();
 
                 _gun.Impulse = dir * _gun.GunImpulse;

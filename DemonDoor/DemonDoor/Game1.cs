@@ -143,6 +143,8 @@ namespace DemonDoor {
 
             base.Draw( gameTime );
 
+            
+
             // do level-specific drawing afterward so we can draw hud
             spritebatch.Begin();
             _level.Draw(spritebatch, gameTime);
