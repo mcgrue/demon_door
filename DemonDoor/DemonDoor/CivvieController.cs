@@ -92,7 +92,6 @@ namespace DemonDoor
                 (other.UserData as ICollidable).Collided(this);
             }
 
-            // CB: oh god this line of code is terrible, figure out how to fix it
             return true;
         }
 
@@ -109,6 +108,16 @@ namespace DemonDoor
                 {
                     this.behaviorState = BehaviorState.Dead;
                     myCorpse.SetAnimationState(CivvieSprite.AnimationState.Dead);
+                }
+            }
+
+            if (other is CivvieController)
+            {
+                var otherCivvie = other as CivvieController;
+                if (otherCivvie._fsBody.LinearVelocity.Length() > 50)
+                {
+                    otherCivvie.Die();
+                    this.Die();
                 }
             }
         }
@@ -141,6 +150,12 @@ namespace DemonDoor
                 _fsBody.LinearVelocity = new Vector2(-20, _fsBody.LinearVelocity.Y);
                 _fsBody.Rotation = 0;
             }
+        }
+
+        private void Die()
+        {
+            this.behaviorState = BehaviorState.Dead;
+            myCorpse.SetAnimationState(CivvieSprite.AnimationState.Dead);
         }
     }
 }
