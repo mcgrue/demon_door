@@ -44,8 +44,8 @@ namespace DemonDoor
             Vector2[] verts = new[] {
                 Coords.Screen2Physics(new Vector2 { X = 340, Y = 32 }),
                 Coords.Screen2Physics(new Vector2 { X = 280, Y = 32 }),
-                Coords.Screen2Physics(new Vector2 { X = 280, Y = 240 }),
-                Coords.Screen2Physics(new Vector2 { X = 340, Y = 240 }),
+                Coords.Screen2Physics(new Vector2 { X = 280, Y = 200 }),
+                Coords.Screen2Physics(new Vector2 { X = 340, Y = 200 }),
             };
 
             Wall _wall1 = new Wall(_world, verts);
@@ -116,7 +116,7 @@ namespace DemonDoor
             );
 
             //spawn guys
-            Vector2 spawnerR = Coords.Screen2Physics(new Vector2 { X = 270, Y = 218 });
+            Vector2 spawnerR = Coords.Screen2Physics(new Vector2 { X = 325, Y = 218 });
             var civvieSpawner = new CivvieSpawner(_world, l, spawnerR, TimeSpan.FromSeconds(1), civSpriteBasis, 1000);
             l.AddNode(new McgNode(civvieSpawner, l, 80, 20));
         }
