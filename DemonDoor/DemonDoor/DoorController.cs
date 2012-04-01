@@ -48,8 +48,7 @@ namespace DemonDoor
                 other = f1;
             }
 
-            if (other.UserData is CivvieController && !_alreadyShot.Contains(other))
-            {
+            if (other.UserData is CivvieController && !_alreadyShot.Contains(other)) {
                 CivvieController c = other.UserData as CivvieController;
                 //Console.WriteLine("collided with corpse {0}, kickin' it", c);
 
@@ -60,44 +59,34 @@ namespace DemonDoor
             return false;
         }
 
-        private void PhysicsSeparated(Fixture f1, Fixture f2)
-        {
+        private void PhysicsSeparated(Fixture f1, Fixture f2) {
             Fixture self = null, other = null;
 
-            if (f1 == _fsFixture)
-            {
+            if (f1 == _fsFixture) {
                 self = f1;
                 other = f2;
-            }
-            else if (f2 == _fsFixture)
-            {
+            } else if (f2 == _fsFixture) {
                 self = f2;
                 other = f1;
             }
 
-            if (_alreadyShot.Contains(other))
-            {
+            if (_alreadyShot.Contains(other)) {
                 _alreadyShot.Remove(other);
             }
         }
 
-        private bool BehaviorCollided(Fixture f1, Fixture f2, Contact contact)
-        {
+        private bool BehaviorCollided(Fixture f1, Fixture f2, Contact contact) {
             Fixture self = null, other = null;
 
-            if (f1 == _fsFixture)
-            {
+            if (f1 == _fsFixture) {
                 self = f1;
                 other = f2;
-            }
-            else if (f2 == _fsFixture)
-            {
+            } else if (f2 == _fsFixture) {
                 self = f2;
                 other = f1;
             }
 
-            if (other.UserData is ICollidable)
-            {
+            if (other.UserData is ICollidable) {
                 this.Collided(other.UserData as ICollidable);
                 (other.UserData as ICollidable).Collided(this);
             }
@@ -105,15 +94,12 @@ namespace DemonDoor
             return false;
         }
 
-        public void Collided(ICollidable other)
-        {
+        public void Collided(ICollidable other) {
 
         }
 
-        public Vector2 Position
-        {
-            get
-            {
+        public Vector2 Position {
+            get {
                 return _fsBody.Position;
             }
         }
