@@ -30,12 +30,6 @@ namespace DemonDoor
             animationAtlas[AnimationState.Flying] = createFilmstrip(5);
             animationAtlas[AnimationState.Dead] = createFilmstrip(6);
 
-            DrawCivvie = (int x, int y) =>
-            {
-                Sprite.Update();
-                Sprite.Draw();
-            };
-
             this.currentAnimation = animationAtlas[AnimationState.Idle];
             this.Sprite = new Sprite(sb, currentAnimation);
         }
@@ -64,8 +58,6 @@ namespace DemonDoor
         {
             return new Filmstrip(new Point(16, 16), frames, 150);
         }
-
-        public RenderDelegate DrawCivvie { get; set; }
 
         private Dictionary<AnimationState, Filmstrip> animationAtlas;
     }

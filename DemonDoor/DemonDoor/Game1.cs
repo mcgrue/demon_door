@@ -91,6 +91,20 @@ namespace DemonDoor {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
 
+            {
+                // update gun impulse.
+                UpdateGunImpulse(gameTime);
+
+                Vector2 dir = new Vector2 { X = -1, Y = 1 };
+                dir.Normalize();
+
+                _gun.Impulse = dir * GunImpulse;
+            }
+
+            _world.Simulate(gameTime);
+            mcg.Update(gameTime);
+
+            //Console.Out.WriteLine("@{3}: ({0}, {1}), {2}", _test.Position.X, _test.Position.Y, _test.Theta, gameTime.TotalGameTime);
             systime = gameTime.TotalGameTime.Milliseconds;
 
             // TODO: Add your update logic here

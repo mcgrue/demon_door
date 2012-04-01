@@ -87,8 +87,11 @@ namespace XNAVERGE {
         }
 
         public void Update( GameTime gt ) {
-            if( this.OnUpdate != null ) {
-                this.OnUpdate(gt);
+            if (_idt != null && _idt is IBrainyThing)
+            {
+                IBrainyThing brainy = _idt as IBrainyThing;
+
+                brainy.ProcessBehavior(gt);
             }
         }
 

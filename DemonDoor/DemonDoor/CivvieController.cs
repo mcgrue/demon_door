@@ -9,7 +9,7 @@ using XNAVERGE;
 namespace DemonDoor
 {
 
-    class CivvieController : IDrawableThing, ICollidable
+    class CivvieController : IDrawableThing, ICollidable, IBrainyThing
     {
         CivvieSprite myCorpse = null;
         Vector2 screen;
@@ -104,6 +104,11 @@ namespace DemonDoor
             {
                 return _fsBody.Rotation;
             }
+        }
+
+        public void ProcessBehavior(GameTime time)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

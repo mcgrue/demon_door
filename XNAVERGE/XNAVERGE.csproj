@@ -115,6 +115,7 @@
     <Compile Include="map\RenderStack.cs" />
     <Compile Include="sprite\Filmstrip.cs" />
     <Compile Include="sprite\FollowerChain.cs" />
+    <Compile Include="sprite\IBrainyThing.cs" />
     <Compile Include="sprite\IDrawableThing.cs" />
     <Compile Include="sprite\Movestring.cs" />
     <Compile Include="sprite\Sprite.cs" />
