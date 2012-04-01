@@ -13,7 +13,7 @@ namespace DemonDoor
     {
         public McGrenderStack mcg;
         private World _world;
-        private DoorController _gun;
+        private Gun _gun;
 
 
         internal override void Load()
@@ -75,7 +75,7 @@ namespace DemonDoor
             var doorSpriteBasis = new SpriteBasis(38, 24, 5, 5);
             doorSpriteBasis.image = game1.im_door;
             var doorSprite = new DoorSprite(doorSpriteBasis);
-            _gun = new DoorController(_world,
+            _gun = new Gun(_world,
                             Coords.Screen2Physics(new Vector2 { X = 32, Y = 206 }),
                             Coords.Screen2Physics(new Vector2 { X = 19, Y = 12 }, true),
                             doorSprite);
@@ -106,36 +106,6 @@ namespace DemonDoor
             
         }
 
-        private const float MaxGunImpulse = 2000;
-        private const float MinGunImpulse = 0;
-        private const float GunImpulseKick = 1000;
-        private const float GunImpulseDecayTime = 4;
-
-        private float GunImpulse { get; set; }
-        private TimeSpan _gunLastGameTime = TimeSpan.Zero;
-        private bool _gunLatch = false;
-
-        private void UpdateGunImpulse(GameTime gameTime)
-        {
-            // check gun key, kick if newly pressed
-            {
-                bool revGun = Keyboard.GetState(PlayerIndex.One).IsKeyDown(Keys.E);
-
-                if (revGun && !_gunLatch)
-                    GunImpulse += GunImpulseKick;
-            }
-
-            // apply a bit of decay
-            {
-                float decayPerSecond = MaxGunImpulse / GunImpulseDecayTime;
-                GunImpulse -= (float)(gameTime.TotalGameTime - _gunLastGameTime).TotalSeconds * decayPerSecond;
-                _gunLastGameTime = gameTime.TotalGameTime;
-            }
-
-            // and limit to range
-            GunImpulse = Math.Max(MinGunImpulse, GunImpulse);
-            GunImpulse = Math.Min(MaxGunImpulse, GunImpulse);
-        }
 
         /// <summary>
         /// Allows the game to run logic such as updating the world,
@@ -146,61 +116,18 @@ namespace DemonDoor
         {
             {
                 // update gun impulse.
-                UpdateGunImpulse(gameTime);
+                _gun.UpdateGunImpulse(gameTime);
 
                 Vector2 dir = new Vector2 { X = 1, Y = 1 };
                 dir.Normalize();
 
-                _gun.Impulse = dir * GunImpulse;
+                _gun.Impulse = dir * _gun.GunImpulse;
             }
 
             _world.Simulate(gameTime);
             mcg.Update(gameTime);
 
             //Console.Out.WriteLine("@{3}: ({0}, {1}), {2}", _test.Position.X, _test.Position.Y, _test.Theta, gameTime.TotalGameTime);
-        }
-
-        private string DoorSpeedDescription
-        {
-            get
-            {
-                if (GunImpulse < 0.1 * MaxGunImpulse)
-                {
-                    return "mild";
-                }
-                else if (GunImpulse < 0.2 * MaxGunImpulse)
-                {
-                    return "moderate";
-                }
-                else if (GunImpulse < 0.3 * MaxGunImpulse)
-                {
-                    return "a little much";
-                }
-                else if (GunImpulse < 0.4 * MaxGunImpulse)
-                {
-                    return "way too much";
-                }
-                else if (GunImpulse < 0.5 * MaxGunImpulse)
-                {
-                    return "worrisome";
-                }
-                else if (GunImpulse < 0.6 * MaxGunImpulse)
-                {
-                    return "crazy";
-                }
-                else if (GunImpulse < 0.7 * MaxGunImpulse)
-                {
-                    return "warranty-voiding";
-                }
-                else if (GunImpulse < 0.8 * MaxGunImpulse)
-                {
-                    return "¡picante!";
-                }
-                else
-                {
-                    return "¡muy picante!";
-                }
-            }
         }
 
         /// <summary>
@@ -210,7 +137,7 @@ namespace DemonDoor
         internal override void Draw(SpriteBatch batch, GameTime gameTime)
         {
             Game1 game1 = (Game1)Game1.game;
-            string doorSpeedDesc = string.Format("door speed: {0}", DoorSpeedDescription);
+            string doorSpeedDesc = string.Format("door speed: {0}", _gun.DoorSpeedDescription);
             Vector2 size = game1.ft_hud24.MeasureString(doorSpeedDesc);
 
             batch.DrawString(game1.ft_hud24, doorSpeedDesc, new Vector2 { X = (640 - size.X) / 2, Y = 10 }, Color.White);

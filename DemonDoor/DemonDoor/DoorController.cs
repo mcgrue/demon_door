@@ -6,13 +6,17 @@ using FarseerPhysics.Dynamics.Contacts;
 using Microsoft.Xna.Framework;
 
 using XNAVERGE;
+using Microsoft.Xna.Framework.Input;
 
-namespace DemonDoor {
-    class DoorController : ICollidable, IDrawableThing {
-        
+namespace DemonDoor
+{
+    class Gun : ICollidable, IDrawableThing
+    {
+
         DoorSprite sprite;
 
-        public DoorController(World w, Vector2 r, Vector2 size, DoorSprite s) {
+        public Gun(World w, Vector2 r, Vector2 size, DoorSprite s)
+        {
             _fsBody = w.NewBody();
             _fsBody.Position = r;
 
@@ -29,14 +33,17 @@ namespace DemonDoor {
             sprite = s;
         }
 
-        private bool PhysicsCollided(Fixture f1, Fixture f2, Contact contact) {
+        private bool PhysicsCollided(Fixture f1, Fixture f2, Contact contact)
+        {
             Fixture self = null, other = null;
 
-            if (f1 == _fsFixture) {
+            if (f1 == _fsFixture)
+            {
                 self = f1;
                 other = f2;
             }
-            else if (f2 == _fsFixture) {
+            else if (f2 == _fsFixture)
+            {
                 self = f2;
                 other = f1;
             }
@@ -53,35 +60,44 @@ namespace DemonDoor {
             return false;
         }
 
-        private void PhysicsSeparated(Fixture f1, Fixture f2) {
+        private void PhysicsSeparated(Fixture f1, Fixture f2)
+        {
             Fixture self = null, other = null;
 
-            if (f1 == _fsFixture) {
+            if (f1 == _fsFixture)
+            {
                 self = f1;
                 other = f2;
             }
-            else if (f2 == _fsFixture) {
+            else if (f2 == _fsFixture)
+            {
                 self = f2;
                 other = f1;
             }
 
-            if (_alreadyShot.Contains(other)) {
+            if (_alreadyShot.Contains(other))
+            {
                 _alreadyShot.Remove(other);
             }
         }
 
-        private bool BehaviorCollided(Fixture f1, Fixture f2, Contact contact) {
+        private bool BehaviorCollided(Fixture f1, Fixture f2, Contact contact)
+        {
             Fixture self = null, other = null;
 
-            if (f1 == _fsFixture) {
+            if (f1 == _fsFixture)
+            {
                 self = f1;
                 other = f2;
-            } else if (f2 == _fsFixture) {
+            }
+            else if (f2 == _fsFixture)
+            {
                 self = f2;
                 other = f1;
             }
 
-            if (other.UserData is ICollidable) {
+            if (other.UserData is ICollidable)
+            {
                 this.Collided(other.UserData as ICollidable);
                 (other.UserData as ICollidable).Collided(this);
             }
@@ -105,10 +121,12 @@ namespace DemonDoor {
         public int GetX() { return sprite.Sprite.x; }
         public int GetY() { return sprite.Sprite.y; }
         RenderDelegate _myDrawDelegate;
-        public RenderDelegate GetDrawDelegate() {
-            if( _myDrawDelegate != null ) return _myDrawDelegate;
+        public RenderDelegate GetDrawDelegate()
+        {
+            if (_myDrawDelegate != null) return _myDrawDelegate;
 
-            _myDrawDelegate = ( int x, int y ) => {
+            _myDrawDelegate = (int x, int y) =>
+            {
 
                 Vector2 screen = Coords.Physics2Screen(new Vector2 { X = Position.X, Y = Position.Y });
 
@@ -129,5 +147,80 @@ namespace DemonDoor {
 
         private ISet<Fixture> _alreadyShot = new HashSet<Fixture>();
 
+
+
+        private const float MaxGunImpulse = 2000;
+        private const float MinGunImpulse = 0;
+        private const float GunImpulseKick = 1000;
+        private const float GunImpulseDecayTime = 4;
+
+        public float GunImpulse { get; private set; }
+        private TimeSpan _gunLastGameTime = TimeSpan.Zero;
+        private bool _gunLatch = false;
+
+        public void UpdateGunImpulse(GameTime gameTime)
+        {
+            // check gun key, kick if newly pressed
+            {
+                bool revGun = Keyboard.GetState(PlayerIndex.One).IsKeyDown(Keys.E);
+
+                if (revGun && !_gunLatch)
+                    GunImpulse += GunImpulseKick;
+            }
+
+            // apply a bit of decay
+            {
+                float decayPerSecond = MaxGunImpulse / GunImpulseDecayTime;
+                GunImpulse -= (float)(gameTime.TotalGameTime - _gunLastGameTime).TotalSeconds * decayPerSecond;
+                _gunLastGameTime = gameTime.TotalGameTime;
+            }
+
+            // and limit to range
+            GunImpulse = Math.Max(MinGunImpulse, GunImpulse);
+            GunImpulse = Math.Min(MaxGunImpulse, GunImpulse);
+        }
+
+        public string DoorSpeedDescription
+        {
+            get
+            {
+                if (GunImpulse < 0.1 * MaxGunImpulse)
+                {
+                    return "mild";
+                }
+                else if (GunImpulse < 0.2 * MaxGunImpulse)
+                {
+                    return "moderate";
+                }
+                else if (GunImpulse < 0.3 * MaxGunImpulse)
+                {
+                    return "a little much";
+                }
+                else if (GunImpulse < 0.4 * MaxGunImpulse)
+                {
+                    return "way too much";
+                }
+                else if (GunImpulse < 0.5 * MaxGunImpulse)
+                {
+                    return "worrisome";
+                }
+                else if (GunImpulse < 0.6 * MaxGunImpulse)
+                {
+                    return "crazy";
+                }
+                else if (GunImpulse < 0.7 * MaxGunImpulse)
+                {
+                    return "warranty-voiding";
+                }
+                else if (GunImpulse < 0.8 * MaxGunImpulse)
+                {
+                    return "¡picante!";
+                }
+                else
+                {
+                    return "¡muy picante!";
+                }
+            }
+        }
     }
 }
