@@ -98,7 +98,7 @@ namespace DemonDoor
         {
             if (other == _world)
             {
-                Console.WriteLine("Velocity " + _fsBody.LinearVelocity.Y);
+                //Console.WriteLine("Velocity " + _fsBody.LinearVelocity.Y);
                 if (Math.Abs(_fsBody.LinearVelocity.Y) < 1 && behaviorState == BehaviorState.Flying)
                 {
                     this.behaviorState = BehaviorState.Walking;

@@ -3,6 +3,7 @@ using FarseerPhysics.Collision.Shapes;
 using FarseerPhysics.Common;
 using FarseerPhysics.Dynamics;
 using FarseerPhysics.Dynamics.Contacts;
+using FarseerPhysics.Dynamics.Joints;
 using Microsoft.Xna.Framework;
 using FarseerPhysics.Collision;
 
@@ -12,6 +13,7 @@ namespace DemonDoor
     {
         public Wall(World w, float x, float sgn)
         {
+            _world = w;
             Stickiness = 70;
             UpwardSpeedLimit = 5.0f;
 
@@ -31,6 +33,7 @@ namespace DemonDoor
 
         public Wall(World w, Vector2[] vertices)
         {
+            _world = w;
             Vertices vs = new Vertices(vertices);
 
             Stickiness = 70;
@@ -51,24 +54,30 @@ namespace DemonDoor
         
         private void PhysicsPostSolve(Fixture f1, Fixture f2, Contact contact)
         {
+            //PrismaticJoint p = new PrismaticJoint(f1.Body, f2.Body,
+            //                                      contact.Manifold.Points[0].LocalPoint,
+            //                                      contact.Manifold.Points[1].LocalPoint,
+            //                                      new Vector2 { X = 0, Y = 1 });
+            //_world.AddJoint(p);
+
             Fixture self = null, other = null;
 
-            Vector2 normal;
+            Vector2 normal = contact.Manifold.LocalNormal;
             FixedArray2<Vector2> points;
 
-            contact.GetWorldManifold(out normal, out points);
+            //contact.GetWorldManifold(out normal, out points);
             //Console.Out.WriteLine("normal: {0}; point: {1}, {2}", 
             //    normal, points[0], points[1]);
 
-            if (f1 == _fsFixture)
+            if (contact.FixtureA == _fsFixture)
             {
-                self = f1;
-                other = f2;
+                self = contact.FixtureA;
+                other = contact.FixtureB;
             }
-            else if (f2 == _fsFixture)
+            else if (contact.FixtureB == _fsFixture)
             {
-                self = f2;
-                other = f1;
+                self = contact.FixtureB;
+                other = contact.FixtureA;
             }
 
             // sticky behavior: null out all velocity normal to the surface of the wall, 
@@ -76,7 +85,7 @@ namespace DemonDoor
             Vector2 normalComponent, parallelComponent;
 
             normalComponent = normal * Vector2.Dot(normal, other.Body.LinearVelocity);
-            parallelComponent = other.Body.LinearVelocity - normalComponent;                
+            parallelComponent = other.Body.LinearVelocity - normalComponent;
 
             float velMultiplier = 1f - Stickiness * (1 / 100000f);
 
@@ -119,6 +128,7 @@ namespace DemonDoor
         {
         }
 
+        private World _world;
         private Body _fsBody;
         private Fixture _fsFixture;
 

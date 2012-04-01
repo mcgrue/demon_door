@@ -35,7 +35,16 @@ namespace DemonDoor
             Vector2 _666size = Coords.Screen2Physics(new Vector2 { X = 100, Y = 210 }, true);
 
             Wall _wall0 = new Wall(_world, -100, 1);
-            Wall _wall1 = new Wall(_world, _666pos.X, -1);
+
+            Vector2[] verts = new[] {
+                Coords.Screen2Physics(new Vector2 { X = 340, Y = 32 }),
+                Coords.Screen2Physics(new Vector2 { X = 280, Y = 32 }),
+                Coords.Screen2Physics(new Vector2 { X = 280, Y = 240 }),
+                Coords.Screen2Physics(new Vector2 { X = 340, Y = 240 }),
+            };
+
+            Wall _wall1 = new Wall(_world, verts);
+            //Wall _wall1 = new Wall(_world, _666pos.X, -1);
 
             SpriteBasis civSpriteBasis = new SpriteBasis(16, 16, 7, 7);
             civSpriteBasis.image = game1.im_civvie;

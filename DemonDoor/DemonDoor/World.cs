@@ -2,6 +2,7 @@
 using FarseerPhysics.Collision.Shapes;
 using FarseerPhysics.Dynamics;
 using FarseerPhysics.Dynamics.Contacts;
+using FarseerPhysics.Dynamics.Joints;
 using Microsoft.Xna.Framework;
 using FsWorld = FarseerPhysics.Dynamics.World;
 
@@ -39,6 +40,11 @@ namespace DemonDoor
         internal Body NewBody()
         {
             return new Body(_fsWorld);
+        }
+
+        internal void AddJoint(Joint j)
+        {
+            _fsWorld.AddJoint(j);
         }
 
 
