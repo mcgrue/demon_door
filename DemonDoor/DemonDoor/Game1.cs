@@ -196,6 +196,7 @@ namespace DemonDoor {
             }
 
             _world.Simulate(gameTime);
+            mcg.setGameTime( gameTime );
 
             //Console.Out.WriteLine("@{3}: ({0}, {1}), {2}", _test.Position.X, _test.Position.Y, _test.Theta, gameTime.TotalGameTime);
             systime = gameTime.TotalGameTime.Milliseconds;

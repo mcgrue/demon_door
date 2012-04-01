@@ -12,6 +12,9 @@ namespace XNAVERGE {
     // for rendering events.
     public delegate void RenderDelegate( int px, int py );
 
+    // for updating events.
+    public delegate void UpdateDelegate( GameTime gt );
+
     // for handling controls.
     public delegate void ControlDelegate( DirectionalButtons dir, VERGEActions action );
 
