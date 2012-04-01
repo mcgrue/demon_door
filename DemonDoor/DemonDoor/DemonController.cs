@@ -10,8 +10,7 @@ using FarseerPhysics.Dynamics.Contacts;
 
 namespace DemonDoor
 {
-    class DemonController : IDrawableThing, ICollidable
-    {        
+    class DemonController : IDrawableThing, ICollidable {
         public DemonController(World w, Vector2 r, Vector2 size, DemonSprite s) {
             _fsBody = w.NewBody();
             _fsBody.Position = r;
