@@ -10,7 +10,12 @@ using FarseerPhysics.Dynamics.Contacts;
 
 namespace DemonDoor
 {
+    
+
     class DemonController : IDrawableThing, ICollidable {
+
+        public static DemonController TheDemon;
+
         public DemonController(World w, Vector2 r, Vector2 size, DemonSprite s) {
             _fsBody = w.NewBody();
             _fsBody.Position = r;
@@ -24,6 +29,8 @@ namespace DemonDoor
             _fsFixture.OnCollision += BehaviorCollided;
 
             sprite = s;
+
+            TheDemon = this;
         }
 
         private bool BehaviorCollided(Fixture f1, Fixture f2, Contact contact) {
