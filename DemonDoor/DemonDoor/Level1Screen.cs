@@ -110,25 +110,9 @@ namespace DemonDoor
                 new McgNode(_evilDemon, l, -1, -1)
             );
 
-            for (int i = 0; i < 20; i++) {
-
-                var civvieSprite = new CivvieSprite(civSpriteBasis);
-
-                Sprite sprite = new Sprite(civSpriteBasis, new Filmstrip(new Point(16, 16), new[] { 1, 2, 3, 4, 5 }, 100));
-                CivvieController myCorpse = new CivvieController(
-                    _world,
-                    new Vector2 { X = 0, Y = 20 },
-                    civvieSprite
-                );
-
-                civvieSprite.SetAnimationState(CivvieSprite.AnimationState.WalkingLeft);
-
-                rendernode = l.AddNode(
-                    new McgNode(myCorpse, l, Game1.rand.Next(0, 310), Game1.rand.Next(0, 50))
-                );
-            }
-            
-            
+            //spawn guys
+            var civvieSpawner = new CivvieSpawner(_world, l, new Point(80, 1), TimeSpan.FromSeconds(1), civSpriteBasis, 1000);
+            l.AddNode(new McgNode(civvieSpawner, l, 80, 20));
         }
 
         /// <summary>
