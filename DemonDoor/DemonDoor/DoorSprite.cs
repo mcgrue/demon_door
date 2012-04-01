@@ -54,14 +54,9 @@ namespace DemonDoor {
         private Filmstrip createFilmstrip(int frame)
         {
             return createFilmstrip(new[] { frame });
-        }
-        /// <summary>
-        /// Creates a filmstrip with a list of animation frames
-        /// </summary>
-        /// <param name="frames"></param>
-        /// <returns></returns>
-        private Filmstrip createFilmstrip(IList<int> frames, int framerate = 150)
-        {
+        }        
+
+        private Filmstrip createFilmstrip(IList<int> frames, int framerate = 150) {
             return new Filmstrip(new Point(38, 24), frames, framerate);
         }
 

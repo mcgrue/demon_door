@@ -9,15 +9,20 @@ using Microsoft.Xna.Framework;
 
 namespace DemonDoor {
 
-    class DemonSprite {
-        public Texture2D texture { get; set; }
-        private Filmstrip currentAnimation;
+    
 
-        public Sprite Sprite { get; private set; }
+    class DemonSprite {
 
         public enum AnimationState {
             Idle, Pressing, Disappearing, Hidden, Reappearing
         }
+
+        private Dictionary<AnimationState, Filmstrip> animationAtlas;
+
+        public Texture2D texture { get; set; }
+        private Filmstrip currentAnimation;
+
+        public Sprite Sprite { get; private set; }        
 
         public DemonSprite(SpriteBasis sb) {
             animationAtlas = new Dictionary<AnimationState, Filmstrip>();
@@ -26,6 +31,12 @@ namespace DemonDoor {
             animationAtlas[AnimationState.Disappearing] = createFilmstrip( new[] { 1, 2, 3, 4, 5, 6 } );
             animationAtlas[AnimationState.Hidden] = createFilmstrip( 6 );
             animationAtlas[AnimationState.Reappearing] = createFilmstrip( new[] { 6, 5, 4, 3, 2, 1} );
+
+            animationAtlas[AnimationState.Disappearing].OnEnd = ( Filmstrip f ) => {
+                this.currentAnimation = animationAtlas[AnimationState.Hidden];
+
+                return this.currentAnimation.FinishProcessAnimation(0);
+            };
 
             this.currentAnimation = animationAtlas[AnimationState.Idle];
             this.Sprite = new Sprite(sb, currentAnimation);
@@ -42,8 +53,6 @@ namespace DemonDoor {
 
         private Filmstrip createFilmstrip(IList<int> frames,  bool randomizedStartFrame = false ) {
             return new Filmstrip(new Point(9, 19), frames, 150, randomizedStartFrame);
-        }
-
-        private Dictionary<AnimationState, Filmstrip> animationAtlas;
+        }     
     }
 }
