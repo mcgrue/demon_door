@@ -38,6 +38,14 @@ namespace DemonDoor
 
         }
 
+        internal override string BgBgBg
+        {
+            get
+            {
+                return "gameover";
+            }
+        }
+
         internal override void Update(Microsoft.Xna.Framework.GameTime gameTime)
         {
             if (Game1.game.action.confirm.pressed)
