@@ -61,12 +61,12 @@ namespace DemonDoor
 
             l = mcg.GetLayer( "clouds" );
 
-            for( int i = 0; i < 9; i++ ) {
-
+            for( int i = 0; i < 40; i++ ) {
+                int x = VERGEGame.rand.Next( -400, 350 );
                 int y = VERGEGame.rand.Next(0,150);
-                int d = VERGEGame.rand.Next(100,1000);
+                int d = VERGEGame.rand.Next(50000,200000);
                 rendernode = l.AddNode(
-                    new McgNode( game1.im_clouds[i], null, l, 0,y ,400,y,d )
+                    new McgNode( game1.im_clouds[i%9], null, l, x,y ,600,y,d )
                 );
             }
             /// this all should be encapsulated eventually.  CORPSEMAKER.

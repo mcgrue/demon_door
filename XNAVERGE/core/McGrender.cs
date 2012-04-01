@@ -39,11 +39,11 @@ namespace XNAVERGE {
             image = im;
 
             if( bounds == null ) {
-                im_bounds = new Rectangle( 0, 0, im.Width, im.Height );
+                im_bounds = new Rectangle( start_x, start_y, im.Width, im.Height );
             } else {
                 im_bounds = bounds.Value;
             }
-
+            
             _Node( l, start_x, start_y, end_x, end_y, delay );
         }
 
@@ -123,6 +123,10 @@ namespace XNAVERGE {
                                 //OnStop = null;
                             }
                         }
+                    }
+
+                    if( image != null ) {
+                        this.im_bounds = new Rectangle( (int)cur_x, (int)cur_y, image.Width, image.Height );
                     }
                 }
             }
