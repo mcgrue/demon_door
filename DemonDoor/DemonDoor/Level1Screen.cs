@@ -33,7 +33,7 @@ namespace DemonDoor
 
             //Wall _wallTri = new Wall(_world, verts);
             McgNode rendernode;
-            Vector2 floor = Coords.Screen2Physics(new Vector2 { X = 0, Y = 220 });
+            Vector2 floor = Coords.Screen2Physics(new Vector2 { X = 0, Y = 215 });
             _world = new World(new Vector2 { X = 0, Y = -10 }, floor.Y);
 
             Vector2 _666pos = Coords.Screen2Physics(new Vector2 { X = 280, Y = 218 });
