@@ -30,8 +30,11 @@ namespace DemonDoor
             Vector2 floor = Coords.Screen2Physics(new Vector2 { X = 0, Y = 220 });
             _world = new World(new Vector2 { X = 0, Y = -10 }, floor.Y);
 
+            Vector2 _666pos = Coords.Screen2Physics(new Vector2 { X = 300, Y = 218 });
+            Vector2 _666size = Coords.Screen2Physics(new Vector2 { X = 100, Y = 210 }, true);
+
             Wall _wall0 = new Wall(_world, -100, 1);
-            Wall _wall1 = new Wall(_world, 100, -1);
+            Wall _wall1 = new Wall(_world, _666pos.X, -1);
 
             SpriteBasis civSpriteBasis = new SpriteBasis(16, 16, 7, 7);
             civSpriteBasis.image = game1.im_civvie;
@@ -39,16 +42,33 @@ namespace DemonDoor
             mcg = new McGrenderStack();
             Game1.game.setMcGrender(mcg);
 
-            mcg.AddLayer("background");
+            mcg.AddLayer( "skybox" );
+            mcg.AddLayer( "clouds" );
+            mcg.AddLayer( "background" );
             mcg.AddLayer("corpses");
 
-            McgLayer l = mcg.GetLayer("background");
+            McgLayer l = mcg.GetLayer( "skybox" );
             /// this is wrong.
-            Rectangle rectTitle = new Rectangle(0, 0, 320, 240);
+            Rectangle rectTitle = new Rectangle( 0, 0, 320, 240 );
+            rendernode = l.AddNode(
+                new McgNode( game1.im_skybox, rectTitle, l, 0, 0 )
+            );
+
+            l = mcg.GetLayer("background");
             rendernode = l.AddNode(
                 new McgNode(game1.im_stage, rectTitle, l, 0, 0)
             );
 
+            l = mcg.GetLayer( "clouds" );
+
+            for( int i = 0; i < 40; i++ ) {
+                int x = VERGEGame.rand.Next( -400, 350 );
+                int y = VERGEGame.rand.Next(0,150);
+                int d = VERGEGame.rand.Next(50000,200000);
+                rendernode = l.AddNode(
+                    new McgNode( game1.im_clouds[i%9], null, l, x,y ,600,y,d )
+                );
+            }
             /// this all should be encapsulated eventually.  CORPSEMAKER.
             l = mcg.GetLayer("corpses");
 
@@ -57,7 +77,7 @@ namespace DemonDoor
             var doorSprite = new DoorSprite(doorSpriteBasis);
             _gun = new Gun(_world,
                             Coords.Screen2Physics(new Vector2 { X = 32, Y = 206 }),
-                            Coords.Screen2Physics(new Vector2 { X = 38, Y = 24 }, true),
+                            Coords.Screen2Physics(new Vector2 { X = 19, Y = 12 }, true),
                             doorSprite);
             _gun.Impulse = new Vector2 { X = -10, Y = 10 };
 

@@ -23,7 +23,7 @@ namespace XNAVERGE {
         public RenderDelegate OnDraw = null;
         public UpdateDelegate OnUpdate = null; 
 
-        public bool DEBUG = false;
+        public bool DEBUG = true;
 
         Texture2D image = null;
         Rectangle im_bounds;
@@ -34,10 +34,16 @@ namespace XNAVERGE {
             _Node( l, start_x, start_y, end_x, end_y, delay );
         }
 
-        public McgNode( Texture2D im, Rectangle bounds, McgLayer l, int start_x, int start_y ) : this(im, bounds, l, start_x, start_y, null, null, null ) { }
-        public McgNode( Texture2D im, Rectangle bounds, McgLayer l, int start_x, int start_y, int? end_x, int? end_y, int? delay ) {
+        public McgNode( Texture2D im, Rectangle? bounds, McgLayer l, int start_x, int start_y ) : this(im, bounds, l, start_x, start_y, null, null, null ) { }
+        public McgNode( Texture2D im, Rectangle? bounds, McgLayer l, int start_x, int start_y, int? end_x, int? end_y, int? delay ) {
             image = im;
-            im_bounds = bounds;
+
+            if( bounds == null ) {
+                im_bounds = new Rectangle( start_x, start_y, im.Width, im.Height );
+            } else {
+                im_bounds = bounds.Value;
+            }
+            
             _Node( l, start_x, start_y, end_x, end_y, delay );
         }
 
@@ -87,11 +93,42 @@ namespace XNAVERGE {
         }
 
         public void Update( GameTime gt ) {
-            if (_idt != null && _idt is IBrainyThing)
-            {
+
+            if( _idt != null && _idt is IBrainyThing ) {
                 IBrainyThing brainy = _idt as IBrainyThing;
 
-                brainy.ProcessBehavior(gt);
+                brainy.ProcessBehavior( gt );
+            } else {
+                if( DEBUG ) Console.WriteLine( "ticksSinceLastUpdate: " + gt.ElapsedGameTime.Milliseconds );
+                if( DEBUG ) Console.WriteLine( this );
+
+                if( isMoving ) {
+
+                    if( DEBUG ) Console.WriteLine( "IS MOVING" );
+                    if( gt.ElapsedGameTime.Milliseconds > 0 ) {
+                        this.cur_x += ( (float)tick_x * (float)gt.ElapsedGameTime.Milliseconds );
+                        this.cur_y += ( (float)tick_y * (float)gt.ElapsedGameTime.Milliseconds );
+
+                        if( DEBUG ) Console.WriteLine( this );
+                        if( layer.stack.systime >= final_time ) {
+                            if( DEBUG ) Console.WriteLine( "STOPPING" );
+                            isMoving = false;
+                            this.cur_x = this.final_x;
+                            this.cur_y = this.final_y;
+
+                            //this.Reverse();
+
+                            if( OnStop != null ) {
+                                OnStop();
+                                //OnStop = null;
+                            }
+                        }
+                    }
+
+                    if( image != null ) {
+                        this.im_bounds = new Rectangle( (int)cur_x, (int)cur_y, image.Width, image.Height );
+                    }
+                }
             }
         }
 
