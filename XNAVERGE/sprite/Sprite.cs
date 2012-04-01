@@ -239,7 +239,7 @@ namespace XNAVERGE {
         }
 
         public virtual void Draw() {
-            VERGEGame.game.spritebatch.Draw(basis.image, destination, cur_filmstrip.ProcessAnimation(), Color.White, 0, Vector2.Zero, SpriteEffects.None, 1.0f);
+            VERGEGame.game.spritebatch.Draw(basis.image, destination, cur_filmstrip.ProcessAnimation(), Color.White, this.rotation, Vector2.Zero, SpriteEffects.None, 1.0f);
         }
 
         public virtual void Update() {
@@ -258,5 +258,7 @@ namespace XNAVERGE {
             last_logic_tick = VERGEGame.game.tick;
         }
 
+
+        public float rotation { get; set; }
     }
 }
