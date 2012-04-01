@@ -33,15 +33,14 @@ namespace DemonDoor
             _fsBody.BodyType = BodyType.Dynamic;
             _fsBody.Position = r0;
 
-            CircleShape shape = new CircleShape(1f, 1.0f);
+            //CircleShape shape = new CircleShape(1f, 1.0f);
+            PolygonShape shape = new PolygonShape(1.0f);
+            shape.SetAsBox(1.0f, 1.0f);
             
-            Fixture f = _fsBody.CreateFixture(shape, this);
-            f.Restitution = 0.5f;
-
             myCorpse = sprite;
         
             _fsFixture = _fsBody.CreateFixture(shape, this);
-            _fsFixture.Restitution = 0.5f;
+            _fsFixture.Restitution = 0.2f;
             _fsFixture.OnCollision += BehaviorCollided;
         }
 
