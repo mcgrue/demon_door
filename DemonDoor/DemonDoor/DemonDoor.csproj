@@ -117,7 +117,7 @@
     <Compile Include="CivvieSprite.cs" />
     <Compile Include="Coords.cs" />
     <Compile Include="CivvieController.cs" />
-    <Compile Include="Door.cs" />
+    <Compile Include="DoorSprite.cs" />
     <Compile Include="DemonController.cs" />
     <Compile Include="GameOverScreen.cs" />
     <Compile Include="DoorController.cs" />

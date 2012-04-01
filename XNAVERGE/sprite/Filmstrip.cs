@@ -16,7 +16,7 @@ namespace XNAVERGE {
         IList<int> frames;
         DateTime startTime;
         int frameDuration;
-        int frameOffset;
+        //int frameOffset;
 
         public FilmstripEndDelegate OnEnd = null;
 
@@ -40,21 +40,24 @@ namespace XNAVERGE {
             startTime -= TimeSpan.FromMilliseconds(VERGEGame.rand.Next(0, 1000));
         }
 
+        public Rectangle FinishProcessAnimation( int animationIndex ) {
+            animationIndex %= frames.Count; //loop animation
+
+            Rectangle result = new Rectangle( 0, 0, frameSize.X, frameSize.Y );
+            result.X = frameSize.X * frames[animationIndex];
+
+            return result;
+        }
+
         public Rectangle ProcessAnimation() {
 
             TimeSpan timeSinceAnimationStarted = DateTime.Now - startTime;
             int animationIndex = (int)(timeSinceAnimationStarted.TotalMilliseconds / frameDuration);
 
             if( OnEnd != null && timeSinceAnimationStarted.TotalMilliseconds > frameDuration * frames.Count ) {
-                return OnEnd( this  );
+                return OnEnd( this );
             } else {
-
-                animationIndex %= frames.Count; //loop animation
-
-                Rectangle result = new Rectangle(0, 0, frameSize.X, frameSize.Y);
-                result.X = frameSize.X * frames[animationIndex];
-
-                return result;
+                return FinishProcessAnimation( animationIndex );
             }
         }
     }
