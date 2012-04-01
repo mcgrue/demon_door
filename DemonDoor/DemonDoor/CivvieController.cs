@@ -15,7 +15,7 @@ namespace DemonDoor
         CivvieSprite myCorpse = null;
         Vector2 screen;
 
-        private Body _fsBody;
+        internal Body _fsBody;
         private Shape _fsShape;
         private Fixture _fsFixture;
         private World _world;
@@ -173,7 +173,7 @@ namespace DemonDoor
             }
         }
 
-        private void Die()
+        internal void Die()
         {
             this.behaviorState = BehaviorState.Dead;
             myCorpse.SetAnimationState(CivvieSprite.AnimationState.Dead);
