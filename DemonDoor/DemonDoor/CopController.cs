@@ -20,11 +20,11 @@ namespace DemonDoor
         private Fixture _fsFixture;
         private World _world;
 
-        private enum BehaviorState
+        public enum BehaviorState
         {
-            Flying, Walking, Dead, Aiming, Shooting
+            Flying, PatrollingLeft, PatrollingRight, Dead, Aiming, Shooting
         }
-        private BehaviorState behaviorState = BehaviorState.Flying;
+        public BehaviorState behaviorState = BehaviorState.Flying;
 
         public CopController( World w, Vector2 r0, CopSprite sprite )
         {
@@ -107,6 +107,14 @@ namespace DemonDoor
                 other = f1;
             }
 
+            if (behaviorState == BehaviorState.PatrollingLeft || behaviorState == BehaviorState.PatrollingRight)
+            {
+                if (other.UserData is CopController || other.UserData is CivvieController)
+                {
+                    return false;
+                }
+            }
+
             if (other.UserData is ICollidable)
             {
                 this.Collided(other.UserData as ICollidable);
@@ -123,7 +131,7 @@ namespace DemonDoor
                 //Console.WriteLine("Velocity " + _fsBody.LinearVelocity.Y);
                 if (Math.Abs(_fsBody.LinearVelocity.Y) < 1 && behaviorState == BehaviorState.Flying)
                 {
-                    this.behaviorState = BehaviorState.Walking;
+                    CheckPatrolPattern();
                 }
                 else if (_fsBody.LinearVelocity.Y < -20 && behaviorState == BehaviorState.Flying)
                 {
@@ -161,15 +169,44 @@ namespace DemonDoor
 
         public void ProcessBehavior(GameTime time)
         {
+            this.patrolAccumulator += time.ElapsedGameTime;
+
             if (Math.Abs(_fsBody.LinearVelocity.Y) > 1 &&  behaviorState != BehaviorState.Dead) { 
                 behaviorState = BehaviorState.Flying;
                 copSprite.SetAnimationState(CopSprite.AnimationState.Flying);
             }
-            if (behaviorState == BehaviorState.Walking)
+
+            //patrols
+            if (behaviorState == BehaviorState.PatrollingLeft)
             {
                 copSprite.SetAnimationState(CopSprite.AnimationState.WalkingLeft);
                 _fsBody.LinearVelocity = new Vector2(-20, _fsBody.LinearVelocity.Y);
-                _fsBody.Rotation = 0;
+                CheckPatrolPattern();
+            }
+            if (behaviorState == BehaviorState.PatrollingRight)
+            {
+                copSprite.SetAnimationState(CopSprite.AnimationState.WalkingRight);
+                _fsBody.LinearVelocity = new Vector2(20, _fsBody.LinearVelocity.Y);
+                CheckPatrolPattern();
+            }
+        }
+
+        private void CheckPatrolPattern()
+        {
+            if (patrolAccumulator > this.patrolDuration)
+            {
+                patrolDuration = TimeSpan.Zero;
+
+                if (behaviorState == BehaviorState.PatrollingLeft)
+                {
+                    behaviorState = BehaviorState.PatrollingRight;
+                }
+                else
+                {
+                    behaviorState = BehaviorState.PatrollingLeft;
+                }
+
+                this.patrolDuration = TimeSpan.FromSeconds(VERGEGame.rand.Next(3, 7));
             }
         }
 
@@ -178,5 +215,9 @@ namespace DemonDoor
             this.behaviorState = BehaviorState.Dead;
             copSprite.SetAnimationState(CopSprite.AnimationState.Dead);
         }
+
+        private TimeSpan patrolAccumulator { get; set; }
+
+        private TimeSpan patrolDuration { get; set; }
     }
 }

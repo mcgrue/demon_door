@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using XNAVERGE;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 using FarseerPhysics.Collision.Shapes;
 using FarseerPhysics.Dynamics;
 using FarseerPhysics.Dynamics.Contacts;
@@ -78,11 +79,12 @@ namespace DemonDoor
 
             //Console.WriteLine( "DEMON State: " + sprite.CurrentState.ToString() );
 
-            if( Game1.game.action.cancel.pressed && sprite.CurrentState == DemonSprite.AnimationState.Idle ) {
+            if(GamePad.GetState(PlayerIndex.One).Buttons.X == ButtonState.Pressed && sprite.CurrentState == DemonSprite.AnimationState.Idle ) {
                 sprite.SetAnimationState( DemonSprite.AnimationState.Disappearing, 0 );
             }
 
-            if( !Game1.game.action.cancel.down && sprite.CurrentState == DemonSprite.AnimationState.Hidden ) {
+            if (GamePad.GetState(PlayerIndex.One).Buttons.X == ButtonState.Released && sprite.CurrentState == DemonSprite.AnimationState.Hidden)
+            {
                 sprite.SetAnimationState( DemonSprite.AnimationState.Reappearing, 0 );
             }
 
