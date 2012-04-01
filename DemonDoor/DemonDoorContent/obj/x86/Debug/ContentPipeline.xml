@@ -181,6 +181,15 @@
       <Output>C:\grue\demon_door\DemonDoor\DemonDoor\bin\x86\Debug\Content\art\demon.xnb</Output>
       <Time>2012-03-31T23:06:32.849-07:00</Time>
     </Item>
+    <Item>
+      <Source>art\gameover.png</Source>
+      <Name>art\gameover</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\grue\demon_door\DemonDoor\DemonDoor\bin\x86\Debug\Content\art\gameover.xnb</Output>
+      <Time>2012-04-01T14:03:32.347-07:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>
