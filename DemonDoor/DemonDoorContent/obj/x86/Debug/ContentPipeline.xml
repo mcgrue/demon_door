@@ -17,7 +17,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\grue\demon_door\DemonDoor\DemonDoor\bin\x86\Debug\Content\art\door.xnb</Output>
-      <Time>2012-03-31T13:20:39.595-07:00</Time>
+      <Time>2012-03-31T23:06:32.85-07:00</Time>
     </Item>
     <Item>
       <Source>art\police_01.png</Source>
@@ -35,7 +35,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\grue\demon_door\DemonDoor\DemonDoor\bin\x86\Debug\Content\art\stage.xnb</Output>
-      <Time>2012-03-31T21:23:26.106-07:00</Time>
+      <Time>2012-03-31T23:06:32.851-07:00</Time>
     </Item>
     <Item>
       <Source>art\title.png</Source>
@@ -89,7 +89,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\grue\demon_door\DemonDoor\DemonDoor\bin\x86\Debug\Content\art\skybox.xnb</Output>
-      <Time>2012-03-31T18:30:17.623-07:00</Time>
+      <Time>2012-04-01T00:06:12.115-07:00</Time>
     </Item>
     <Item>
       <Source>art\cloud_01.png</Source>
@@ -179,16 +179,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\grue\demon_door\DemonDoor\DemonDoor\bin\x86\Debug\Content\art\demon.xnb</Output>
-      <Time>2012-03-31T16:20:39.481-07:00</Time>
-    </Item>
-    <Item>
-      <Source>art\evil_window.png</Source>
-      <Name>art\evil_window</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\grue\demon_door\DemonDoor\DemonDoor\bin\x86\Debug\Content\art\evil_window.xnb</Output>
-      <Time>2012-03-31T16:20:39.481-07:00</Time>
+      <Time>2012-03-31T23:06:32.849-07:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
