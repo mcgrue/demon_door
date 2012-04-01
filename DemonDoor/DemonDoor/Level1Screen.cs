@@ -42,16 +42,33 @@ namespace DemonDoor
             mcg = new McGrenderStack();
             Game1.game.setMcGrender(mcg);
 
-            mcg.AddLayer("background");
+            mcg.AddLayer( "skybox" );
+            mcg.AddLayer( "clouds" );
+            mcg.AddLayer( "background" );
             mcg.AddLayer("corpses");
 
-            McgLayer l = mcg.GetLayer("background");
+            McgLayer l = mcg.GetLayer( "skybox" );
             /// this is wrong.
-            Rectangle rectTitle = new Rectangle(0, 0, 320, 240);
+            Rectangle rectTitle = new Rectangle( 0, 0, 320, 240 );
+            rendernode = l.AddNode(
+                new McgNode( game1.im_skybox, rectTitle, l, 0, 0 )
+            );
+
+            l = mcg.GetLayer("background");
             rendernode = l.AddNode(
                 new McgNode(game1.im_stage, rectTitle, l, 0, 0)
             );
 
+            l = mcg.GetLayer( "clouds" );
+
+            for( int i = 0; i < 9; i++ ) {
+
+                int y = VERGEGame.rand.Next(0,150);
+                int d = VERGEGame.rand.Next(100,1000);
+                rendernode = l.AddNode(
+                    new McgNode( game1.im_clouds[i], null, l, 0,y ,400,y,d )
+                );
+            }
             /// this all should be encapsulated eventually.  CORPSEMAKER.
             l = mcg.GetLayer("corpses");
 
