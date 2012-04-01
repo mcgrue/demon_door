@@ -117,12 +117,14 @@
     <Compile Include="CivvieSprite.cs" />
     <Compile Include="Coords.cs" />
     <Compile Include="CivvieController.cs" />
-
-    <Compile Include="WindowSprite.cs" />
-    <Compile Include="WindowController.cs" />
+<<<<<<< Updated upstream
     <Compile Include="CopSprite.cs" />
     <Compile Include="CopController.cs" />
     <Compile Include="CopSpawner.cs" />
+=======
+    <Compile Include="WindowSprite.cs" />
+    <Compile Include="WindowController.cs" />
+>>>>>>> Stashed changes
     <Compile Include="DoorSprite.cs" />
     <Compile Include="DemonController.cs" />
     <Compile Include="GameOverScreen.cs" />
