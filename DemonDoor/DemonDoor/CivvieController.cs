@@ -5,6 +5,7 @@ using FarseerPhysics.Dynamics.Contacts;
 using Microsoft.Xna.Framework;
 
 using XNAVERGE;
+using System;
 
 namespace DemonDoor
 {
@@ -16,9 +17,18 @@ namespace DemonDoor
 
         private Body _fsBody;
         private Fixture _fsFixture;
+        private World _world;
+
+        private enum BehaviorState
+        {
+            Flying, Walking
+        }
+        private BehaviorState behaviorState;
 
         public CivvieController( World w, Vector2 r0, CivvieSprite sprite )
         {
+            _world = w;
+
             _fsBody = w.NewBody();
             _fsBody.BodyType = BodyType.Dynamic;
             _fsBody.Position = r0;
@@ -43,6 +53,7 @@ namespace DemonDoor
         }
 
         RenderDelegate _myDrawDelegate;
+        
         public RenderDelegate GetDrawDelegate() {
             if( _myDrawDelegate != null ) return _myDrawDelegate;
 
@@ -87,7 +98,14 @@ namespace DemonDoor
 
         public void Collided(ICollidable other)
         {
-
+            if (other == _world)
+            {
+                Console.WriteLine("VELOCITY OF COLLISION: " + _fsBody.LinearVelocity.Y);
+                if (Math.Abs(_fsBody.LinearVelocity.Y) < 1)
+                {
+                    this.behaviorState = BehaviorState.Walking;
+                }
+            }
         }
 
         public Vector2 Position
@@ -108,7 +126,10 @@ namespace DemonDoor
 
         public void ProcessBehavior(GameTime time)
         {
-            throw new System.NotImplementedException();
+            if (behaviorState == BehaviorState.Walking)
+            {
+                _fsBody.LinearVelocity = new Vector2(-20, _fsBody.LinearVelocity.Y);
+            }
         }
     }
 }
