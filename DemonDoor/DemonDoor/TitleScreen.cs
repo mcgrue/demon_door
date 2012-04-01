@@ -49,7 +49,7 @@ namespace DemonDoor
 
         internal override void Update(Microsoft.Xna.Framework.GameTime gameTime)
         {
-            if (Keyboard.GetState(PlayerIndex.One).IsKeyDown(Keys.Space))
+            if (Game1.game.action.confirm.pressed)
             {
                 Game1 game1 = Game1.game as Game1;
 
@@ -60,7 +60,7 @@ namespace DemonDoor
         internal override void Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch batch, Microsoft.Xna.Framework.GameTime gameTime)
         {
             Game1 game1 = (Game1)Game1.game;
-            string doorSpeedDesc = string.Format("press space to possess... the");
+            string doorSpeedDesc = string.Format("press start to possess... the");
             Vector2 size = game1.ft_hud24.MeasureString(doorSpeedDesc);
 
             batch.DrawString(game1.ft_hud24, doorSpeedDesc, new Vector2 { X = (640 - size.X) / 2, Y = 240 }, Color.White);

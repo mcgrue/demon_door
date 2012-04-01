@@ -132,6 +132,8 @@ namespace DemonDoor
         {
             Vector2 leftAnalog = GamePad.GetState(PlayerIndex.One).ThumbSticks.Left;
 
+            leftAnalog = Vector2.Clamp(leftAnalog, Vector2.Zero, new Vector2 { X = 1, Y = 1 });
+
             if (leftAnalog.Length() < 1e-10)
             {
                 _aimPoint = new Vector2 { X = 1, Y = 1 };
@@ -140,6 +142,8 @@ namespace DemonDoor
             {
                 _aimPoint = leftAnalog;
             }
+
+            //Console.Out.WriteLine(_aimPoint);
 
             {
                 // update gun impulse.

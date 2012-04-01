@@ -40,7 +40,7 @@ namespace DemonDoor
 
         internal override void Update(Microsoft.Xna.Framework.GameTime gameTime)
         {
-            if (Keyboard.GetState(PlayerIndex.One).IsKeyDown(Keys.Space))
+            if (Game1.game.action.confirm.pressed)
             {
                 Game1 game1 = Game1.game as Game1;
 
