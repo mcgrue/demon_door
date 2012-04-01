@@ -25,8 +25,8 @@ namespace DemonDoor
         {
             animationAtlas = new Dictionary<AnimationState, Filmstrip>();
             animationAtlas[AnimationState.Idle] = createFilmstrip(0);
-            animationAtlas[AnimationState.WalkingRight] = createFilmstrip(new[] { 1, 0, 2, 0 });
-            animationAtlas[AnimationState.WalkingLeft] = createFilmstrip(new[] { 3, 7, 4, 7 });
+            animationAtlas[AnimationState.WalkingRight] = createFilmstrip(new[] { 1, 0, 2, 0 }, true);
+            animationAtlas[AnimationState.WalkingLeft] = createFilmstrip(new[] { 3, 7, 4, 7 }, true);
             animationAtlas[AnimationState.Flying] = createFilmstrip(5);
             animationAtlas[AnimationState.Dead] = createFilmstrip(6);
 
@@ -54,9 +54,9 @@ namespace DemonDoor
         /// </summary>
         /// <param name="frames"></param>
         /// <returns></returns>
-        private Filmstrip createFilmstrip(IList<int> frames)
+        private Filmstrip createFilmstrip(IList<int> frames,  bool randomizedStartFrame = false)
         {
-            return new Filmstrip(new Point(16, 16), frames, 150);
+            return new Filmstrip(new Point(16, 16), frames, 150, randomizedStartFrame);
         }
 
         private Dictionary<AnimationState, Filmstrip> animationAtlas;

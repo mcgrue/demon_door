@@ -100,7 +100,6 @@ namespace DemonDoor
         {
             if (other == _world)
             {
-                Console.WriteLine("VELOCITY OF COLLISION: " + _fsBody.LinearVelocity.Y);
                 if (Math.Abs(_fsBody.LinearVelocity.Y) < 1)
                 {
                     this.behaviorState = BehaviorState.Walking;
@@ -134,6 +133,7 @@ namespace DemonDoor
             {
                 myCorpse.SetAnimationState(CivvieSprite.AnimationState.WalkingLeft);
                 _fsBody.LinearVelocity = new Vector2(-20, _fsBody.LinearVelocity.Y);
+                _fsBody.Rotation = 0;
             }
         }
     }
