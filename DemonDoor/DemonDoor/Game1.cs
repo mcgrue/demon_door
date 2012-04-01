@@ -20,7 +20,8 @@ namespace DemonDoor {
 
         public McGrenderStack mcg;
 
-        public Texture2D im_civvie, im_title, im_door, im_stage, im_skybox, im_demon, im_gameover;
+        public Texture2D im_title, im_door, im_stage, im_skybox, im_demon, im_gameover;
+        public Texture2D[] im_civvies;
         public Texture2D[] im_clouds;
         public SpriteFont ft_hud24;
 
@@ -74,8 +75,7 @@ namespace DemonDoor {
             game = this;
             _activeCues = new List<Cue>();
 
-            // TODO: Add your initialization logic here
-            im_civvie = Content.Load<Texture2D>( "art/civilian_01" );
+            // TODO: Add your initialization logic here         
             im_title = Content.Load<Texture2D>( "art/title" );
             im_door = Content.Load<Texture2D>( "art/door" );
             im_stage = Content.Load<Texture2D>( "art/stage" );
@@ -92,6 +92,12 @@ namespace DemonDoor {
                 tmpLst.Add( Content.Load<Texture2D>("art/cloud_0"+i) );
             }
             im_clouds = tmpLst.ToArray();
+
+            tmpLst = new List<Texture2D>();
+            for( int i = 1; i < 8; i++ ) {
+                tmpLst.Add( Content.Load<Texture2D>( "art/civilian_0" + i ) );
+            }
+            im_civvies = tmpLst.ToArray();
 
             ft_hud24 = Content.Load<SpriteFont>( "HUD24" );
 
