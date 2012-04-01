@@ -26,7 +26,7 @@ namespace DemonDoor
             animationAtlas = new Dictionary<AnimationState, Filmstrip>();
             animationAtlas[AnimationState.Idle] = createFilmstrip(0);
             animationAtlas[AnimationState.WalkingRight] = createFilmstrip(new[] { 1, 0, 2, 0 });
-            animationAtlas[AnimationState.WalkingLeft] = createFilmstrip(new[] { 3, 4 });
+            animationAtlas[AnimationState.WalkingLeft] = createFilmstrip(new[] { 3, 7, 4, 7 });
             animationAtlas[AnimationState.Flying] = createFilmstrip(5);
             animationAtlas[AnimationState.Dead] = createFilmstrip(6);
 
