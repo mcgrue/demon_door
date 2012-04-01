@@ -57,7 +57,7 @@ namespace DemonDoor
             var doorSprite = new DoorSprite(doorSpriteBasis);
             _gun = new Gun(_world,
                             Coords.Screen2Physics(new Vector2 { X = 32, Y = 206 }),
-                            Coords.Screen2Physics(new Vector2 { X = 38, Y = 24 }, true),
+                            Coords.Screen2Physics(new Vector2 { X = 19, Y = 12 }, true),
                             doorSprite);
             _gun.Impulse = new Vector2 { X = -10, Y = 10 };
 
