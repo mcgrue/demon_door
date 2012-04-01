@@ -7,10 +7,10 @@ using XNAVERGE;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 
-namespace DemonDoor {
-
-    class DoorSprite {
-
+namespace DemonDoor
+{
+    class WindowSprite
+    {
         public Texture2D texture { get; set; }
         private Filmstrip currentAnimation;
 
@@ -18,23 +18,15 @@ namespace DemonDoor {
 
         public enum AnimationState
         {
-            Stopped, Slow, Fast,
-            Medium
+            Idle
         }
 
-        public DoorSprite( SpriteBasis sb ) {
+        public WindowSprite(SpriteBasis sb)
+        {
             animationAtlas = new Dictionary<AnimationState, Filmstrip>();
-            animationAtlas[AnimationState.Stopped] = createFilmstrip( new[] { 0 } );
-            animationAtlas[AnimationState.Slow] = createFilmstrip(new[] { 0, 1, 2, 1 });
-            animationAtlas[AnimationState.Medium] = createFilmstrip(new[] { 0, 1, 2, 1 }, 75);
-            animationAtlas[AnimationState.Fast] = createFilmstrip(new[] { 3, 4 });
+            animationAtlas[AnimationState.Idle] = createFilmstrip(0);
 
-            DrawDoor = (int x, int y) => {
-                Sprite.Update();
-                Sprite.Draw();
-            };
-
-            this.currentAnimation = animationAtlas[AnimationState.Slow];
+            this.currentAnimation = animationAtlas[AnimationState.Idle];
             this.Sprite = new Sprite(sb, currentAnimation);
         }
 
@@ -43,8 +35,6 @@ namespace DemonDoor {
             this.currentAnimation = animationAtlas[state];
             Sprite.set_animation(currentAnimation);
         }
-
-
 
         /// <summary>
         /// Creates a filmstrip with a single animation frame
@@ -60,12 +50,10 @@ namespace DemonDoor {
         /// </summary>
         /// <param name="frames"></param>
         /// <returns></returns>
-        private Filmstrip createFilmstrip(IList<int> frames, int framerate = 150)
+        private Filmstrip createFilmstrip(IList<int> frames,  bool randomizedStartFrame = false)
         {
-            return new Filmstrip(new Point(38, 24), frames, framerate);
+            return new Filmstrip(new Point(20, 17), frames, 150, randomizedStartFrame);
         }
-
-        public RenderDelegate DrawDoor { get; set; }
 
         private Dictionary<AnimationState, Filmstrip> animationAtlas;
     }

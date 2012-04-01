@@ -35,7 +35,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\grue\demon_door\DemonDoor\DemonDoor\bin\x86\Debug\Content\art\stage.xnb</Output>
-      <Time>2012-03-31T19:08:22.351-07:00</Time>
+      <Time>2012-03-31T21:23:26.106-07:00</Time>
     </Item>
     <Item>
       <Source>art\title.png</Source>
@@ -53,7 +53,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\grue\demon_door\DemonDoor\DemonDoor\bin\x86\Debug\Content\door.xnb</Output>
-      <Time>2012-03-31T15:51:38.146-07:00</Time>
+      <Time>2012-03-31T21:15:31.934-07:00</Time>
     </Item>
     <Item>
       <Source>stage.png</Source>
@@ -62,7 +62,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\grue\demon_door\DemonDoor\DemonDoor\bin\x86\Debug\Content\stage.xnb</Output>
-      <Time>2012-03-31T15:51:38.147-07:00</Time>
+      <Time>2012-03-31T21:15:31.967-07:00</Time>
     </Item>
     <Item>
       <Source>level1.xml</Source>
@@ -80,7 +80,7 @@
       <Processor>FontDescriptionProcessor</Processor>
       <Options>None</Options>
       <Output>C:\grue\demon_door\DemonDoor\DemonDoor\bin\x86\Debug\Content\HUD24.xnb</Output>
-      <Time>2012-03-31T18:23:38.473-07:00</Time>
+      <Time>2012-03-31T21:23:26.105-07:00</Time>
     </Item>
     <Item>
       <Source>art\skybox.png</Source>
