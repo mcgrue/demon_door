@@ -93,12 +93,18 @@ namespace XNAVERGE {
         }
 
         public void Update( GameTime gt ) {
-
-            if( _idt != null && _idt is IBrainyThing ) {
+<<<<<<< Updated upstream
+            if (_idt != null && _idt is IBrainyThing)
+            {
                 IBrainyThing brainy = _idt as IBrainyThing;
 
-                brainy.ProcessBehavior( gt );
+                brainy.ProcessBehavior(gt);
+=======
+            if( this.OnUpdate != null ) {
+                this.OnUpdate( gt );
             } else {
+
+
                 if( DEBUG ) Console.WriteLine( "ticksSinceLastUpdate: " + gt.ElapsedGameTime.Milliseconds );
                 if( DEBUG ) Console.WriteLine( this );
 
@@ -125,6 +131,7 @@ namespace XNAVERGE {
                         }
                     }
                 }
+>>>>>>> Stashed changes
             }
         }
 
