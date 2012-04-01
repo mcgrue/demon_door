@@ -10,23 +10,23 @@ using System;
 namespace DemonDoor
 {
 
-    class CivvieController : IDrawableThing, ICollidable, IBrainyThing
+    class CopController : IDrawableThing, ICollidable, IBrainyThing
     {
-        CivvieSprite myCorpse = null;
+        CopSprite copSprite = null;
         Vector2 screen;
 
-        internal Body _fsBody;
+        private Body _fsBody;
         private Shape _fsShape;
         private Fixture _fsFixture;
         private World _world;
 
         private enum BehaviorState
         {
-            Flying, Walking, Dead
+            Flying, Walking, Dead, Aiming, Shooting
         }
         private BehaviorState behaviorState = BehaviorState.Flying;
 
-        public CivvieController( World w, Vector2 r0, CivvieSprite sprite )
+        public CopController( World w, Vector2 r0, CopSprite sprite )
         {
             _world = w;
 
@@ -34,7 +34,7 @@ namespace DemonDoor
             _fsBody.BodyType = BodyType.Dynamic;
             _fsBody.Position = r0;
             
-            myCorpse = sprite;
+            copSprite = sprite;
 
             MakeLivingFixture();
         }
@@ -84,9 +84,9 @@ namespace DemonDoor
 
                 // maybe update the screen here?
 
-                myCorpse.Sprite.x = (int)screen.X - 8;
-                myCorpse.Sprite.y = (int)screen.Y - 8;
-                myCorpse.Sprite.Draw();
+                copSprite.Sprite.x = (int)screen.X - 8;
+                copSprite.Sprite.y = (int)screen.Y - 8;
+                copSprite.Sprite.Draw();
             };
 
             return _myDrawDelegate;
@@ -128,12 +128,7 @@ namespace DemonDoor
                 else if (_fsBody.LinearVelocity.Y < -20 && behaviorState == BehaviorState.Flying)
                 {
                     this.behaviorState = BehaviorState.Dead;
-                    myCorpse.SetAnimationState(CivvieSprite.AnimationState.Dead);
-                }
-
-                if (this.behaviorState == BehaviorState.Dead)
-                {
-                    _world.StopPhysicsing(_fsBody);
+                    copSprite.SetAnimationState(CopSprite.AnimationState.Dead);
                 }
             }
 
@@ -168,20 +163,20 @@ namespace DemonDoor
         {
             if (Math.Abs(_fsBody.LinearVelocity.Y) > 1 &&  behaviorState != BehaviorState.Dead) { 
                 behaviorState = BehaviorState.Flying;
-                myCorpse.SetAnimationState(CivvieSprite.AnimationState.Flying);
+                copSprite.SetAnimationState(CopSprite.AnimationState.Flying);
             }
             if (behaviorState == BehaviorState.Walking)
             {
-                myCorpse.SetAnimationState(CivvieSprite.AnimationState.WalkingLeft);
+                copSprite.SetAnimationState(CopSprite.AnimationState.WalkingLeft);
                 _fsBody.LinearVelocity = new Vector2(-20, _fsBody.LinearVelocity.Y);
                 _fsBody.Rotation = 0;
             }
         }
 
-        internal void Die()
+        private void Die()
         {
             this.behaviorState = BehaviorState.Dead;
-            myCorpse.SetAnimationState(CivvieSprite.AnimationState.Dead);
+            copSprite.SetAnimationState(CopSprite.AnimationState.Dead);
         }
     }
 }
