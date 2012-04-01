@@ -12,6 +12,9 @@ namespace DemonDoor
     class Level1Screen : Screen
     {
         public McGrenderStack mcg;
+
+        public WindowController[] windowControllerList;
+
         private World _world;
 
         private DoorController _gun;
@@ -110,7 +113,7 @@ namespace DemonDoor
                 new McgNode(_gun, l, 60, 200)
             );
 
-            var demonSpriteBasis = new SpriteBasis(9, 19, 7, 7);
+            var demonSpriteBasis = new SpriteBasis(10, 19, 7, 7);
             demonSpriteBasis.image = game1.im_demon;
             var demonSprite = new DemonSprite( demonSpriteBasis );
             _evilDemon = new DemonController( _world,
@@ -118,10 +121,28 @@ namespace DemonDoor
                 Coords.Screen2Physics(new Vector2 { X = 5, Y = 10 }, true),
                 demonSprite
             );
-
             rendernode = l.AddNode(
                 new McgNode(_evilDemon, l, -1, -1)
             );
+
+            List<WindowController> windowList = new List<WindowController>();
+            var windowSpriteBasis = new SpriteBasis( 14, 14, 9, 9 );
+            windowSpriteBasis.image = game1.im_windowbreak;
+            for( int i = 0; i < 6; i++ ) {
+                var windowSprite = new WindowSprite( windowSpriteBasis );
+                var windowController = new WindowController( _world,
+                    Coords.Screen2Physics( new Vector2 { X = 297, Y = ( 53 + ( i * 22 ) + ( i > 1 ? 1 : 0 ) + ( i > 2 ? 1 : 0 ) ) } ),
+                    Coords.Screen2Physics( new Vector2 { X = 7, Y = 7 }, true ),
+                    windowSprite
+                );
+                rendernode = l.AddNode(
+                    new McgNode( windowController, l, -1, -1 )
+                );
+
+                windowList.Add( windowController );
+            }
+
+            windowControllerList = windowList.ToArray();
 
             //spawn guys
             Vector2 spawnerR = Coords.Screen2Physics(new Vector2 { X = 325, Y = 218 });

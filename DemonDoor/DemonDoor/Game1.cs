@@ -20,7 +20,7 @@ namespace DemonDoor {
 
         public McGrenderStack mcg;
 
-        public Texture2D im_civvie, im_title, im_door, im_stage, im_skybox, im_demon, im_gameover, im_cop;
+        public Texture2D im_civvie, im_title, im_door, im_stage, im_skybox, im_demon, im_gameover, im_cop, im_windowbreak;
         public Texture2D[] im_civvies;
 
         public Texture2D[] im_clouds;
@@ -82,6 +82,7 @@ namespace DemonDoor {
             im_demon = Content.Load<Texture2D>( "art/demon" );
             im_gameover = Content.Load<Texture2D>("art/gameover");
             im_cop = Content.Load<Texture2D>("art/police_01");
+            im_windowbreak = Content.Load<Texture2D>( "art/window_break" );
 
             _engine = new AudioEngine("Content/music.xgs");
             _sb = new SoundBank(_engine, "Content/Sound Bank.xsb");
