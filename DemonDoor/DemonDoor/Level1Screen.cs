@@ -106,7 +106,6 @@ namespace DemonDoor
             
         }
 
-
         /// <summary>
         /// Allows the game to run logic such as updating the world,
         /// checking for collisions, gathering input, and playing audio.
@@ -140,7 +139,7 @@ namespace DemonDoor
             string doorSpeedDesc = string.Format("door speed: {0}", _gun.DoorSpeedDescription);
             Vector2 size = game1.ft_hud24.MeasureString(doorSpeedDesc);
 
-            batch.DrawString(game1.ft_hud24, doorSpeedDesc, new Vector2 { X = (640 - size.X) / 2, Y = 10 }, Color.White);
+            batch.DrawString(game1.ft_hud24, doorSpeedDesc, new Vector2 { X = (640 - size.X) / 2, Y = 480 - 5 - size.Y }, Color.White);
         }
     }
 }
