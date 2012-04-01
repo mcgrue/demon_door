@@ -21,6 +21,7 @@ namespace XNAVERGE {
         Boolean isMoving;
         public BasicDelegate OnStop = null;
         public RenderDelegate OnDraw = null;
+        public UpdateDelegate OnUpdate = null; 
 
         public bool DEBUG = false;
 
@@ -85,33 +86,9 @@ namespace XNAVERGE {
             return isMoving;
         }
 
-        public void Update( int ticksSinceLastUpdate ) {
-
-if( DEBUG ) Console.WriteLine( "ticksSinceLastUpdate: " + ticksSinceLastUpdate );
-if( DEBUG ) Console.WriteLine( this );
-
-            if( isMoving ) {
-
-if( DEBUG ) Console.WriteLine( "IS MOVING" );
-                if( ticksSinceLastUpdate > 0 ) {
-                    this.cur_x += ( (float)tick_x * (float)ticksSinceLastUpdate );
-                    this.cur_y += ( (float)tick_y * (float)ticksSinceLastUpdate );
-
-if( DEBUG ) Console.WriteLine( this );
-                    if( layer.stack.systime >= final_time ) {
-if( DEBUG ) Console.WriteLine( "STOPPING" );
-                        isMoving = false;
-                        this.cur_x = this.final_x;
-                        this.cur_y = this.final_y;
-
-//this.Reverse();
-
-                        if( OnStop != null ) {
-                            OnStop();
-                            //OnStop = null;
-                        }
-                    }
-                }
+        public void Update( GameTime gt ) {
+            if( this.OnUpdate != null ) {
+                this.OnUpdate(gt);
             }
         }
 
@@ -124,7 +101,6 @@ if( DEBUG ) Console.WriteLine( "STOPPING" );
                 OnDraw( (int)this.cur_x, (int)this.cur_y );
             }
         }
-
 
         public void Reverse() {
             float temp_x, temp_y;
@@ -172,9 +148,9 @@ if( DEBUG ) Console.WriteLine( "STOPPING" );
             return n;
         }
 
-        public void Update( int ticksSinceLastUpdate ) {
+        public void Update( GameTime gt ) {
             for( int i = 0; i < nodes.Count; i++ ) {
-                nodes[i].Update( ticksSinceLastUpdate );
+                nodes[i].Update( gt );
             }
         }
 
@@ -200,6 +176,11 @@ if( DEBUG ) Console.WriteLine( "STOPPING" );
             systime = (int)st;
         }
 
+        GameTime _gt = null;
+        public void setGameTime( GameTime gt ) {
+            _gt = gt;
+        }
+
         public McGrenderStack() {
             layers = new List<McgLayer>();
         }
@@ -220,19 +201,24 @@ if( DEBUG ) Console.WriteLine( "STOPPING" );
             return null;
         }
 
-        public void Update( int ticksSinceLastUpdate ) {
+        public void Update() {
+            Update( _gt );
+        }
+
+        public void Update( GameTime gt ) {
             for( int i = 0; i < layers.Count; i++ ) {
-                layers[i].Update( ticksSinceLastUpdate );
+                layers[i].Update( gt );
             }
         }
 
         public void Draw() {
-            Update( systime - prev_systime );
+            //Update( systime - prev_systime );
 
             spritebatch.Begin();
             for( int i = 0; i < layers.Count; i++ ) {
                 layers[i].Draw();
             }
+
             spritebatch.End();
         }
     }

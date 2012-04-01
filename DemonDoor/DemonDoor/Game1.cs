@@ -92,7 +92,8 @@ namespace DemonDoor {
             for( int i = 0; i < 50; i++ ) {
                 var civvieSprite = new CivvieSprite( civSpriteBasis );
 
-                Corpse myCorpse = new Corpse(
+                Sprite sprite = new Sprite(civSpriteBasis, new Filmstrip(new Point(16, 16), new[] { 1, 2, 3, 4, 5 }, 100));
+                CivvieController myCorpse = new CivvieController(
                     _world,
                     new Vector2 { X = 0, Y = 100 },
                     civvieSprite
@@ -186,6 +187,7 @@ namespace DemonDoor {
             }
 
             _world.Simulate(gameTime);
+            mcg.setGameTime( gameTime );
 
             //Console.Out.WriteLine("@{3}: ({0}, {1}), {2}", _test.Position.X, _test.Position.Y, _test.Theta, gameTime.TotalGameTime);
             systime = gameTime.TotalGameTime.Milliseconds;

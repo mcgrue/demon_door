@@ -2,24 +2,6 @@
 <XnaContent xmlns:Pipeline="Microsoft.Xna.Framework.Content.Pipeline">
   <Asset Type="Pipeline:BuildItemCollection">
     <Item>
-      <Source>civilian_01.png</Source>
-      <Name>civilian_01</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\grue\demon_door\DemonDoor\DemonDoor\bin\x86\Debug\Content\civilian_01.xnb</Output>
-      <Time>2012-03-30T20:47:59.155-07:00</Time>
-    </Item>
-    <Item>
-      <Source>title.png</Source>
-      <Name>title</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\grue\demon_door\DemonDoor\DemonDoor\bin\x86\Debug\Content\title.xnb</Output>
-      <Time>2012-03-30T21:37:40.472-07:00</Time>
-    </Item>
-    <Item>
       <Source>door.png</Source>
       <Name>door</Name>
       <Importer>TextureImporter</Importer>
@@ -36,6 +18,51 @@
       <Options>None</Options>
       <Output>C:\grue\demon_door\DemonDoor\DemonDoor\bin\x86\Debug\Content\stage.xnb</Output>
       <Time>2012-03-31T15:51:38.147-07:00</Time>
+    </Item>
+    <Item>
+      <Source>art\civilian_01.png</Source>
+      <Name>art\civilian_01</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\grue\demon_door\DemonDoor\DemonDoor\bin\x86\Debug\Content\art\civilian_01.xnb</Output>
+      <Time>2012-03-31T14:50:46.363-07:00</Time>
+    </Item>
+    <Item>
+      <Source>art\door.png</Source>
+      <Name>art\door</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\grue\demon_door\DemonDoor\DemonDoor\bin\x86\Debug\Content\art\door.xnb</Output>
+      <Time>2012-03-31T13:20:39.595-07:00</Time>
+    </Item>
+    <Item>
+      <Source>art\police_01.png</Source>
+      <Name>art\police_01</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\grue\demon_door\DemonDoor\DemonDoor\bin\x86\Debug\Content\art\police_01.xnb</Output>
+      <Time>2012-03-31T15:50:25.153-07:00</Time>
+    </Item>
+    <Item>
+      <Source>art\stage.png</Source>
+      <Name>art\stage</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\grue\demon_door\DemonDoor\DemonDoor\bin\x86\Debug\Content\art\stage.xnb</Output>
+      <Time>2012-03-31T16:20:39.482-07:00</Time>
+    </Item>
+    <Item>
+      <Source>art\title.png</Source>
+      <Name>art\title</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\grue\demon_door\DemonDoor\DemonDoor\bin\x86\Debug\Content\art\title.xnb</Output>
+      <Time>2012-03-31T13:20:39.597-07:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
