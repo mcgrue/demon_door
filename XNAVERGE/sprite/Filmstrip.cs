@@ -41,7 +41,6 @@ namespace XNAVERGE {
             int animationIndex = (int)(timeSinceAnimationStarted.TotalMilliseconds / frameDuration);
 
             animationIndex %= frames.Count; //loop animation
-            Console.WriteLine("Animation Index " + animationIndex);
 
             Rectangle result = new Rectangle(0, 0, frameSize.X, frameSize.Y);
             result.X = frameSize.X * frames[animationIndex];
