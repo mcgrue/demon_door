@@ -27,7 +27,7 @@ namespace DemonDoor
             mcg = new McGrenderStack();
             Game1.game.setMcGrender(mcg);
 
-            mcg.AddLayer("background");
+            //mcg.AddLayer("background");
 
             //McgLayer l = mcg.GetLayer("background");
             ///// this is wrong.
@@ -56,13 +56,27 @@ namespace DemonDoor
             }
         }
 
+        private void DrawCentered(SpriteBatch batch, string text, int y, Color color)
+        {
+            Game1 game1 = (Game1)Game1.game;
+            Vector2 size = game1.ft_hud24.MeasureString(text);
+
+            batch.DrawString(game1.ft_hud24, text, new Vector2 { X = (640 - size.X) / 2, Y = y }, color);
+        }
+
         internal override void Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch batch, Microsoft.Xna.Framework.GameTime gameTime)
         {
             Game1 game1 = (Game1)Game1.game;
-            string doorSpeedDesc = string.Format("game over");
-            Vector2 size = game1.ft_hud24.MeasureString(doorSpeedDesc);
+            Vector2 size;
 
-            batch.DrawString(game1.ft_hud24, doorSpeedDesc, new Vector2 { X = (640 - size.X) / 2, Y = 240 }, Color.White);
+            Color color = Color.White;
+            DrawCentered(batch, "You were slain by a flying corpse,", 120, color);
+            DrawCentered(batch, "borne aloft on the wings of your", 160, color);
+            DrawCentered(batch, "revolving door.", 200, color);
+
+            DrawCentered(batch, "What a shame.", 280, color);
+
+            DrawCentered(batch, "- game over -", 360, Color.Red);
         }
 
     }

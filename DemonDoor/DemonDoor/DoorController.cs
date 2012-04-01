@@ -190,19 +190,19 @@ namespace DemonDoor
                 }
                 else if (GunImpulse < 0.3 * MaxGunImpulse)
                 {
-                    return "a little much";
+                    return "immoderate";
                 }
                 else if (GunImpulse < 0.4 * MaxGunImpulse)
                 {
-                    return "way too much";
+                    return "a little much";
                 }
                 else if (GunImpulse < 0.5 * MaxGunImpulse)
                 {
-                    return "worrisome";
+                    return "a lot much";
                 }
                 else if (GunImpulse < 0.6 * MaxGunImpulse)
                 {
-                    return "crazy";
+                    return "worrisome";
                 }
                 else if (GunImpulse < 0.7 * MaxGunImpulse)
                 {
@@ -210,11 +210,11 @@ namespace DemonDoor
                 }
                 else if (GunImpulse < 0.8 * MaxGunImpulse)
                 {
-                    return "¡picante!";
+                    return "¡peligroso!";
                 }
                 else
                 {
-                    return "¡muy picante!";
+                    return "¡muy peligroso!";
                 }
             }
         }
