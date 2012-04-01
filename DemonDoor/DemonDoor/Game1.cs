@@ -34,6 +34,8 @@ namespace DemonDoor {
 
         private Cue _bgm;
 
+        private IList<Cue> _activeCues;
+
         internal void LoadLevel(string level)
         {
             Screen s = null;
@@ -44,6 +46,13 @@ namespace DemonDoor {
                 case "level1": s = new Level1Screen(); break;
                 case "gameover": s = new GameOverScreen(); break;
             }
+
+            foreach (Cue q in _activeCues)
+            {
+                q.Stop(AudioStopOptions.AsAuthored);
+            }
+
+            _activeCues.Clear();
 
             _level = s;
             _level.Load();
@@ -63,6 +72,7 @@ namespace DemonDoor {
         /// </summary>
         protected override void Initialize() {
             game = this;
+            _activeCues = new List<Cue>();
 
             // TODO: Add your initialization logic here
             im_civvie = Content.Load<Texture2D>( "art/civilian_01" );
@@ -136,6 +146,8 @@ namespace DemonDoor {
 
             // TODO: Add your update logic here
 
+            _activeCues = _activeCues.Where(q => !(q.IsStopped)).ToList();
+
             _level.Update(gameTime);
             base.Update(gameTime);
         }
@@ -194,6 +206,7 @@ namespace DemonDoor {
         {
             Cue q = _sb.GetCue(name);
             q.Play();
+            _activeCues.Add(q);
         }
     }
 }

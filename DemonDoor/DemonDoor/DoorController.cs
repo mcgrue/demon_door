@@ -12,7 +12,6 @@ namespace DemonDoor
 {
     class DoorController : ICollidable, IDrawableThing
     {
-
         DoorSprite sprite;
 
         public DoorController(World w, Vector2 r, Vector2 size, DoorSprite s)
@@ -53,6 +52,7 @@ namespace DemonDoor
                 //Console.WriteLine("collided with corpse {0}, kickin' it", c);
 
                 other.Body.ApplyLinearImpulse(Impulse);
+                Game1.game.PlayCue("door_hit");
                 _alreadyShot.Add(other);
             }
 
