@@ -54,7 +54,12 @@ namespace DemonDoor
 
         public void Collided(ICollidable other) {
             if( other is CivvieController ) {
-                (Game1.game as Game1).LoadLevel("gameover");
+
+                if( ( sprite.CurrentState == DemonSprite.AnimationState.Idle || sprite.CurrentState == DemonSprite.AnimationState.Pressing ) ) {
+                    ( Game1.game as Game1 ).LoadLevel( "gameover" );
+                } else {
+                    /// do something if a "miss" happens?  disintegrate the corpse?
+                }
             }
         }
 

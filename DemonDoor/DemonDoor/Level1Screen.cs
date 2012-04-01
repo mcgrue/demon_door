@@ -51,8 +51,13 @@ namespace DemonDoor
             Wall _wall1 = new Wall(_world, verts);
             //Wall _wall1 = new Wall(_world, _666pos.X, -1);
 
-            SpriteBasis civSpriteBasis = new SpriteBasis(16, 16, 7, 7);
-            civSpriteBasis.image = game1.im_civvie;
+            List<SpriteBasis> civilianList = new List<SpriteBasis>();
+            
+            for( int i = 0; i < game1.im_civvies.Length; i++ ) {
+                SpriteBasis civSpriteBasis = new SpriteBasis( 16, 16, 7, 7 );
+                civSpriteBasis.image = game1.im_civvies[i];
+                civilianList.Add( civSpriteBasis );
+            }
 
             SpriteBasis copSpriteBasis = new SpriteBasis(16, 16, 10, 10);
             copSpriteBasis.image = game1.im_cop;
@@ -120,7 +125,7 @@ namespace DemonDoor
 
             //spawn guys
             Vector2 spawnerR = Coords.Screen2Physics(new Vector2 { X = 325, Y = 218 });
-            var civvieSpawner = new CivvieSpawner(_world, l, spawnerR, TimeSpan.FromSeconds(1), civSpriteBasis, 1000);
+            var civvieSpawner = new CivvieSpawner( _world, l, spawnerR, TimeSpan.FromSeconds( 1 ), civilianList.ToArray(), 1000 );
             l.AddNode(new McgNode(civvieSpawner, l, 80, 20));
 
             //spawn cops

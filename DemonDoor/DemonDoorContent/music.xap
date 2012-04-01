@@ -13,7 +13,7 @@ Global Settings
 {
     Xbox File = Xbox\music.xgs;
     Windows File = Win\music.xgs;
-    Header File = music.h;
+    Header File = C:\Users\Colin Bayer\Documents\demon_door\DemonDoor\DemonDoorContent\music.h;
     Exclude Category Names = 0;
     Exclude Variable Names = 0;
     Last Modified Low = 2998207351;
@@ -213,6 +213,19 @@ Global Settings
         Initial Value = 0.000000;
         Min = 0.000000;
         Max = 1000000.000000;
+    }
+
+    Compression Preset
+    {
+        Name = Compression Preset;
+        Xbox Format Tag = 357;
+        Target Sample Rate = 48000;
+        XMA Quality = 60;
+        Find Best Quality = 0;
+        High Freq Cut = 0;
+        Loop = 0;
+        PC Format Tag = 353;
+        WMA Quality = 100;
     }
 }
 
@@ -424,7 +437,7 @@ Sound Bank
     Sound
     {
         Name = demon_door;
-        Volume = -1200;
+        Volume = -1610;
         Pitch = 0;
         Priority = 0;
 
@@ -880,7 +893,7 @@ Sound Bank
 
         Instance Limit
         {
-            Max Instances = 20;
+            Max Instances = 2;
             Behavior = 0;
 
             Crossfade

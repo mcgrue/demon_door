@@ -50,9 +50,12 @@ namespace DemonDoor
             if ((other.UserData is CivvieController || other.UserData is CopController) && !_alreadyShot.Contains(other)) {
                 //Console.WriteLine("collided with corpse {0}, kickin' it", c);
 
-                other.Body.ApplyLinearImpulse(Impulse);
-                Game1.game.PlayCue("door_hit");
-                _alreadyShot.Add(other);
+                if (Impulse.Length() > 0)
+                {
+                    other.Body.ApplyLinearImpulse(Impulse);
+                    Game1.game.PlayCue("door_hit");
+                    _alreadyShot.Add(other);
+                }
             }
 
             return false;
@@ -173,7 +176,7 @@ namespace DemonDoor
                 sprite.SetAnimationState(DoorSprite.AnimationState.Fast);
             } else if (GunImpulse / MaxGunImpulse > 0.5) {
                 sprite.SetAnimationState(DoorSprite.AnimationState.Medium);
-            } else if (GunImpulse / MaxGunImpulse > 0.1) {
+            } else if (GunImpulse / MaxGunImpulse > 0) {
                 sprite.SetAnimationState(DoorSprite.AnimationState.Slow);
             } else {
                 sprite.SetAnimationState(DoorSprite.AnimationState.Stopped);
@@ -185,6 +188,10 @@ namespace DemonDoor
         {
             get
             {
+                if (GunImpulse == 0)
+                {
+                    return "stopped";
+                }
                 if (GunImpulse < 0.1 * MaxGunImpulse)
                 {
                     return "mild";
