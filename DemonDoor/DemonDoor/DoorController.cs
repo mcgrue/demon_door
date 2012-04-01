@@ -149,9 +149,9 @@ namespace DemonDoor
 
 
 
-        private const float MaxGunImpulse = 2000;
+        private const float MaxGunImpulse = 1000;
         private const float MinGunImpulse = 0;
-        private const float GunImpulseKick = 1000;
+        private const float GunImpulseKick = 80;
         private const float GunImpulseDecayTime = 4;
 
         public float GunImpulse { get; private set; }
@@ -166,6 +166,8 @@ namespace DemonDoor
 
                 if (revGun && !_gunLatch)
                     GunImpulse += GunImpulseKick;
+
+                _gunLatch = revGun;
             }
 
             // apply a bit of decay
