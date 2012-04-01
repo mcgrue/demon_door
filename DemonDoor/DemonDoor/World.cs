@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using FarseerPhysics.Collision.Shapes;
 using FarseerPhysics.Dynamics;
 using FarseerPhysics.Dynamics.Contacts;
@@ -34,7 +35,21 @@ namespace DemonDoor
 
             _fsWorld.Step((float)step.TotalSeconds);
 
+            foreach (Body b in _pendingStopBodies)
+            {
+                b.BodyType = BodyType.Static;
+                b.CollidesWith = Category.None;
+                b.IsSensor = true;
+            }
+
             _last = now.TotalGameTime;
+        }
+
+        private IList<Body> _pendingStopBodies = new List<Body>();
+
+        internal void StopPhysicsing(Body b)
+        {
+            _pendingStopBodies.Add(b);
         }
 
         internal Body NewBody()

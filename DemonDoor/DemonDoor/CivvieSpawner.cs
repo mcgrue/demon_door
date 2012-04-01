@@ -14,16 +14,16 @@ namespace DemonDoor
         private McgLayer layer;
         private World world;
         private Vector2 location;
-        private SpriteBasis civvieSpriteBasis;
+        private SpriteBasis[] civvieSpriteBasisList;
         private int spawnRateFuzzMillis;
 
-        public CivvieSpawner(World world, McgLayer layer, Vector2 location, TimeSpan spawnRate, SpriteBasis civvieSpriteBasis, int spawnRateFuzzMillis = 0)
+        public CivvieSpawner(World world, McgLayer layer, Vector2 location, TimeSpan spawnRate, SpriteBasis[] civvieSpriteBasis, int spawnRateFuzzMillis = 0)
         {
             this.layer = layer;
             this.world = world;
             this.spawnRate = spawnRate;
             this.location = location;
-            this.civvieSpriteBasis = civvieSpriteBasis;
+            this.civvieSpriteBasisList = civvieSpriteBasis;
             this.spawnRateFuzzMillis = spawnRateFuzzMillis;
         }
         
@@ -42,12 +42,21 @@ namespace DemonDoor
             return (x, y) => { };
         }
 
+        private static int nextIdx = 0;
+        public int getnextCivvieIdx() {
+            nextIdx++;
+            if( nextIdx >= civvieSpriteBasisList.Length ) {
+                nextIdx = 0;
+            }
+            return nextIdx;
+        }
+
         public void ProcessBehavior(Microsoft.Xna.Framework.GameTime time)
         {
             spawnTimeAccumulator += time.ElapsedGameTime;
             if (spawnTimeAccumulator > spawnRate)
             {
-                layer.AddNode(new McgNode(new CivvieController(world, new Vector2(location.X, location.Y), new CivvieSprite(civvieSpriteBasis)), layer, 
+                layer.AddNode(new McgNode(new CivvieController(world, new Vector2(location.X, location.Y), new CivvieSprite(civvieSpriteBasisList[getnextCivvieIdx()])), layer, 
                     (int)location.X, (int)location.Y));
                 spawnTimeAccumulator = TimeSpan.FromMilliseconds(VERGEGame.rand.Next(-spawnRateFuzzMillis, 0));
             }
