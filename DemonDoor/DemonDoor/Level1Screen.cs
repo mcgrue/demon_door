@@ -65,14 +65,14 @@ namespace DemonDoor
                 new McgNode(_gun, l, 60, 200)
             );
 
-            for (int i = 0; i < 50; i++)
+            for (int i = 0; i < 20; i++)
             {
                 var civvieSprite = new CivvieSprite(civSpriteBasis);
 
                 Sprite sprite = new Sprite(civSpriteBasis, new Filmstrip(new Point(16, 16), new[] { 1, 2, 3, 4, 5 }, 100));
                 CivvieController myCorpse = new CivvieController(
                     _world,
-                    new Vector2 { X = 0, Y = 100 },
+                    new Vector2 { X = 0, Y = 20 },
                     civvieSprite
                 );
 
@@ -128,7 +128,7 @@ namespace DemonDoor
                 // update gun impulse.
                 UpdateGunImpulse(gameTime);
 
-                Vector2 dir = new Vector2 { X = -1, Y = 1 };
+                Vector2 dir = new Vector2 { X = 1, Y = 1 };
                 dir.Normalize();
 
                 _gun.Impulse = dir * GunImpulse;

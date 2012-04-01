@@ -117,6 +117,7 @@
     <Compile Include="Coords.cs" />
     <Compile Include="CivvieController.cs" />
     <Compile Include="Door.cs" />
+    <Compile Include="EvilWindow.cs" />
     <Compile Include="Gun.cs" />
     <Compile Include="ICollidable.cs" />
     <Compile Include="Level1Screen.cs" />
