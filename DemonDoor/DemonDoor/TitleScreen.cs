@@ -12,6 +12,15 @@ namespace DemonDoor
     class TitleScreen : Screen
     {
         public McGrenderStack mcg;
+
+        internal override string BgBgBg
+        {
+            get
+            {
+                return "demon_door_intro";
+            }
+        }
+
         internal override void Load()
         {
             Game1 game1 = (Game1)Game1.game;

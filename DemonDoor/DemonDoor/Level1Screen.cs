@@ -17,6 +17,11 @@ namespace DemonDoor
         private DoorController _gun;
         private DemonController _evilDemon;
 
+        internal override string BgBgBg
+        {
+            get { return "demon_door"; }
+        }
+
         internal override void Load()
         {
             Game1 game1 = (Game1)Game1.game;

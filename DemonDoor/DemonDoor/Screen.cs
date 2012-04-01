@@ -14,5 +14,7 @@ namespace DemonDoor
         internal abstract void Update(GameTime gameTime);
 
         internal abstract void Draw(SpriteBatch batch, GameTime gameTime);
+
+        internal virtual string BgBgBg { get { return null; } }
     }
 }

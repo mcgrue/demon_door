@@ -28,6 +28,12 @@ namespace DemonDoor {
 
         private Screen _level;
 
+        private AudioEngine _engine;
+        private SoundBank _sb;
+        private WaveBank _wb;
+
+        private Cue _bgm;
+
         internal void LoadLevel(string level)
         {
             Screen s = null;
@@ -41,6 +47,17 @@ namespace DemonDoor {
 
             _level = s;
             _level.Load();
+
+            if (_bgm != null)
+            {
+                _bgm.Stop(AudioStopOptions.AsAuthored);
+            }
+            if (_level.BgBgBg != null)
+            {
+                Cue cue = _sb.GetCue(_level.BgBgBg);
+                cue.Play();
+                _bgm = cue;
+            }
         }
 
         /// <summary>
@@ -59,6 +76,10 @@ namespace DemonDoor {
             im_stage = Content.Load<Texture2D>( "art/stage" );
             im_skybox = Content.Load<Texture2D>( "art/skybox" );
             im_demon = Content.Load<Texture2D>( "art/demon" );
+
+            _engine = new AudioEngine("Content/music.xgs");
+            _sb = new SoundBank(_engine, "Content/Sound Bank.xsb");
+            _wb = new WaveBank(_engine, "Content/Wave Bank.xwb");
 
             List<Texture2D> tmpLst = new List<Texture2D>();
             for( int i = 1; i < 10; i++ ) {
