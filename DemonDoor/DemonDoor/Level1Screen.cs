@@ -12,11 +12,7 @@ namespace DemonDoor
     class Level1Screen : Screen
     {
         public McGrenderStack mcg;
-        //Texture2D im_civvie, im_title, im_door, im_stage;
-        //SpriteFont ft_hud24;
-
         private World _world;
-        //private Corpse _test;
         private Gun _gun;
 
 
@@ -119,8 +115,6 @@ namespace DemonDoor
             // and limit to range
             GunImpulse = Math.Max(MinGunImpulse, GunImpulse);
             GunImpulse = Math.Min(MaxGunImpulse, GunImpulse);
-
-            //Console.Out.WriteLine("gun impulse is {0}", GunImpulse);
         }
 
         /// <summary>
