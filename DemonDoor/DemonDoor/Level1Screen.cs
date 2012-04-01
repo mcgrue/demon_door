@@ -100,24 +100,8 @@ namespace DemonDoor
 
             //spawn guys
             var civvieSprite = new CivvieSprite(civSpriteBasis);
-            var civvieSpawner = new CivvieSpawner(_world, l, new Point(80, 1), TimeSpan.FromSeconds(1), civvieSprite);
+            var civvieSpawner = new CivvieSpawner(_world, l, new Point(80, 1), TimeSpan.FromSeconds(1), civvieSprite, 1000);
             l.AddNode(new McgNode(civvieSpawner, l, 80, 20));
-            //for (int i = 0; i < 20; i++)
-            //{
-            //    CivvieController civvieController = new CivvieController(
-            //        _world,
-            //        new Vector2 { X = VERGEGame.rand.Next(-50,50), Y = 0 },
-            //        civvieSprite
-            //    );
-
-            //    civvieSprite.SetAnimationState(CivvieSprite.AnimationState.WalkingLeft);
-
-            //    rendernode = l.AddNode(
-            //        new McgNode(civvieController, l, Game1.rand.Next(0, 310), Game1.rand.Next(0, 50))
-            //    );
-            //}
-            
-            
         }
 
         /// <summary>
