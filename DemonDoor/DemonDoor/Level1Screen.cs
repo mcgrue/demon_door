@@ -98,23 +98,24 @@ namespace DemonDoor
                 new McgNode(_evilwindow, l, 60, 200)
                 );
 
-            for (int i = 0; i < 20; i++)
-            {
-                var civvieSprite = new CivvieSprite(civSpriteBasis);
+            //spawn guys
+            var civvieSprite = new CivvieSprite(civSpriteBasis);
+            var civvieSpawner = new CivvieSpawner(_world, l, new Point(80, 1), TimeSpan.FromSeconds(1), civvieSprite);
+            l.AddNode(new McgNode(civvieSpawner, l, 80, 20));
+            //for (int i = 0; i < 20; i++)
+            //{
+            //    CivvieController civvieController = new CivvieController(
+            //        _world,
+            //        new Vector2 { X = VERGEGame.rand.Next(-50,50), Y = 0 },
+            //        civvieSprite
+            //    );
 
-                Sprite sprite = new Sprite(civSpriteBasis, new Filmstrip(new Point(16, 16), new[] { 1, 2, 3, 4, 5 }, 100));
-                CivvieController myCorpse = new CivvieController(
-                    _world,
-                    new Vector2 { X = 0, Y = 20 },
-                    civvieSprite
-                );
+            //    civvieSprite.SetAnimationState(CivvieSprite.AnimationState.WalkingLeft);
 
-                civvieSprite.SetAnimationState(CivvieSprite.AnimationState.WalkingLeft);
-
-                rendernode = l.AddNode(
-                    new McgNode(myCorpse, l, Game1.rand.Next(0, 310), Game1.rand.Next(0, 50))
-                );
-            }
+            //    rendernode = l.AddNode(
+            //        new McgNode(civvieController, l, Game1.rand.Next(0, 310), Game1.rand.Next(0, 50))
+            //    );
+            //}
             
             
         }

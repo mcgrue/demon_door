@@ -113,6 +113,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CivvieSpawner.cs" />
     <Compile Include="CivvieSprite.cs" />
     <Compile Include="Coords.cs" />
     <Compile Include="CivvieController.cs" />
