@@ -48,15 +48,10 @@ namespace DemonDoor {
             _level = s;
             _level.Load();
 
-            if (_bgm != null)
+            if (_musicEnabled)
             {
-                _bgm.Stop(AudioStopOptions.AsAuthored);
-            }
-            if (_level.BgBgBg != null)
-            {
-                Cue cue = _sb.GetCue(_level.BgBgBg);
-                cue.Play();
-                _bgm = cue;
+                KillMusic();
+                StartMusic();
             }
         }
 
@@ -115,6 +110,8 @@ namespace DemonDoor {
 
         int systime;
 
+        ButtonState _yLast = ButtonState.Released;
+
         /// <summary>
         /// Allows the game to run logic such as updating the world,
         /// checking for collisions, gathering input, and playing audio.
@@ -126,12 +123,55 @@ namespace DemonDoor {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
 
+            ButtonState yNow = GamePad.GetState(PlayerIndex.One).Buttons.Y;
+
+            if (yNow == ButtonState.Pressed && _yLast == ButtonState.Released)
+            {
+                ToggleMusic();
+            }
+
+            _yLast = yNow;
+
             systime = gameTime.TotalGameTime.Milliseconds;
 
             // TODO: Add your update logic here
 
             _level.Update(gameTime);
             base.Update(gameTime);
+        }
+
+        bool _musicEnabled = true;
+
+        private void ToggleMusic()
+        {
+            if (_musicEnabled)
+            {
+                KillMusic();
+                _musicEnabled = false;
+            }
+            else
+            {
+                StartMusic();
+                _musicEnabled = true;
+            }
+        }
+
+        private void KillMusic()
+        {
+            if (_bgm != null)
+            {
+                _bgm.Stop(AudioStopOptions.AsAuthored);
+            }
+        }
+
+        private void StartMusic()
+        {
+            if (_level.BgBgBg != null)
+            {
+                Cue cue = _sb.GetCue(_level.BgBgBg);
+                cue.Play();
+                _bgm = cue;
+            }
         }
 
         /// <summary>
@@ -148,6 +188,12 @@ namespace DemonDoor {
             spritebatch.Begin();
             _level.Draw(spritebatch, gameTime);
             spritebatch.End();
+        }
+
+        internal void PlayCue(string name)
+        {
+            Cue q = _sb.GetCue(name);
+            q.Play();
         }
     }
 }

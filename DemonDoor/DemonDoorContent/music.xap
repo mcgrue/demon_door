@@ -225,8 +225,12 @@ Wave Bank
     Windows Bank Path Edited = 0;
     Seek Tables = 1;
     Compression Preset Name = <none>;
-    Bank Last Revised Low = 2306692454;
-    Bank Last Revised High = 30216249;
+    Xbox Bank Last Modified Low = 0;
+    Xbox Bank Last Modified High = 0;
+    PC Bank Last Modified Low = 2550768775;
+    PC Bank Last Modified High = 30216254;
+    Bank Last Revised Low = 2550738775;
+    Bank Last Revised High = 30216254;
 
     Wave
     {
@@ -296,6 +300,29 @@ Wave Bank
             Last Modified High = 30216249;
         }
     }
+
+    Wave
+    {
+        Name = revolving_door;
+        File = sound\revolving_door.wav;
+        Build Settings Last Modified Low = 512412150;
+        Build Settings Last Modified High = 30216254;
+
+        Cache
+        {
+            Format Tag = 0;
+            Channels = 1;
+            Sampling Rate = 44100;
+            Bits Per Sample = 1;
+            Play Region Offset = 44;
+            Play Region Length = 482404;
+            Loop Region Offset = 0;
+            Loop Region Length = 0;
+            File Type = 1;
+            Last Modified Low = 3782270847;
+            Last Modified High = 30216253;
+        }
+    }
 }
 
 Sound Bank
@@ -305,6 +332,8 @@ Sound Bank
     Windows File = Win\Sound Bank.xsb;
     Xbox Bank Path Edited = 0;
     Windows Bank Path Edited = 0;
+    Header Last Modified High = 0;
+    Header Last Modified Low = 0;
 
     Sound
     {
@@ -449,6 +478,53 @@ Sound Bank
         }
     }
 
+    Sound
+    {
+        Name = revolving_door;
+        Volume = -1910;
+        Pitch = 0;
+        Priority = 0;
+
+        Category Entry
+        {
+            Name = Default;
+        }
+
+        Track
+        {
+            Volume = 0;
+            Use Filter = 0;
+
+            Play Wave Event
+            {
+                Break Loop = 0;
+                Use Speaker Position = 0;
+                Use Center Speaker = 1;
+                New Speaker Position On Loop = 1;
+                Speaker Position Angle = 0.000000;
+                Speaker Position Arc = 0.000000;
+
+                Event Header
+                {
+                    Timestamp = 0;
+                    Relative = 0;
+                    Random Recurrence = 0;
+                    Random Offset = 0;
+                }
+
+                Wave Entry
+                {
+                    Bank Name = Wave Bank;
+                    Bank Index = 0;
+                    Entry Name = revolving_door;
+                    Entry Index = 3;
+                    Weight = 255;
+                    Weight Min = 0;
+                }
+            }
+        }
+    }
+
     Cue
     {
         Name = demon_door;
@@ -506,6 +582,39 @@ Sound Bank
             Index = 2;
             Weight Min = 0;
             Weight Max = 255;
+        }
+    }
+
+    Cue
+    {
+        Name = revolving_door;
+
+        Variation
+        {
+            Variation Type = 3;
+            Variation Table Type = 1;
+            New Variation on Loop = 0;
+        }
+
+        Sound Entry
+        {
+            Name = revolving_door;
+            Index = 3;
+            Weight Min = 0;
+            Weight Max = 255;
+        }
+
+        Instance Limit
+        {
+            Max Instances = 20;
+            Behavior = 0;
+
+            Crossfade
+            {
+                Fade In = 0;
+                Fade Out = 0;
+                Crossfade Type = 0;
+            }
         }
     }
 }
