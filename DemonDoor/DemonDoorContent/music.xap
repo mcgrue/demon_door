@@ -13,7 +13,7 @@ Global Settings
 {
     Xbox File = Xbox\music.xgs;
     Windows File = Win\music.xgs;
-    Header File = ..\music.h;
+    Header File = music.h;
     Exclude Category Names = 0;
     Exclude Variable Names = 0;
     Last Modified Low = 2998207351;
@@ -264,8 +264,8 @@ Wave Bank
     Windows Bank Path Edited = 0;
     Seek Tables = 1;
     Compression Preset Name = <none>;
-    Bank Last Revised Low = 19066577;
-    Bank Last Revised High = 30216298;
+    Bank Last Revised Low = 4224029456;
+    Bank Last Revised High = 30216303;
 
     Wave
     {
@@ -746,6 +746,29 @@ Wave Bank
             Loop Region Length = 0;
             File Type = 1;
             Last Modified Low = 4239163300;
+            Last Modified High = 30216288;
+        }
+    }
+
+    Wave
+    {
+        Name = demon_duck;
+        File = sound\demon_duck.wav;
+        Build Settings Last Modified Low = 4192227619;
+        Build Settings Last Modified High = 30216303;
+
+        Cache
+        {
+            Format Tag = 0;
+            Channels = 1;
+            Sampling Rate = 44100;
+            Bits Per Sample = 1;
+            Play Region Offset = 44;
+            Play Region Length = 86618;
+            Loop Region Offset = 0;
+            Loop Region Length = 0;
+            File Type = 1;
+            Last Modified Low = 4238623349;
             Last Modified High = 30216288;
         }
     }
@@ -1704,6 +1727,53 @@ Sound Bank
         }
     }
 
+    Sound
+    {
+        Name = demon_duck;
+        Volume = -1200;
+        Pitch = 0;
+        Priority = 0;
+
+        Category Entry
+        {
+            Name = Default;
+        }
+
+        Track
+        {
+            Volume = 0;
+            Use Filter = 0;
+
+            Play Wave Event
+            {
+                Break Loop = 0;
+                Use Speaker Position = 0;
+                Use Center Speaker = 1;
+                New Speaker Position On Loop = 1;
+                Speaker Position Angle = 0.000000;
+                Speaker Position Arc = 0.000000;
+
+                Event Header
+                {
+                    Timestamp = 0;
+                    Relative = 0;
+                    Random Recurrence = 0;
+                    Random Offset = 0;
+                }
+
+                Wave Entry
+                {
+                    Bank Name = Wave Bank;
+                    Bank Index = 0;
+                    Entry Name = demon_duck;
+                    Entry Index = 21;
+                    Weight = 255;
+                    Weight Min = 0;
+                }
+            }
+        }
+    }
+
     Cue
     {
         Name = demon_door;
@@ -1979,6 +2049,26 @@ Sound Bank
         {
             Name = window_break_03;
             Index = 19;
+            Weight Min = 0;
+            Weight Max = 255;
+        }
+    }
+
+    Cue
+    {
+        Name = demon_duck;
+
+        Variation
+        {
+            Variation Type = 3;
+            Variation Table Type = 1;
+            New Variation on Loop = 0;
+        }
+
+        Sound Entry
+        {
+            Name = demon_duck;
+            Index = 20;
             Weight Min = 0;
             Weight Max = 255;
         }

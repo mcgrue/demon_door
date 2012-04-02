@@ -122,6 +122,17 @@ namespace DemonDoor
                 sprite.Sprite.x = (int)screen.X - 19;
                 sprite.Sprite.y = (int)screen.Y - 12;
                 sprite.Sprite.Draw();
+
+                Rectangle dest = new Rectangle((int)screen.X + 4, (int)screen.Y, 41, 41);
+                Rectangle src = new Rectangle(0, 0, 41, 41);
+                Vector2 origin = new Vector2(21, 21);
+
+                float theta = (float)(Math.PI / 2) - (float)Math.Asin(Impulse.Y / Impulse.Length());
+                //Console.Out.WriteLine(theta);
+
+                if (float.IsNaN(theta)) theta = (float)Math.PI / 4;
+
+                Game1.game.spritebatch.Draw(Game1.game.im_arrow, dest, src, Color.White, theta, origin, Microsoft.Xna.Framework.Graphics.SpriteEffects.None, 0);
             };
 
             return _myDrawDelegate;
