@@ -26,7 +26,7 @@ namespace DemonDoor
         }
         public BehaviorState behaviorState = BehaviorState.Flying;
 
-        public CopController( World w, Vector2 r0, CopSprite sprite, McgLayer bulletLayer )
+        public CopController( World w, Vector2 r0, CopSprite sprite, McgLayer bulletLayer, SpriteBasis bulletSpriteBasis, Vector2 playerPosition )
         {
             _world = w;
 
@@ -41,6 +41,9 @@ namespace DemonDoor
             MakeLivingFixture();
 
             shootTimer = TimeSpan.FromSeconds(VERGEGame.rand.Next(3, 10));
+
+            this.bulletSpriteBasis = bulletSpriteBasis;
+            this.playerPosition = playerPosition;
         }
 
         private void MakeLivingFixture()
@@ -83,6 +86,8 @@ namespace DemonDoor
         private TimeSpan shootAccumulator;
         private TimeSpan shootTimer;
         private McgLayer bulletLayer;
+        private SpriteBasis bulletSpriteBasis;
+        private Vector2 playerPosition;
         
         public RenderDelegate GetDrawDelegate() {
             if( _myDrawDelegate != null ) return _myDrawDelegate;
@@ -216,12 +221,23 @@ namespace DemonDoor
             else if (behaviorState == BehaviorState.Shooting)
             {
                 copSprite.SetAnimationState(CopSprite.AnimationState.Shooting);
-               
+
                 copSprite.animationAtlas[CopSprite.AnimationState.Shooting].OnEnd = (Filmstrip fs) => {
                     CheckPatrolPattern();
-                    return fs.FinishProcessAnimation(2);
+                    if (behaviorState != BehaviorState.Shooting) { spawnBullet(); }
+                    return fs.FinishProcessAnimation(1);
                 };
             }
+        }
+
+        private void spawnBullet()
+        {
+            bulletLayer.AddNode(new McgNode(new BulletController(_world, _fsBody.Position, new BulletSprite(bulletSpriteBasis), vectorToPlayer()), bulletLayer, 0,0));
+        }
+
+        private Vector2 vectorToPlayer()
+        {
+            return this.playerPosition - _fsBody.Position;
         }
 
         private void CheckPatrolPattern()

@@ -65,6 +65,9 @@ namespace DemonDoor
             SpriteBasis copSpriteBasis = new SpriteBasis(16, 16, 10, 10);
             copSpriteBasis.image = game1.im_cop;
 
+            SpriteBasis bulletSpriteBasis = new SpriteBasis(7, 7, 2, 2);
+            bulletSpriteBasis.image = game1.im_bullet;
+
             mcg = new McGrenderStack();
             Game1.game.setMcGrender(mcg);
 
@@ -162,10 +165,10 @@ namespace DemonDoor
             //l.AddNode(new McgNode(civvieSpawner, l, 80, 20));
 
             //spawn cops
-            var copSpawner = new CopSpawner(_world, l, spawnerR, TimeSpan.FromSeconds(1), copSpriteBasis, 1000);
+            //var copSpawner = new CopSpawner(_world, l, spawnerR, TimeSpan.FromSeconds(1), copSpriteBasis, 1000);
             //l.AddNode(new McgNode(copSpawner, l, 80, 20));
 
-            var cop = new CopController(_world, new Vector2(0, 10), new CopSprite(copSpriteBasis),l);
+            var cop = new CopController(_world, new Vector2(0, 10), new CopSprite(copSpriteBasis), l, bulletSpriteBasis, Coords.Screen2Physics(new Vector2 { X = 286, Y = 26 }));
             l.AddNode(new McgNode(cop, l, 0, 0));
         }
 

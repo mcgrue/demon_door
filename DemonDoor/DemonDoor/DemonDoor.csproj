@@ -117,6 +117,8 @@
     <Compile Include="CivvieSprite.cs" />
     <Compile Include="Coords.cs" />
     <Compile Include="CivvieController.cs" />
+    <Compile Include="BulletSprite.cs" />
+    <Compile Include="BulletController.cs" />
     <Compile Include="Sully.cs" />
     <Compile Include="WindowSprite.cs" />
     <Compile Include="WindowController.cs" />
