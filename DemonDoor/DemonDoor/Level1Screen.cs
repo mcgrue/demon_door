@@ -109,20 +109,18 @@ namespace DemonDoor
 
 
             rendernode = l.AddNode(
-                new McgNode( game1.im_car2, null, l, 400, 205, -400, 205, 4500 )
+                new McgNode( game1.im_car2, null, l, 800, 205, -800, 205, 9000 )
             );
             rendernode.OnStop = ( McgNode node ) => {
-                node.SetNewMovement( 400, 205, -400, 205, 4500 );
+                node.SetNewMovement( 800, 205, -800, 205, 9000 );
             };
 
             rendernode = l.AddNode(
-                new McgNode( game1.im_car1, null, l, -400, 220, 400, 220, 2500 )
+                new McgNode( game1.im_car1, null, l, -600, 220, 600, 220, 12000 )
             );
             rendernode.OnStop = ( McgNode node ) => {
-                node.SetNewMovement( -400, 220, 400, 220, 2500 );   
+                node.SetNewMovement( -600, 220, 600, 220, 12000 );   
             };
-
-            
 
             /// this all should be encapsulated eventually.  CORPSEMAKER.
             l = mcg.GetLayer("corpses");
