@@ -155,6 +155,7 @@ namespace DemonDoor
         }
 
         Vector2 _aimPoint = Vector2.UnitX;
+        string _lastDoorCue = null;
 
         /// <summary>
         /// Allows the game to run logic such as updating the world,
@@ -178,6 +179,8 @@ namespace DemonDoor
 
             //Console.Out.WriteLine(_aimPoint);
 
+            float oldImpulse = _gun.GunImpulse;
+
             {
                 // update gun impulse.
                 _gun.UpdateGunImpulse(gameTime);
@@ -188,6 +191,32 @@ namespace DemonDoor
 
                 _gun.Impulse = dir * _gun.GunImpulse;
             }
+
+            string nextDoorCue = null;
+
+            switch (_gun.Speed)
+            {
+                case DoorController.DoorSpeed.Fast:
+                    nextDoorCue = "door_fast";
+                    break;
+                case DoorController.DoorSpeed.Medium:
+                    nextDoorCue = "door_med";
+                    break;
+                case DoorController.DoorSpeed.Slow:
+                    nextDoorCue = "door_slow";
+                    break;
+                case DoorController.DoorSpeed.Stopping:
+                    nextDoorCue = "door_stop";
+                    break;
+            }
+
+            if (nextDoorCue != _lastDoorCue && nextDoorCue != null)
+            {
+                Game1.game.PlayCue(nextDoorCue);
+            }
+
+            _lastDoorCue = nextDoorCue;
+
 
             _world.Simulate(gameTime);
             mcg.Update(gameTime);

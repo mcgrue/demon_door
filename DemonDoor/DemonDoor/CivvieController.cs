@@ -107,6 +107,15 @@ namespace DemonDoor
                 other = f1;
             }
 
+            if (other.UserData is CopController && behaviorState == BehaviorState.Walking)
+            {
+                var copController = other.UserData as CopController;
+                if (copController.behaviorState == CopController.BehaviorState.PatrollingRight || copController.behaviorState == CopController.BehaviorState.PatrollingLeft)
+                {
+                    return false;
+                }
+            }
+
             if (other.UserData is ICollidable)
             {
                 this.Collided(other.UserData as ICollidable);
