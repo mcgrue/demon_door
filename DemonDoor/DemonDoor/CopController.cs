@@ -233,6 +233,7 @@ namespace DemonDoor
         private void spawnBullet()
         {
             bulletLayer.AddNode(new McgNode(new BulletController(_world, _fsBody.Position, new BulletSprite(bulletSpriteBasis), vectorToPlayer()), bulletLayer, 0,0));
+            Game1.game.PlayCue("pistol");
         }
 
         private Vector2 vectorToPlayer()

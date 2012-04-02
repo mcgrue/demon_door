@@ -13,11 +13,11 @@ Global Settings
 {
     Xbox File = Xbox\music.xgs;
     Windows File = Win\music.xgs;
-    Header File = music.h;
+    Header File = C:\Users\Colin Bayer\Documents\demon_door\DemonDoor\DemonDoorContent\music.h;
     Exclude Category Names = 0;
     Exclude Variable Names = 0;
-    Last Modified Low = 2998207351;
-    Last Modified High = 30216239;
+    Last Modified Low = 4152696816;
+    Last Modified High = 30216423;
 
     Category
     {
@@ -263,16 +263,16 @@ Wave Bank
     Xbox Bank Path Edited = 0;
     Windows Bank Path Edited = 0;
     Seek Tables = 1;
-    Compression Preset Name = <none>;
-    Bank Last Revised Low = 4224029456;
-    Bank Last Revised High = 30216303;
+    Compression Preset Name = Compression Preset;
+    Bank Last Revised Low = 4165897213;
+    Bank Last Revised High = 30216423;
 
     Wave
     {
         Name = demon_door;
         File = sound\demon_door.wav;
-        Build Settings Last Modified Low = 3534700313;
-        Build Settings Last Modified High = 30216238;
+        Build Settings Last Modified Low = 4026779430;
+        Build Settings Last Modified High = 30216423;
 
         Cache
         {
@@ -294,8 +294,8 @@ Wave Bank
     {
         Name = demon_door_intro;
         File = sound\demon_door_intro.wav;
-        Build Settings Last Modified Low = 3534720276;
-        Build Settings Last Modified High = 30216238;
+        Build Settings Last Modified Low = 4026819570;
+        Build Settings Last Modified High = 30216423;
 
         Cache
         {
@@ -317,8 +317,8 @@ Wave Bank
     {
         Name = gameover;
         File = sound\gameover.wav;
-        Build Settings Last Modified Low = 2195156181;
-        Build Settings Last Modified High = 30216249;
+        Build Settings Last Modified Low = 4026819570;
+        Build Settings Last Modified High = 30216423;
 
         Cache
         {
@@ -338,33 +338,10 @@ Wave Bank
 
     Wave
     {
-        Name = revolving_door;
-        File = sound\revolving_door.wav;
-        Build Settings Last Modified Low = 512412150;
-        Build Settings Last Modified High = 30216254;
-
-        Cache
-        {
-            Format Tag = 0;
-            Channels = 1;
-            Sampling Rate = 44100;
-            Bits Per Sample = 1;
-            Play Region Offset = 44;
-            Play Region Length = 482404;
-            Loop Region Offset = 0;
-            Loop Region Length = 0;
-            File Type = 1;
-            Last Modified Low = 3782270847;
-            Last Modified High = 30216253;
-        }
-    }
-
-    Wave
-    {
         Name = door_hit_01;
         File = sound\door_hit_01.wav;
-        Build Settings Last Modified Low = 2337367377;
-        Build Settings Last Modified High = 30216260;
+        Build Settings Last Modified Low = 4026819570;
+        Build Settings Last Modified High = 30216423;
 
         Cache
         {
@@ -386,8 +363,8 @@ Wave Bank
     {
         Name = door_hit_02;
         File = sound\door_hit_02.wav;
-        Build Settings Last Modified Low = 2337377424;
-        Build Settings Last Modified High = 30216260;
+        Build Settings Last Modified Low = 4026829262;
+        Build Settings Last Modified High = 30216423;
 
         Cache
         {
@@ -409,8 +386,8 @@ Wave Bank
     {
         Name = door_hit_03;
         File = sound\door_hit_03.wav;
-        Build Settings Last Modified Low = 2337387450;
-        Build Settings Last Modified High = 30216260;
+        Build Settings Last Modified Low = 4026829262;
+        Build Settings Last Modified High = 30216423;
 
         Cache
         {
@@ -432,8 +409,8 @@ Wave Bank
     {
         Name = door_hit_04;
         File = sound\door_hit_04.wav;
-        Build Settings Last Modified Low = 2337397453;
-        Build Settings Last Modified High = 30216260;
+        Build Settings Last Modified Low = 4026839264;
+        Build Settings Last Modified High = 30216423;
 
         Cache
         {
@@ -455,8 +432,8 @@ Wave Bank
     {
         Name = door_fast;
         File = sound\door_fast.wav;
-        Build Settings Last Modified Low = 2147754412;
-        Build Settings Last Modified High = 30216281;
+        Build Settings Last Modified Low = 4026839264;
+        Build Settings Last Modified High = 30216423;
 
         Cache
         {
@@ -478,8 +455,8 @@ Wave Bank
     {
         Name = door_med;
         File = sound\door_med.wav;
-        Build Settings Last Modified Low = 2147765696;
-        Build Settings Last Modified High = 30216281;
+        Build Settings Last Modified Low = 4026839264;
+        Build Settings Last Modified High = 30216423;
 
         Cache
         {
@@ -501,8 +478,8 @@ Wave Bank
     {
         Name = door_slow;
         File = sound\door_slow.wav;
-        Build Settings Last Modified Low = 2147775208;
-        Build Settings Last Modified High = 30216281;
+        Build Settings Last Modified Low = 4026839264;
+        Build Settings Last Modified High = 30216423;
 
         Cache
         {
@@ -524,8 +501,8 @@ Wave Bank
     {
         Name = door_stop;
         File = sound\door_stop.wav;
-        Build Settings Last Modified Low = 2147785713;
-        Build Settings Last Modified High = 30216281;
+        Build Settings Last Modified Low = 4026849687;
+        Build Settings Last Modified High = 30216423;
 
         Cache
         {
@@ -547,8 +524,8 @@ Wave Bank
     {
         Name = guy_die_01;
         File = sound\guy_die_01.wav;
-        Build Settings Last Modified Low = 3506937692;
-        Build Settings Last Modified High = 30216297;
+        Build Settings Last Modified Low = 4026849687;
+        Build Settings Last Modified High = 30216423;
 
         Cache
         {
@@ -570,8 +547,8 @@ Wave Bank
     {
         Name = guy_die_02;
         File = sound\guy_die_02.wav;
-        Build Settings Last Modified Low = 3506937692;
-        Build Settings Last Modified High = 30216297;
+        Build Settings Last Modified Low = 4026859262;
+        Build Settings Last Modified High = 30216423;
 
         Cache
         {
@@ -593,8 +570,8 @@ Wave Bank
     {
         Name = guy_die_03;
         File = sound\guy_die_03.wav;
-        Build Settings Last Modified Low = 3506947695;
-        Build Settings Last Modified High = 30216297;
+        Build Settings Last Modified Low = 4026859262;
+        Build Settings Last Modified High = 30216423;
 
         Cache
         {
@@ -616,8 +593,8 @@ Wave Bank
     {
         Name = guy_die_04;
         File = sound\guy_die_04.wav;
-        Build Settings Last Modified Low = 3506957693;
-        Build Settings Last Modified High = 30216297;
+        Build Settings Last Modified Low = 4026859262;
+        Build Settings Last Modified High = 30216423;
 
         Cache
         {
@@ -639,8 +616,8 @@ Wave Bank
     {
         Name = guy_die_05;
         File = sound\guy_die_05.wav;
-        Build Settings Last Modified Low = 3506968833;
-        Build Settings Last Modified High = 30216297;
+        Build Settings Last Modified Low = 4026869264;
+        Build Settings Last Modified High = 30216423;
 
         Cache
         {
@@ -662,8 +639,8 @@ Wave Bank
     {
         Name = guy_die_06;
         File = sound\guy_die_06.wav;
-        Build Settings Last Modified Low = 3506977697;
-        Build Settings Last Modified High = 30216297;
+        Build Settings Last Modified Low = 4026869264;
+        Build Settings Last Modified High = 30216423;
 
         Cache
         {
@@ -685,8 +662,8 @@ Wave Bank
     {
         Name = window_break_03;
         File = sound\window_break_03.wav;
-        Build Settings Last Modified Low = 3565371001;
-        Build Settings Last Modified High = 30216297;
+        Build Settings Last Modified Low = 4026869264;
+        Build Settings Last Modified High = 30216423;
 
         Cache
         {
@@ -708,8 +685,8 @@ Wave Bank
     {
         Name = window_break_01;
         File = sound\window_break_01.wav;
-        Build Settings Last Modified Low = 3565381476;
-        Build Settings Last Modified High = 30216297;
+        Build Settings Last Modified Low = 4026879266;
+        Build Settings Last Modified High = 30216423;
 
         Cache
         {
@@ -731,8 +708,8 @@ Wave Bank
     {
         Name = window_break_02;
         File = sound\window_break_02.wav;
-        Build Settings Last Modified Low = 3565390962;
-        Build Settings Last Modified High = 30216297;
+        Build Settings Last Modified Low = 4026879266;
+        Build Settings Last Modified High = 30216423;
 
         Cache
         {
@@ -754,8 +731,8 @@ Wave Bank
     {
         Name = demon_duck;
         File = sound\demon_duck.wav;
-        Build Settings Last Modified Low = 4192227619;
-        Build Settings Last Modified High = 30216303;
+        Build Settings Last Modified Low = 4026879266;
+        Build Settings Last Modified High = 30216423;
 
         Cache
         {
@@ -772,6 +749,29 @@ Wave Bank
             Last Modified High = 30216288;
         }
     }
+
+    Wave
+    {
+        Name = pistol;
+        File = sound\pistol.wav;
+        Build Settings Last Modified Low = 4026889294;
+        Build Settings Last Modified High = 30216423;
+
+        Cache
+        {
+            Format Tag = 0;
+            Channels = 1;
+            Sampling Rate = 44100;
+            Bits Per Sample = 1;
+            Play Region Offset = 44;
+            Play Region Length = 45304;
+            Loop Region Offset = 0;
+            Loop Region Length = 0;
+            File Type = 1;
+            Last Modified Low = 4239043282;
+            Last Modified High = 30216288;
+        }
+    }
 }
 
 Sound Bank
@@ -781,6 +781,10 @@ Sound Bank
     Windows File = Win\Sound Bank.xsb;
     Xbox Bank Path Edited = 0;
     Windows Bank Path Edited = 0;
+    Bank Last Modified Low = 4166477813;
+    Bank Last Modified High = 30216423;
+    Header Last Modified High = 0;
+    Header Last Modified Low = 0;
 
     Sound
     {
@@ -964,7 +968,7 @@ Sound Bank
                     Bank Name = Wave Bank;
                     Bank Index = 0;
                     Entry Name = door_hit_01;
-                    Entry Index = 4;
+                    Entry Index = 3;
                     Weight = 255;
                     Weight Min = 0;
                 }
@@ -1011,7 +1015,7 @@ Sound Bank
                     Bank Name = Wave Bank;
                     Bank Index = 0;
                     Entry Name = door_hit_02;
-                    Entry Index = 5;
+                    Entry Index = 4;
                     Weight = 255;
                     Weight Min = 0;
                 }
@@ -1058,7 +1062,7 @@ Sound Bank
                     Bank Name = Wave Bank;
                     Bank Index = 0;
                     Entry Name = door_hit_03;
-                    Entry Index = 6;
+                    Entry Index = 5;
                     Weight = 255;
                     Weight Min = 0;
                 }
@@ -1105,7 +1109,7 @@ Sound Bank
                     Bank Name = Wave Bank;
                     Bank Index = 0;
                     Entry Name = door_hit_04;
-                    Entry Index = 7;
+                    Entry Index = 6;
                     Weight = 255;
                     Weight Min = 0;
                 }
@@ -1153,7 +1157,7 @@ Sound Bank
                     Bank Name = Wave Bank;
                     Bank Index = 0;
                     Entry Name = door_fast;
-                    Entry Index = 8;
+                    Entry Index = 7;
                     Weight = 255;
                     Weight Min = 0;
                 }
@@ -1201,7 +1205,7 @@ Sound Bank
                     Bank Name = Wave Bank;
                     Bank Index = 0;
                     Entry Name = door_med;
-                    Entry Index = 9;
+                    Entry Index = 8;
                     Weight = 255;
                     Weight Min = 0;
                 }
@@ -1249,7 +1253,7 @@ Sound Bank
                     Bank Name = Wave Bank;
                     Bank Index = 0;
                     Entry Name = door_slow;
-                    Entry Index = 10;
+                    Entry Index = 9;
                     Weight = 255;
                     Weight Min = 0;
                 }
@@ -1296,7 +1300,7 @@ Sound Bank
                     Bank Name = Wave Bank;
                     Bank Index = 0;
                     Entry Name = door_stop;
-                    Entry Index = 11;
+                    Entry Index = 10;
                     Weight = 255;
                     Weight Min = 0;
                 }
@@ -1343,7 +1347,7 @@ Sound Bank
                     Bank Name = Wave Bank;
                     Bank Index = 0;
                     Entry Name = guy_die_01;
-                    Entry Index = 12;
+                    Entry Index = 11;
                     Weight = 255;
                     Weight Min = 0;
                 }
@@ -1390,7 +1394,7 @@ Sound Bank
                     Bank Name = Wave Bank;
                     Bank Index = 0;
                     Entry Name = guy_die_02;
-                    Entry Index = 13;
+                    Entry Index = 12;
                     Weight = 255;
                     Weight Min = 0;
                 }
@@ -1437,7 +1441,7 @@ Sound Bank
                     Bank Name = Wave Bank;
                     Bank Index = 0;
                     Entry Name = guy_die_03;
-                    Entry Index = 14;
+                    Entry Index = 13;
                     Weight = 255;
                     Weight Min = 0;
                 }
@@ -1484,7 +1488,7 @@ Sound Bank
                     Bank Name = Wave Bank;
                     Bank Index = 0;
                     Entry Name = guy_die_04;
-                    Entry Index = 15;
+                    Entry Index = 14;
                     Weight = 255;
                     Weight Min = 0;
                 }
@@ -1531,7 +1535,7 @@ Sound Bank
                     Bank Name = Wave Bank;
                     Bank Index = 0;
                     Entry Name = guy_die_05;
-                    Entry Index = 16;
+                    Entry Index = 15;
                     Weight = 255;
                     Weight Min = 0;
                 }
@@ -1578,7 +1582,7 @@ Sound Bank
                     Bank Name = Wave Bank;
                     Bank Index = 0;
                     Entry Name = guy_die_06;
-                    Entry Index = 17;
+                    Entry Index = 16;
                     Weight = 255;
                     Weight Min = 0;
                 }
@@ -1625,7 +1629,7 @@ Sound Bank
                     Bank Name = Wave Bank;
                     Bank Index = 0;
                     Entry Name = window_break_02;
-                    Entry Index = 20;
+                    Entry Index = 19;
                     Weight = 255;
                     Weight Min = 0;
                 }
@@ -1672,7 +1676,7 @@ Sound Bank
                     Bank Name = Wave Bank;
                     Bank Index = 0;
                     Entry Name = window_break_01;
-                    Entry Index = 19;
+                    Entry Index = 18;
                     Weight = 255;
                     Weight Min = 0;
                 }
@@ -1719,7 +1723,7 @@ Sound Bank
                     Bank Name = Wave Bank;
                     Bank Index = 0;
                     Entry Name = window_break_03;
-                    Entry Index = 18;
+                    Entry Index = 17;
                     Weight = 255;
                     Weight Min = 0;
                 }
@@ -1766,6 +1770,53 @@ Sound Bank
                     Bank Name = Wave Bank;
                     Bank Index = 0;
                     Entry Name = demon_duck;
+                    Entry Index = 20;
+                    Weight = 255;
+                    Weight Min = 0;
+                }
+            }
+        }
+    }
+
+    Sound
+    {
+        Name = pistol;
+        Volume = -1200;
+        Pitch = 0;
+        Priority = 0;
+
+        Category Entry
+        {
+            Name = Default;
+        }
+
+        Track
+        {
+            Volume = 0;
+            Use Filter = 0;
+
+            Play Wave Event
+            {
+                Break Loop = 0;
+                Use Speaker Position = 0;
+                Use Center Speaker = 1;
+                New Speaker Position On Loop = 1;
+                Speaker Position Angle = 0.000000;
+                Speaker Position Arc = 0.000000;
+
+                Event Header
+                {
+                    Timestamp = 0;
+                    Relative = 0;
+                    Random Recurrence = 0;
+                    Random Offset = 0;
+                }
+
+                Wave Entry
+                {
+                    Bank Name = Wave Bank;
+                    Bank Index = 0;
+                    Entry Name = pistol;
                     Entry Index = 21;
                     Weight = 255;
                     Weight Min = 0;
@@ -2069,6 +2120,26 @@ Sound Bank
         {
             Name = demon_duck;
             Index = 20;
+            Weight Min = 0;
+            Weight Max = 255;
+        }
+    }
+
+    Cue
+    {
+        Name = pistol;
+
+        Variation
+        {
+            Variation Type = 3;
+            Variation Table Type = 1;
+            New Variation on Loop = 0;
+        }
+
+        Sound Entry
+        {
+            Name = pistol;
+            Index = 21;
             Weight Min = 0;
             Weight Max = 255;
         }

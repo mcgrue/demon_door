@@ -79,13 +79,25 @@ namespace DemonDoor
         public void UpdateDemonState( GameTime gameTime ) {
 
             //Console.WriteLine( "DEMON State: " + sprite.CurrentState.ToString() );
+            ButtonState duckButton = ButtonState.Released;
 
-            if(GamePad.GetState(PlayerIndex.One).Buttons.X == ButtonState.Pressed && sprite.CurrentState == DemonSprite.AnimationState.Idle ) {
+            if (GamePad.GetState(PlayerIndex.One).IsConnected)
+            {
+                duckButton = GamePad.GetState(PlayerIndex.One).Buttons.X;
+            }
+            else
+            {
+                duckButton = (Keyboard.GetState(PlayerIndex.One).IsKeyDown(Keys.LeftShift) ||
+                              Keyboard.GetState(PlayerIndex.One).IsKeyDown(Keys.RightShift)) ?
+                              ButtonState.Pressed : ButtonState.Released;
+            }
+
+            if(duckButton == ButtonState.Pressed && sprite.CurrentState == DemonSprite.AnimationState.Idle ) {
                 Game1.game.PlayCue( "demon_duck" );
                 sprite.SetAnimationState( DemonSprite.AnimationState.Disappearing, 0 );
             }
 
-            if (GamePad.GetState(PlayerIndex.One).Buttons.X == ButtonState.Released && sprite.CurrentState == DemonSprite.AnimationState.Hidden) {
+            if (duckButton == ButtonState.Released && sprite.CurrentState == DemonSprite.AnimationState.Hidden) {
                 Game1.game.PlayCue( "demon_duck" );
                 sprite.SetAnimationState( DemonSprite.AnimationState.Reappearing, 0 );
             }

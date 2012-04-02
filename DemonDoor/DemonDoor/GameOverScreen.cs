@@ -54,7 +54,18 @@ namespace DemonDoor
 
         internal override void Update(Microsoft.Xna.Framework.GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).IsButtonDown(Buttons.B))
+            bool tryAgainButton = false;
+
+            if (GamePad.GetState(PlayerIndex.One).IsConnected)
+            {
+                tryAgainButton = GamePad.GetState(PlayerIndex.One).IsButtonDown(Buttons.B);
+            }
+            else
+            {
+                tryAgainButton = Keyboard.GetState(PlayerIndex.One).IsKeyDown(Keys.Escape);
+            }
+
+            if (tryAgainButton)
             {
                 Game1 game1 = Game1.game as Game1;
 
@@ -88,7 +99,18 @@ namespace DemonDoor
                 DrawDeathMessage(batch, "from your onslaught.", 100, color);
             }
 
-            DrawDeathMessage(batch, "Press B to try again.", 180, color);
+            string tryAgainInstructions = null;
+
+            if (GamePad.GetState(PlayerIndex.One).IsConnected)
+            {
+                tryAgainInstructions = "Press B to try again.";
+            }
+            else
+            {
+                tryAgainInstructions = "Press Escape to try again.";
+            }
+
+            DrawDeathMessage(batch, tryAgainInstructions, 180, color);
 
             //DrawCentered(batch, "- game over -", 360, Color.Red);
         }

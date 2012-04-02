@@ -108,23 +108,6 @@ namespace DemonDoor
                 };
             }
 
-            l = mcg.GetLayer( "cars" );
-
-
-            rendernode = l.AddNode(
-                new McgNode( game1.im_car2, null, l, 800, 205, -800, 205, 9000 )
-            );
-            rendernode.OnStop = ( McgNode node ) => {
-                node.SetNewMovement( 800, 205, -800, 205, 9000 );
-            };
-
-            rendernode = l.AddNode(
-                new McgNode( game1.im_car1, null, l, -600, 220, 600, 220, 12000 )
-            );
-            rendernode.OnStop = ( McgNode node ) => {
-                node.SetNewMovement( -600, 220, 600, 220, 12000 );   
-            };
-
             /// this all should be encapsulated eventually.  CORPSEMAKER.
             l = mcg.GetLayer("corpses");
 
@@ -185,7 +168,7 @@ namespace DemonDoor
             l.AddNode(new McgNode(copSpawner, l, 80, 20));
         }
 
-        Vector2 _aimPoint = Vector2.UnitX;
+        Vector2 _aimPoint = new Vector2 { X = 1, Y = 1 };
         string _lastDoorCue = null;
 
         /// <summary>
@@ -195,17 +178,42 @@ namespace DemonDoor
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         internal override void Update(GameTime gameTime)
         {
-            Vector2 leftAnalog = GamePad.GetState(PlayerIndex.One).ThumbSticks.Left;
-
-            leftAnalog = Vector2.Clamp(leftAnalog, Vector2.Zero, new Vector2 { X = 1, Y = 1 });
-
-            if (leftAnalog.Length() < 1e-10)
+            if (GamePad.GetState(PlayerIndex.One).IsConnected)
             {
-                _aimPoint = new Vector2 { X = 1, Y = 1 };
+                // control the aim point with the left analog stick.
+                Vector2 leftAnalog = GamePad.GetState(PlayerIndex.One).ThumbSticks.Left;
+
+                leftAnalog = Vector2.Clamp(leftAnalog, Vector2.Zero, new Vector2 { X = 1, Y = 1 });
+
+                if (leftAnalog.Length() < 1e-10)
+                {
+                    _aimPoint = new Vector2 { X = 1, Y = 1 };
+                }
+                else
+                {
+                    _aimPoint = leftAnalog;
+                }
             }
             else
             {
-                _aimPoint = leftAnalog;
+                // control the aim point with the keyboard.
+                const float ThetaPerTick = 0.002f;
+                float dtheta = 0;
+
+                if (Keyboard.GetState(PlayerIndex.One).IsKeyDown(Keys.Left))
+                {
+                    dtheta = +ThetaPerTick;
+                }
+                else if (Keyboard.GetState(PlayerIndex.One).IsKeyDown(Keys.Right))
+                {
+                    dtheta = -ThetaPerTick;
+                }
+                
+                double thetaLast = Math.Asin(_aimPoint.Y / _aimPoint.Length());
+                double nextTheta = Math.Min(Math.Max(thetaLast + dtheta, 0), Math.PI / 2);
+                
+                _aimPoint = new Vector2 { X = (float)Math.Cos(nextTheta), 
+                                          Y = (float)Math.Sin(nextTheta) };
             }
 
             //Console.Out.WriteLine(_aimPoint);

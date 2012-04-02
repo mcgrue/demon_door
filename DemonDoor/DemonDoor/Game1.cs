@@ -92,6 +92,9 @@ namespace DemonDoor {
             im_bullet = Content.Load<Texture2D>("art/bullet");
             im_arrow = Content.Load<Texture2D>("art/arrow");
 
+            graphics.PreferredBackBufferWidth = 640;
+            graphics.PreferredBackBufferHeight = 480;
+            graphics.IsFullScreen = true;
 
             _engine = new AudioEngine("Content/music.xgs");
             _sb = new SoundBank(_engine, "Content/Sound Bank.xsb");
@@ -114,8 +117,8 @@ namespace DemonDoor {
 
             ft_hud24 = Content.Load<SpriteFont>( "HUD24" );
 
-            //LoadLevel("blurb");
             LoadLevel("blurb");
+            //LoadLevel("title");
 
             base.Initialize();
         }
