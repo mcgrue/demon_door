@@ -228,6 +228,11 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="art\bullet.png">
+      <Name>bullet</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
     <Compile Include="art\arrow.png">
       <Name>arrow</Name>
       <Importer>TextureImporter</Importer>

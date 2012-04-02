@@ -21,7 +21,9 @@ namespace DemonDoor {
 
         public McGrenderStack mcg;
 
-        public Texture2D im_civvie, im_title, im_door, im_stage, im_skybox, im_demon, im_gameover, im_cop, im_windowbreak, im_arrow;
+
+        public Texture2D im_civvie, im_title, im_door, im_stage, im_skybox, im_demon, im_gameover, im_cop, im_windowbreak, im_bullet, im_arrow;
+
         public Texture2D im_car1, im_car2;
         
         public Texture2D[] im_civvies;
@@ -41,7 +43,7 @@ namespace DemonDoor {
 
         private IList<Cue> _activeCues;
 
-        internal void LoadLevel(string level)
+        internal void LoadLevel(string level, string param = null)
         {
             Screen s = null;
 
@@ -49,7 +51,7 @@ namespace DemonDoor {
                 case "blurb": s = new BlurbScreen(); break;
                 case "title": s = new TitleScreen(); break;
                 case "level1": s = new Level1Screen(); break;
-                case "gameover": s = new GameOverScreen(); break;
+                case "gameover": s = new GameOverScreen(param); break;
             }
 
             foreach (Cue q in _activeCues) {
@@ -87,7 +89,9 @@ namespace DemonDoor {
             im_gameover = Content.Load<Texture2D>("art/gameover");
             im_cop = Content.Load<Texture2D>("art/police_01");
             im_windowbreak = Content.Load<Texture2D>( "art/window_break" );
+            im_bullet = Content.Load<Texture2D>("art/bullet");
             im_arrow = Content.Load<Texture2D>("art/arrow");
+
 
             _engine = new AudioEngine("Content/music.xgs");
             _sb = new SoundBank(_engine, "Content/Sound Bank.xsb");

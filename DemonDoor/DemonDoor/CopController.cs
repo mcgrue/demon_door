@@ -26,9 +26,11 @@ namespace DemonDoor
         }
         public BehaviorState behaviorState = BehaviorState.Flying;
 
-        public CopController( World w, Vector2 r0, CopSprite sprite )
+        public CopController( World w, Vector2 r0, CopSprite sprite, McgLayer bulletLayer, SpriteBasis bulletSpriteBasis, Vector2 playerPosition )
         {
             _world = w;
+
+            this.bulletLayer = bulletLayer;
 
             _fsBody = w.NewBody();
             _fsBody.BodyType = BodyType.Dynamic;
@@ -37,6 +39,11 @@ namespace DemonDoor
             copSprite = sprite;
 
             MakeLivingFixture();
+
+            shootTimer = TimeSpan.FromSeconds(VERGEGame.rand.Next(3, 10));
+
+            this.bulletSpriteBasis = bulletSpriteBasis;
+            this.playerPosition = playerPosition;
         }
 
         private void MakeLivingFixture()
@@ -74,6 +81,13 @@ namespace DemonDoor
         }
 
         RenderDelegate _myDrawDelegate;
+        private TimeSpan aimAccumulator;
+        private TimeSpan aimTimer;
+        private TimeSpan shootAccumulator;
+        private TimeSpan shootTimer;
+        private McgLayer bulletLayer;
+        private SpriteBasis bulletSpriteBasis;
+        private Vector2 playerPosition;
         
         public RenderDelegate GetDrawDelegate() {
             if( _myDrawDelegate != null ) return _myDrawDelegate;
@@ -107,7 +121,7 @@ namespace DemonDoor
                 other = f1;
             }
 
-            if (behaviorState == BehaviorState.PatrollingLeft || behaviorState == BehaviorState.PatrollingRight)
+            if (behaviorState != BehaviorState.Flying)
             {
                 if (other.UserData is CopController || other.UserData is CivvieController)
                 {
@@ -170,6 +184,7 @@ namespace DemonDoor
         public void ProcessBehavior(GameTime time)
         {
             this.patrolAccumulator += time.ElapsedGameTime;
+            this.shootAccumulator += time.ElapsedGameTime;
 
             if (Math.Abs(_fsBody.LinearVelocity.Y) > 1 &&  behaviorState != BehaviorState.Dead) { 
                 behaviorState = BehaviorState.Flying;
@@ -177,37 +192,88 @@ namespace DemonDoor
             }
 
             //patrols
-            if (behaviorState == BehaviorState.PatrollingLeft)
+            else if (behaviorState == BehaviorState.PatrollingLeft)
             {
                 copSprite.SetAnimationState(CopSprite.AnimationState.WalkingLeft);
                 _fsBody.LinearVelocity = new Vector2(-20, _fsBody.LinearVelocity.Y);
                 CheckPatrolPattern();
             }
-            if (behaviorState == BehaviorState.PatrollingRight)
+            else if (behaviorState == BehaviorState.PatrollingRight)
             {
                 copSprite.SetAnimationState(CopSprite.AnimationState.WalkingRight);
                 _fsBody.LinearVelocity = new Vector2(20, _fsBody.LinearVelocity.Y);
                 CheckPatrolPattern();
             }
+
+            //shooting
+            else if (behaviorState == BehaviorState.Aiming)
+            {
+                copSprite.SetAnimationState(CopSprite.AnimationState.Aiming);
+                this._fsBody.LinearVelocity = new Vector2(0, _fsBody.LinearVelocity.Y);
+                this.aimAccumulator += time.ElapsedGameTime;
+                if (aimAccumulator > this.aimTimer)
+                {
+                    behaviorState = BehaviorState.Shooting;
+                    aimAccumulator = TimeSpan.Zero;
+                    aimTimer = TimeSpan.FromSeconds(VERGEGame.rand.Next(1, 5));
+                }
+            }
+            else if (behaviorState == BehaviorState.Shooting)
+            {
+                copSprite.SetAnimationState(CopSprite.AnimationState.Shooting);
+
+                copSprite.animationAtlas[CopSprite.AnimationState.Shooting].OnEnd = (Filmstrip fs) => {
+                    CheckPatrolPattern();
+                    if (behaviorState != BehaviorState.Shooting) { spawnBullet(); }
+                    return fs.FinishProcessAnimation(1);
+                };
+            }
+        }
+
+        private void spawnBullet()
+        {
+            bulletLayer.AddNode(new McgNode(new BulletController(_world, _fsBody.Position, new BulletSprite(bulletSpriteBasis), vectorToPlayer()), bulletLayer, 0,0));
+        }
+
+        private Vector2 vectorToPlayer()
+        {
+            return this.playerPosition - _fsBody.Position;
         }
 
         private void CheckPatrolPattern()
         {
-            if (patrolAccumulator > this.patrolDuration)
+            if (shootAccumulator > shootTimer)
             {
-                patrolDuration = TimeSpan.Zero;
+                shootAccumulator = TimeSpan.Zero;
+                shootTimer = TimeSpan.FromSeconds(VERGEGame.rand.Next(5, 15));
+
+                if (_fsBody.Position.X < playerPosition.X) { 
+                    behaviorState = BehaviorState.Aiming;
+                }
+            }
+
+            else if (patrolAccumulator > this.patrolDuration)
+            {
+                patrolAccumulator = TimeSpan.Zero;
 
                 if (behaviorState == BehaviorState.PatrollingLeft)
                 {
                     behaviorState = BehaviorState.PatrollingRight;
                 }
-                else
+                else if (behaviorState == BehaviorState.PatrollingRight)
                 {
                     behaviorState = BehaviorState.PatrollingLeft;
+                }
+                else
+                {
+                    bool goLeft = VERGEGame.rand.Next(0, 2) == 0;
+                    behaviorState = goLeft ? BehaviorState.PatrollingLeft : BehaviorState.PatrollingRight;
                 }
 
                 this.patrolDuration = TimeSpan.FromSeconds(VERGEGame.rand.Next(3, 7));
             }
+
+            
         }
 
         private void Die()

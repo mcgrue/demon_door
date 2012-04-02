@@ -12,8 +12,14 @@ namespace DemonDoor
     class GameOverScreen : Screen
     {
         public McGrenderStack mcg;
-        internal override void Load() {
+        private string _param;
 
+        public GameOverScreen(string param)
+        {
+            _param = param;
+        }
+
+        internal override void Load() {
             Game1 game1 = (Game1)Game1.game;
             //Vector2[] verts = new [] {
             //    new Vector2 { X = -100, Y = 0 },
@@ -69,9 +75,18 @@ namespace DemonDoor
             Game1 game1 = (Game1)Game1.game;
 
             Color color = Color.White;
-            DrawDeathMessage(batch, "You were slain by a flying corpse,", 20, color);
-            DrawDeathMessage(batch, "borne aloft on the wings of your", 60, color);
-            DrawDeathMessage(batch, "revolving door.", 100, color);
+            if (_param == "corpse")
+            {
+                DrawDeathMessage(batch, "You were slain by a flying corpse,", 20, color);
+                DrawDeathMessage(batch, "borne aloft on the wings of your", 60, color);
+                DrawDeathMessage(batch, "revolving door.", 100, color);
+            }
+            else if (_param == "bullet")
+            {
+                DrawDeathMessage(batch, "You were killed by a cop on the beat", 20, color);
+                DrawDeathMessage(batch, "trying to save his neighborhood", 60, color);
+                DrawDeathMessage(batch, "from your onslaught.", 100, color);
+            }
 
             DrawDeathMessage(batch, "Press B to try again.", 180, color);
 

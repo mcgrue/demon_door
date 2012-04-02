@@ -16,8 +16,10 @@ namespace DemonDoor
         private Vector2 location;
         private SpriteBasis copSpriteBasis;
         private int spawnRateFuzzMillis;
+        private SpriteBasis bulletSpriteBasis;
+        private Vector2 playerPosition;
 
-        public CopSpawner(World world, McgLayer layer, Vector2 location, TimeSpan spawnRate, SpriteBasis copSpriteBasis, int spawnRateFuzzMillis = 0)
+        public CopSpawner(World world, McgLayer layer, Vector2 location, TimeSpan spawnRate, SpriteBasis copSpriteBasis, SpriteBasis bulletSpriteBasis, Vector2 playerPosition, int spawnRateFuzzMillis = 0)
         {
             this.layer = layer;
             this.world = world;
@@ -25,6 +27,8 @@ namespace DemonDoor
             this.location = location;
             this.copSpriteBasis = copSpriteBasis;
             this.spawnRateFuzzMillis = spawnRateFuzzMillis;
+            this.playerPosition = playerPosition;
+            this.bulletSpriteBasis = bulletSpriteBasis;
         }
         
         public int GetX()
@@ -47,7 +51,7 @@ namespace DemonDoor
             spawnTimeAccumulator += time.ElapsedGameTime;
             if (spawnTimeAccumulator > spawnRate)
             {
-                layer.AddNode(new McgNode(new CopController(world, new Vector2(location.X, location.Y), new CopSprite(copSpriteBasis)), layer, 
+                layer.AddNode(new McgNode(new CopController(world, new Vector2(location.X, location.Y), new CopSprite(copSpriteBasis), layer, bulletSpriteBasis, playerPosition), layer, 
                     (int)location.X, (int)location.Y));
                 spawnTimeAccumulator = TimeSpan.FromMilliseconds(VERGEGame.rand.Next(-spawnRateFuzzMillis, 0));
             }
