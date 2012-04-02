@@ -46,6 +46,7 @@ namespace DemonDoor {
             Screen s = null;
 
             switch (level) {
+                case "blurb": s = new BlurbScreen(); break;
                 case "title": s = new TitleScreen(); break;
                 case "level1": s = new Level1Screen(); break;
                 case "gameover": s = new GameOverScreen(); break;
@@ -108,7 +109,7 @@ namespace DemonDoor {
 
             ft_hud24 = Content.Load<SpriteFont>( "HUD24" );
 
-            LoadLevel("title");
+            LoadLevel("blurb");
 
             base.Initialize();
         }
