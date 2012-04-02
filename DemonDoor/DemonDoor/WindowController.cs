@@ -50,15 +50,18 @@ namespace DemonDoor
 
         public void Collided(ICollidable other) {
             if( other is CivvieController ) {
+                var civvie = other as CivvieController;
 
-                if( sprite.CurrentState == WindowSprite.AnimationState.NormalIdle ) {
-                    sprite.SetAnimationState( WindowSprite.AnimationState.Breaking, 0 );
-                    // TODO "windowbreak sound"
-                    // TODO "award points" break
-                } else if( sprite.CurrentState == WindowSprite.AnimationState.AngryDude ) {
-                    sprite.SetAnimationState( WindowSprite.AnimationState.DyingDude, 0 );
-                    /// TODO "windowdie sound"
-                    /// TODO "award points" die
+                if (civvie._fsBody.LinearVelocity.Length() > 100f) { 
+                    if( sprite.CurrentState == WindowSprite.AnimationState.NormalIdle ) {
+                        sprite.SetAnimationState( WindowSprite.AnimationState.Breaking, 0 );
+                        // TODO "windowbreak sound"
+                        // TODO "award points" break
+                    } else if( sprite.CurrentState == WindowSprite.AnimationState.AngryDude ) {
+                        sprite.SetAnimationState( WindowSprite.AnimationState.DyingDude, 0 );
+                        /// TODO "windowdie sound"
+                        /// TODO "award points" die
+                    }
                 }
             }
         }
