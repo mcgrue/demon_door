@@ -191,6 +191,7 @@ namespace DemonDoor
         {
             this.behaviorState = BehaviorState.Dead;
             myCorpse.SetAnimationState(CivvieSprite.AnimationState.Dead);
+            Game1.game.PlayCue("guy_die");
         }
     }
 }

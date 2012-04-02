@@ -55,10 +55,12 @@ namespace DemonDoor
                 if (civvie._fsBody.LinearVelocity.Length() > 100f) { 
                     if( sprite.CurrentState == WindowSprite.AnimationState.NormalIdle ) {
                         sprite.SetAnimationState( WindowSprite.AnimationState.Breaking, 0 );
+                        Game1.game.PlayCue("window_break");
                         // TODO "windowbreak sound"
                         // TODO "award points" break
                     } else if( sprite.CurrentState == WindowSprite.AnimationState.AngryDude ) {
                         sprite.SetAnimationState( WindowSprite.AnimationState.DyingDude, 0 );
+                        Game1.game.PlayCue("guy_die");
                         /// TODO "windowdie sound"
                         /// TODO "award points" die
                     }
