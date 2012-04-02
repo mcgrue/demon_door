@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.Input;
 using FarseerPhysics.Collision.Shapes;
 using FarseerPhysics.Dynamics;
 using FarseerPhysics.Dynamics.Contacts;
+using FarseerPhysics.Common;
 
 namespace DemonDoor
 {
@@ -112,6 +113,20 @@ namespace DemonDoor
                 sprite.Sprite.x = (int)screen.X - 10;
                 sprite.Sprite.y = (int)screen.Y - 9;
                 sprite.Sprite.Draw();
+
+                Vertices v = (_fsFixture.Shape as PolygonShape).Vertices;
+
+                _.setDrawTarget(Game1.game.spritebatch);
+
+                for (int i = 0; i < 4; i++)
+                {
+                    int next = (i + 1) % 4;
+
+                    Vector2 from = Coords.Physics2Screen(v[i]);
+                    Vector2 to = Coords.Physics2Screen(v[next]);
+
+                    _.DrawLine((int)from.X, (int)from.Y, (int)to.X, (int)to.Y, Color.Green);
+                }
             };
 
             return _myDrawDelegate;
