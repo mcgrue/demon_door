@@ -22,6 +22,8 @@ namespace DemonDoor {
         public McGrenderStack mcg;
 
         public Texture2D im_civvie, im_title, im_door, im_stage, im_skybox, im_demon, im_gameover, im_cop, im_windowbreak;
+        public Texture2D im_car1, im_car2;
+        
         public Texture2D[] im_civvies;
 
         public Texture2D[] im_clouds;
@@ -100,6 +102,9 @@ namespace DemonDoor {
                 tmpLst.Add( Content.Load<Texture2D>( "art/civilian_0" + i ) );
             }
             im_civvies = tmpLst.ToArray();
+
+            im_car1 = Content.Load<Texture2D>( "art/car_01" );
+            im_car2 = Content.Load<Texture2D>( "art/car_02" );
 
             ft_hud24 = Content.Load<SpriteFont>( "HUD24" );
 

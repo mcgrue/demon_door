@@ -46,8 +46,8 @@ namespace DemonDoor
 
             Vector2[] verts = new[] {
                 Coords.Screen2Physics(new Vector2 { X = 340, Y = 32 }),
-                Coords.Screen2Physics(new Vector2 { X = 280, Y = 32 }),
-                Coords.Screen2Physics(new Vector2 { X = 280, Y = 200 }),
+                Coords.Screen2Physics(new Vector2 { X = 300, Y = 32 }),
+                Coords.Screen2Physics(new Vector2 { X = 300, Y = 200 }),
                 Coords.Screen2Physics(new Vector2 { X = 340, Y = 200 }),
             };
 
@@ -71,7 +71,8 @@ namespace DemonDoor
             mcg.AddLayer( "skybox" );
             mcg.AddLayer( "clouds" );
             mcg.AddLayer( "background" );
-            mcg.AddLayer("corpses");
+            mcg.AddLayer( "corpses" );
+            mcg.AddLayer( "cars" );
 
             McgLayer l = mcg.GetLayer( "skybox" );
             /// this is wrong.
@@ -95,6 +96,17 @@ namespace DemonDoor
                     new McgNode( game1.im_clouds[i%9], null, l, x,y ,600,y,d )
                 );
             }
+
+            l = mcg.GetLayer( "cars" );
+
+            rendernode = l.AddNode(
+                new McgNode( game1.im_car1, null, l, -300, 220, 400, 220, 300 )
+            );
+
+            rendernode = l.AddNode(
+                new McgNode( game1.im_car1, null, l, -300, 220, 400, 220, 600 )
+            );
+
             /// this all should be encapsulated eventually.  CORPSEMAKER.
             l = mcg.GetLayer("corpses");
 
@@ -113,7 +125,7 @@ namespace DemonDoor
                 new McgNode(_gun, l, 60, 200)
             );
 
-            var demonSpriteBasis = new SpriteBasis(10, 19, 7, 7);
+            var demonSpriteBasis = new SpriteBasis(9, 19, 7, 7);
             demonSpriteBasis.image = game1.im_demon;
             var demonSprite = new DemonSprite( demonSpriteBasis );
             _evilDemon = new DemonController( _world,

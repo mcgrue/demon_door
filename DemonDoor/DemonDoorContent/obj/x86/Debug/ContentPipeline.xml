@@ -8,7 +8,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\grue\demon_door\DemonDoor\DemonDoor\bin\x86\Debug\Content\art\civilian_01.xnb</Output>
-      <Time>2012-04-01T16:01:34.067-07:00</Time>
+      <Time>2012-04-01T17:14:06.694-07:00</Time>
     </Item>
     <Item>
       <Source>art\door.png</Source>
@@ -26,7 +26,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\grue\demon_door\DemonDoor\DemonDoor\bin\x86\Debug\Content\art\police_01.xnb</Output>
-      <Time>2012-04-01T16:01:34.073-07:00</Time>
+      <Time>2012-04-01T17:14:06.705-07:00</Time>
     </Item>
     <Item>
       <Source>art\stage.png</Source>
@@ -197,7 +197,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\grue\demon_door\DemonDoor\DemonDoor\bin\x86\Debug\Content\art\civilian_02.xnb</Output>
-      <Time>2012-04-01T16:01:34.068-07:00</Time>
+      <Time>2012-04-01T17:14:06.695-07:00</Time>
     </Item>
     <Item>
       <Source>art\civilian_03.png</Source>
@@ -206,7 +206,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\grue\demon_door\DemonDoor\DemonDoor\bin\x86\Debug\Content\art\civilian_03.xnb</Output>
-      <Time>2012-04-01T16:01:34.069-07:00</Time>
+      <Time>2012-04-01T17:14:06.699-07:00</Time>
     </Item>
     <Item>
       <Source>art\civilian_04.png</Source>
@@ -215,7 +215,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\grue\demon_door\DemonDoor\DemonDoor\bin\x86\Debug\Content\art\civilian_04.xnb</Output>
-      <Time>2012-04-01T16:01:34.069-07:00</Time>
+      <Time>2012-04-01T17:14:06.7-07:00</Time>
     </Item>
     <Item>
       <Source>art\civilian_05.png</Source>
@@ -224,7 +224,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\grue\demon_door\DemonDoor\DemonDoor\bin\x86\Debug\Content\art\civilian_05.xnb</Output>
-      <Time>2012-04-01T16:01:34.07-07:00</Time>
+      <Time>2012-04-01T17:14:06.701-07:00</Time>
     </Item>
     <Item>
       <Source>art\civilian_06.png</Source>
@@ -233,7 +233,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\grue\demon_door\DemonDoor\DemonDoor\bin\x86\Debug\Content\art\civilian_06.xnb</Output>
-      <Time>2012-04-01T16:01:34.071-07:00</Time>
+      <Time>2012-04-01T17:14:06.703-07:00</Time>
     </Item>
     <Item>
       <Source>art\civilian_07.png</Source>
@@ -242,7 +242,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\grue\demon_door\DemonDoor\DemonDoor\bin\x86\Debug\Content\art\civilian_07.xnb</Output>
-      <Time>2012-04-01T16:01:34.072-07:00</Time>
+      <Time>2012-04-01T17:14:06.704-07:00</Time>
     </Item>
     <Item>
       <Source>art\window_break.png</Source>
@@ -252,6 +252,24 @@
       <Options>None</Options>
       <Output>C:\grue\demon_door\DemonDoor\DemonDoor\bin\x86\Debug\Content\art\window_break.xnb</Output>
       <Time>2012-04-01T15:31:05.972-07:00</Time>
+    </Item>
+    <Item>
+      <Source>art\car_01.png</Source>
+      <Name>art\car_01</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\grue\demon_door\DemonDoor\DemonDoor\bin\x86\Debug\Content\art\car_01.xnb</Output>
+      <Time>2012-04-01T12:52:06.309-07:00</Time>
+    </Item>
+    <Item>
+      <Source>art\car_02.png</Source>
+      <Name>art\car_02</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\grue\demon_door\DemonDoor\DemonDoor\bin\x86\Debug\Content\art\car_02.xnb</Output>
+      <Time>2012-04-01T12:52:06.31-07:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
