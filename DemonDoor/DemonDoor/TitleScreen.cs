@@ -67,10 +67,10 @@ namespace DemonDoor
         internal override void Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch batch, Microsoft.Xna.Framework.GameTime gameTime)
         {
             Game1 game1 = (Game1)Game1.game;
-            string doorSpeedDesc = string.Format("press A to possess... the");
+            string doorSpeedDesc = string.Format("press A to start");
             Vector2 size = game1.ft_hud24.MeasureString(doorSpeedDesc);
 
-            batch.DrawString(game1.ft_hud24, doorSpeedDesc, new Vector2 { X = (640 - size.X) / 2, Y = 240 }, Color.White);
+            batch.DrawString(game1.ft_hud24, doorSpeedDesc, new Vector2 { X = (640 - size.X) / 2, Y = 400 }, Color.White);
         }
 
     }
