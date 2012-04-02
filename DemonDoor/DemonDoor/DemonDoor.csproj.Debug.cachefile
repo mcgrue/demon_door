@@ -5,6 +5,8 @@ Content\art\stage.xnb
 Content\art\title.xnb
 Content\door.xnb
 Content\stage.xnb
+Content\level1.xnb
+Content\HUD24.xnb
 Content\art\skybox.xnb
 Content\art\cloud_01.xnb
 Content\art\cloud_02.xnb
@@ -16,8 +18,6 @@ Content\art\cloud_07.xnb
 Content\art\cloud_08.xnb
 Content\art\cloud_09.xnb
 Content\art\demon.xnb
-Content\level1.xnb
-Content\HUD24.xnb
 Content\art\gameover.xnb
 Content\art\civilian_02.xnb
 Content\art\civilian_03.xnb
@@ -26,6 +26,8 @@ Content\art\civilian_05.xnb
 Content\art\civilian_06.xnb
 Content\art\civilian_07.xnb
 Content\art\window_break.xnb
+Content\art\car_01.xnb
+Content\art\car_02.xnb
 Content\music.xgs
 Content\Wave Bank.xwb
 Content\Sound Bank.xsb
