@@ -109,6 +109,7 @@ namespace DemonDoor {
 
             ft_hud24 = Content.Load<SpriteFont>( "HUD24" );
 
+            //LoadLevel("blurb");
             LoadLevel("title");
 
             base.Initialize();
