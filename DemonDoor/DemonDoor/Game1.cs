@@ -43,7 +43,7 @@ namespace DemonDoor {
 
         private IList<Cue> _activeCues;
 
-        internal void LoadLevel(string level)
+        internal void LoadLevel(string level, string param = null)
         {
             Screen s = null;
 
@@ -51,7 +51,7 @@ namespace DemonDoor {
                 case "blurb": s = new BlurbScreen(); break;
                 case "title": s = new TitleScreen(); break;
                 case "level1": s = new Level1Screen(); break;
-                case "gameover": s = new GameOverScreen(); break;
+                case "gameover": s = new GameOverScreen(param); break;
             }
 
             foreach (Cue q in _activeCues) {

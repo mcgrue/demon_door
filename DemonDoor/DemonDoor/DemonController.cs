@@ -55,10 +55,10 @@ namespace DemonDoor
         }
 
         public void Collided(ICollidable other) {
-            if( other is CivvieController ) {
+            if( other is CivvieController || other is BulletController ) {
 
                 if( ( sprite.CurrentState == DemonSprite.AnimationState.Idle || sprite.CurrentState == DemonSprite.AnimationState.Pressing ) ) {
-                    ( Game1.game as Game1 ).LoadLevel( "gameover" );
+                    ( Game1.game as Game1 ).LoadLevel( "gameover", other is CivvieController ? "corpse" : "bullet" );
                 } else {
                     /// do something if a "miss" happens?  disintegrate the corpse?
                 }
