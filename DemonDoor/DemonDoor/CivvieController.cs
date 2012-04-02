@@ -46,7 +46,7 @@ namespace DemonDoor
                 _fsBody.DestroyFixture(_fsFixture);
             }
 
-            _fsShape = new CircleShape(1f, 1.0f);
+            _fsShape = new CircleShape(0.7f, 1.0f);
             _fsFixture = _fsBody.CreateFixture(_fsShape, this);
             _fsFixture.Restitution = 0.2f;
             _fsFixture.OnCollision += BehaviorCollided;
