@@ -71,7 +71,8 @@ namespace DemonDoor
             mcg.AddLayer( "skybox" );
             mcg.AddLayer( "clouds" );
             mcg.AddLayer( "background" );
-            mcg.AddLayer("corpses");
+            mcg.AddLayer( "corpses" );
+            mcg.AddLayer( "cars" );
 
             McgLayer l = mcg.GetLayer( "skybox" );
             /// this is wrong.
@@ -95,6 +96,17 @@ namespace DemonDoor
                     new McgNode( game1.im_clouds[i%9], null, l, x,y ,600,y,d )
                 );
             }
+
+            l = mcg.GetLayer( "cars" );
+
+            rendernode = l.AddNode(
+                new McgNode( game1.im_car1, null, l, -300, 220, 400, 220, 300 )
+            );
+
+            rendernode = l.AddNode(
+                new McgNode( game1.im_car1, null, l, -300, 220, 400, 220, 600 )
+            );
+
             /// this all should be encapsulated eventually.  CORPSEMAKER.
             l = mcg.GetLayer("corpses");
 
