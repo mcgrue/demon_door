@@ -95,17 +95,34 @@ namespace DemonDoor
                 rendernode = l.AddNode(
                     new McgNode( game1.im_clouds[i%9], null, l, x,y ,600,y,d )
                 );
+
+                rendernode.OnStop = ( McgNode node ) => {
+                    int x1 = VERGEGame.rand.Next( -400, -100 );
+                    int y1 = VERGEGame.rand.Next( 0, 150 );
+                    int d1 = VERGEGame.rand.Next( 50000, 200000 );
+
+                    node.SetNewMovement( x1, y1, 400, y1, d1 );
+                };
             }
 
             l = mcg.GetLayer( "cars" );
 
-            rendernode = l.AddNode(
-                new McgNode( game1.im_car1, null, l, -300, 220, 400, 220, 300 )
-            );
 
             rendernode = l.AddNode(
-                new McgNode( game1.im_car1, null, l, -300, 220, 400, 220, 600 )
+                new McgNode( game1.im_car2, null, l, 400, 205, -400, 205, 4500 )
             );
+            rendernode.OnStop = ( McgNode node ) => {
+                node.SetNewMovement( 400, 205, -400, 205, 4500 );
+            };
+
+            rendernode = l.AddNode(
+                new McgNode( game1.im_car1, null, l, -400, 220, 400, 220, 2500 )
+            );
+            rendernode.OnStop = ( McgNode node ) => {
+                node.SetNewMovement( -400, 220, 400, 220, 2500 );   
+            };
+
+            
 
             /// this all should be encapsulated eventually.  CORPSEMAKER.
             l = mcg.GetLayer("corpses");

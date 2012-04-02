@@ -10,6 +10,9 @@ using XNAVERGE.sprite;
 
 namespace XNAVERGE {
 
+
+    public delegate void BasicMcgNodeDelegate( McgNode curNode );
+
     public class McgNode {
         McgLayer layer;
 
@@ -19,7 +22,7 @@ namespace XNAVERGE {
         float? tick_x, tick_y;
         int? delay, final_time;
         Boolean isMoving;
-        public BasicDelegate OnStop = null;
+        public BasicMcgNodeDelegate OnStop = null;
         public RenderDelegate OnDraw = null;
         public UpdateDelegate OnUpdate = null; 
 
@@ -66,6 +69,7 @@ namespace XNAVERGE {
                 tick_y = tick_x = delay = final_time = null;
                 isMoving = false;
             } else {
+                /*
                 cur_x = start_x;
                 cur_y = start_y;
                 final_x = (float)end_x;
@@ -75,9 +79,24 @@ namespace XNAVERGE {
                 tick_y = ( final_y - cur_y ) / (float)delay;
                 final_time = layer.stack.systime + delay;
                 isMoving = true;
+                */
+
+                SetNewMovement( start_x, start_y, end_x.Value, end_y.Value, delay.Value );
             }
         }
 
+        public void SetNewMovement( int start_x, int start_y, int end_x, int end_y, int delay ) {
+            cur_x = start_x;
+            cur_y = start_y;
+            final_x = (float)end_x;
+            final_y = (float)end_y;
+            this.delay = delay;
+            tick_x = ( final_x - cur_x ) / (float)delay;
+            tick_y = ( final_y - cur_y ) / (float)delay;
+            final_time = layer.stack.systime + delay;
+            isMoving = true;
+        }
+ 
         public override string ToString() {
             return  "Node layer " + layer + 
                     " cur: (" + cur_x + "," + cur_y + 
@@ -119,8 +138,7 @@ namespace XNAVERGE {
                             //this.Reverse();
 
                             if( OnStop != null ) {
-                                OnStop();
-                                //OnStop = null;
+                                OnStop(this);
                             }
                         }
                     }
@@ -213,6 +231,7 @@ namespace XNAVERGE {
 
         public void setSystime( long st ) {
             prev_systime = systime;
+            
             systime = (int)st;
         }
 

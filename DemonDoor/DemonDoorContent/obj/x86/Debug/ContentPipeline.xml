@@ -35,7 +35,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\grue\demon_door\DemonDoor\DemonDoor\bin\x86\Debug\Content\art\stage.xnb</Output>
-      <Time>2012-04-01T15:58:34.635-07:00</Time>
+      <Time>2012-04-01T18:11:07.654-07:00</Time>
     </Item>
     <Item>
       <Source>art\title.png</Source>
@@ -260,7 +260,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\grue\demon_door\DemonDoor\DemonDoor\bin\x86\Debug\Content\art\car_01.xnb</Output>
-      <Time>2012-04-01T12:52:06.309-07:00</Time>
+      <Time>2012-04-01T18:11:07.653-07:00</Time>
     </Item>
     <Item>
       <Source>art\car_02.png</Source>
@@ -269,7 +269,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\grue\demon_door\DemonDoor\DemonDoor\bin\x86\Debug\Content\art\car_02.xnb</Output>
-      <Time>2012-04-01T12:52:06.31-07:00</Time>
+      <Time>2012-04-01T17:37:10.308-07:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>

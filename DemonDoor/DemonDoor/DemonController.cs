@@ -81,11 +81,12 @@ namespace DemonDoor
             //Console.WriteLine( "DEMON State: " + sprite.CurrentState.ToString() );
 
             if(GamePad.GetState(PlayerIndex.One).Buttons.X == ButtonState.Pressed && sprite.CurrentState == DemonSprite.AnimationState.Idle ) {
+                Game1.game.PlayCue( "demon_duck" );
                 sprite.SetAnimationState( DemonSprite.AnimationState.Disappearing, 0 );
             }
 
-            if (GamePad.GetState(PlayerIndex.One).Buttons.X == ButtonState.Released && sprite.CurrentState == DemonSprite.AnimationState.Hidden)
-            {
+            if (GamePad.GetState(PlayerIndex.One).Buttons.X == ButtonState.Released && sprite.CurrentState == DemonSprite.AnimationState.Hidden) {
+                Game1.game.PlayCue( "demon_duck" );
                 sprite.SetAnimationState( DemonSprite.AnimationState.Reappearing, 0 );
             }
 

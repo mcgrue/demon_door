@@ -52,7 +52,7 @@ namespace XNAVERGE {
                 map.renderstack.Draw();
             }
 
-            //renderstack.setSystime( stopWatch.ElapsedMilliseconds );
+            renderstack.setSystime( stopWatch.ElapsedMilliseconds );
 
             GraphicsDevice.SetRenderTarget( screen.true_size_buffer );
             renderstack.setSpritebatch( spritebatch );
