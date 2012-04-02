@@ -121,7 +121,7 @@ namespace DemonDoor
                 other = f1;
             }
 
-            if (behaviorState == BehaviorState.PatrollingLeft || behaviorState == BehaviorState.PatrollingRight)
+            if (behaviorState != BehaviorState.Flying)
             {
                 if (other.UserData is CopController || other.UserData is CivvieController)
                 {
@@ -246,7 +246,10 @@ namespace DemonDoor
             {
                 shootAccumulator = TimeSpan.Zero;
                 shootTimer = TimeSpan.FromSeconds(VERGEGame.rand.Next(5, 15));
-                behaviorState = BehaviorState.Aiming;
+
+                if (_fsBody.Position.X < playerPosition.X) { 
+                    behaviorState = BehaviorState.Aiming;
+                }
             }
 
             else if (patrolAccumulator > this.patrolDuration)

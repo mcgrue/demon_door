@@ -110,7 +110,7 @@ namespace DemonDoor
             if (other.UserData is CopController && behaviorState == BehaviorState.Walking)
             {
                 var copController = other.UserData as CopController;
-                if (copController.behaviorState == CopController.BehaviorState.PatrollingRight || copController.behaviorState == CopController.BehaviorState.PatrollingLeft)
+                if (copController.behaviorState != CopController.BehaviorState.Flying)
                 {
                     return false;
                 }
