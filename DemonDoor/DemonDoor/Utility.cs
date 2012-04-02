@@ -4,5 +4,6 @@ namespace DemonDoor
 {
     static class Utility
     {
+        public static bool DrawHitboxes = true;
     }
 }

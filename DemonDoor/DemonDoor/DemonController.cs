@@ -114,18 +114,25 @@ namespace DemonDoor
                 sprite.Sprite.y = (int)screen.Y - 9;
                 sprite.Sprite.Draw();
 
-                Vertices v = (_fsFixture.Shape as PolygonShape).Vertices;
-
-                _.setDrawTarget(Game1.game.spritebatch);
-
-                for (int i = 0; i < 4; i++)
+                if (Utility.DrawHitboxes)
                 {
-                    int next = (i + 1) % 4;
+                    Vertices v = (_fsFixture.Shape as PolygonShape).Vertices;
 
-                    Vector2 from = Coords.Physics2Screen(v[i]);
-                    Vector2 to = Coords.Physics2Screen(v[next]);
+                    _.setDrawTarget(Game1.game.spritebatch);
 
-                    _.DrawLine((int)from.X, (int)from.Y, (int)to.X, (int)to.Y, Color.Green);
+                    int x0 = int.MaxValue, x1 = int.MinValue, y0 = int.MaxValue, y1 = int.MinValue;
+
+                    for (int i = 0; i < 4; i++)
+                    {
+                        Vector2 r = Coords.Physics2Screen(v[i] + Position);
+
+                        if (r.X < x0) x0 = (int)r.X;
+                        if (r.X > x1) x1 = (int)r.X;
+                        if (r.Y < y0) y0 = (int)r.Y;
+                        if (r.Y > y1) y1 = (int)r.Y;
+                    }
+
+                    _.DrawRect(x0, y0, x1, y1, Color.Green);
                 }
             };
 
