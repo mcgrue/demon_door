@@ -113,7 +113,7 @@ namespace DemonDoor
                 new McgNode(_gun, l, 60, 200)
             );
 
-            var demonSpriteBasis = new SpriteBasis(10, 19, 7, 7);
+            var demonSpriteBasis = new SpriteBasis(9, 19, 7, 7);
             demonSpriteBasis.image = game1.im_demon;
             var demonSprite = new DemonSprite( demonSpriteBasis );
             _evilDemon = new DemonController( _world,

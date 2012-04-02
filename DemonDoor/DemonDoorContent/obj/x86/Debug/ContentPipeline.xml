@@ -253,6 +253,24 @@
       <Output>C:\grue\demon_door\DemonDoor\DemonDoor\bin\x86\Debug\Content\art\window_break.xnb</Output>
       <Time>2012-04-01T15:31:05.972-07:00</Time>
     </Item>
+    <Item>
+      <Source>art\car_01.png</Source>
+      <Name>art\car_01</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\grue\demon_door\DemonDoor\DemonDoor\bin\x86\Debug\Content\art\car_01.xnb</Output>
+      <Time>2012-04-01T12:52:06.309-07:00</Time>
+    </Item>
+    <Item>
+      <Source>art\car_02.png</Source>
+      <Name>art\car_02</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\grue\demon_door\DemonDoor\DemonDoor\bin\x86\Debug\Content\art\car_02.xnb</Output>
+      <Time>2012-04-01T12:52:06.31-07:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>
