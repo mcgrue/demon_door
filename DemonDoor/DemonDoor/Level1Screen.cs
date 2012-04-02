@@ -37,7 +37,7 @@ namespace DemonDoor
             //Wall _wallTri = new Wall(_world, verts);
             McgNode rendernode;
             Vector2 floor = Coords.Screen2Physics(new Vector2 { X = 0, Y = 215 });
-            _world = new World(new Vector2 { X = 0, Y = -10 }, floor.Y);
+            _world = new World(new Vector2 { X = 0, Y = -80 }, floor.Y);
 
             Vector2 _666pos = Coords.Screen2Physics(new Vector2 { X = 280, Y = 218 });
             Vector2 _666size = Coords.Screen2Physics(new Vector2 { X = 100, Y = 210 }, true);
@@ -173,7 +173,7 @@ namespace DemonDoor
 
             //spawn guys
             Vector2 spawnerR = Coords.Screen2Physics(new Vector2 { X = 325, Y = 218 });
-            var civvieSpawner = new CivvieSpawner( _world, l, spawnerR, TimeSpan.FromSeconds( 1 ), civilianList.ToArray(), 1000 );
+            var civvieSpawner = new CivvieSpawner( _world, l, spawnerR, TimeSpan.FromSeconds( 2 ), civilianList.ToArray(), 1000 );
             l.AddNode(new McgNode(civvieSpawner, l, 80, 20));
 
             //spawn cops
@@ -258,10 +258,13 @@ namespace DemonDoor
         internal override void Draw(SpriteBatch batch, GameTime gameTime)
         {
             Game1 game1 = (Game1)Game1.game;
+
+            // no text for demo
+            /*
             string doorSpeedDesc = string.Format("door speed: {0}", _gun.DoorSpeedDescription);
             Vector2 size = game1.ft_hud24.MeasureString(doorSpeedDesc);
-
             batch.DrawString(game1.ft_hud24, doorSpeedDesc, new Vector2 { X = (640 - size.X) / 2, Y = 480 - 5 - size.Y }, Color.White);
+            */
         }
     }
 }
