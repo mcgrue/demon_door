@@ -46,8 +46,8 @@ namespace DemonDoor
 
             Vector2[] verts = new[] {
                 Coords.Screen2Physics(new Vector2 { X = 340, Y = 32 }),
-                Coords.Screen2Physics(new Vector2 { X = 280, Y = 32 }),
-                Coords.Screen2Physics(new Vector2 { X = 280, Y = 200 }),
+                Coords.Screen2Physics(new Vector2 { X = 300, Y = 32 }),
+                Coords.Screen2Physics(new Vector2 { X = 300, Y = 200 }),
                 Coords.Screen2Physics(new Vector2 { X = 340, Y = 200 }),
             };
 

@@ -19,7 +19,7 @@ namespace DemonDoor
             _fsBody.Position = r;
 
             PolygonShape shape = new PolygonShape(1.0f);
-            shape.SetAsBox(size.X, size.Y);
+            shape.SetAsBox(size.X * 2, size.Y * 2);
 
             _fsFixture = _fsBody.CreateFixture(shape, this);
             _fsFixture.IsSensor = true;
