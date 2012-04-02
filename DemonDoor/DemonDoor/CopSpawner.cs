@@ -47,7 +47,7 @@ namespace DemonDoor
             spawnTimeAccumulator += time.ElapsedGameTime;
             if (spawnTimeAccumulator > spawnRate)
             {
-                layer.AddNode(new McgNode(new CopController(world, new Vector2(location.X, location.Y), new CopSprite(copSpriteBasis)), layer, 
+                layer.AddNode(new McgNode(new CopController(world, new Vector2(location.X, location.Y), new CopSprite(copSpriteBasis), layer), layer, 
                     (int)location.X, (int)location.Y));
                 spawnTimeAccumulator = TimeSpan.FromMilliseconds(VERGEGame.rand.Next(-spawnRateFuzzMillis, 0));
             }

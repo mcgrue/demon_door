@@ -30,7 +30,7 @@ namespace DemonDoor
             animationAtlas[AnimationState.Flying] = createFilmstrip(5);
             animationAtlas[AnimationState.Dead] = createFilmstrip(6);
             animationAtlas[AnimationState.Aiming] = createFilmstrip(8);
-            animationAtlas[AnimationState.Shooting] = createFilmstrip(9);
+            animationAtlas[AnimationState.Shooting] = createFilmstrip(new[]{8,9,8});
 
             this.currentAnimation = animationAtlas[AnimationState.Idle];
             this.Sprite = new Sprite(sb, currentAnimation);
@@ -61,6 +61,6 @@ namespace DemonDoor
             return new Filmstrip(new Point(16, 16), frames, 150, randomizedStartFrame);
         }
 
-        private Dictionary<AnimationState, Filmstrip> animationAtlas;
+        public Dictionary<AnimationState, Filmstrip> animationAtlas;
     }
 }

@@ -147,11 +147,14 @@ namespace DemonDoor
             //spawn guys
             Vector2 spawnerR = Coords.Screen2Physics(new Vector2 { X = 325, Y = 218 });
             var civvieSpawner = new CivvieSpawner( _world, l, spawnerR, TimeSpan.FromSeconds( 1 ), civilianList.ToArray(), 1000 );
-            l.AddNode(new McgNode(civvieSpawner, l, 80, 20));
+            //l.AddNode(new McgNode(civvieSpawner, l, 80, 20));
 
             //spawn cops
             var copSpawner = new CopSpawner(_world, l, spawnerR, TimeSpan.FromSeconds(1), copSpriteBasis, 1000);
-            l.AddNode(new McgNode(copSpawner, l, 80, 20));
+            //l.AddNode(new McgNode(copSpawner, l, 80, 20));
+
+            var cop = new CopController(_world, new Vector2(0, 10), new CopSprite(copSpriteBasis),l);
+            l.AddNode(new McgNode(cop, l, 0, 0));
         }
 
         Vector2 _aimPoint = Vector2.UnitX;
